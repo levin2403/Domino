@@ -6,19 +6,32 @@ package org.itson.domino.managers;
 
 import javax.swing.JFrame;
 
+
 /**
  *
  * @author gamaliel
  */
 public class ViewManager {
+    private static ViewManager instance;
     private JFrame currentView;
 
-    public void showView(JFrame newView) {
+    public ViewManager() {
+        // Constructor privado para evitar instanciación externa
+    }
+
+    public static ViewManager getInstance() {
+        if (instance == null) {
+            instance = new ViewManager();
+        }
+        return instance;
+    }
+
+    public void showView(JFrame view) {
         if (currentView != null) {
             currentView.setVisible(false);
+            currentView.dispose(); // Cierra la vista anterior
         }
-        currentView = newView;
-        currentView.setVisible(true); 
+        currentView = view;
+        currentView.setVisible(true);
     }
 }
-
