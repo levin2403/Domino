@@ -21,10 +21,9 @@ public class FrmBienvenidaView extends javax.swing.JFrame implements IView{
      */
     public FrmBienvenidaView() {
         initComponents();
-        actualizarFuenteCuerpo();
     }
 
-        private void actualizarFuenteCuerpo() {
+    private void actualizarFuenteCuerpo() {
         Font fuenteCuerpo = fuentesManager.getFuenteCuerpo();
         if (fuenteCuerpo != null) {
             lblDomino.setFont(fuenteCuerpo);
