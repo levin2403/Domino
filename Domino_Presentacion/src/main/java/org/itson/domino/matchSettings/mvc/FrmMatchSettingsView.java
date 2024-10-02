@@ -1,8 +1,6 @@
 package org.itson.domino.matchSettings.mvc;
 
-import org.itson.domino.welcome.mvc.*;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
 import org.itson.domino.managers.ButtonManager;
 import org.itson.domino.singleton.FontSingleton;
 
@@ -17,33 +15,14 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         buttonManager.addCloseButton(btnClose, this);
         buttonManager.addMinimizeButton(btnMinimize, this);
     }
+    
+    public void addNextFormButtonListener(ActionListener listener) {
+        btnNextForm.addActionListener(listener);
+    }
     /**
      * Creates new form FrmBienvenida
      */
 
-    public void addNextFormButtonListener(ActionListener listener) {
-        btnNextForm.addActionListener(listener);
-    }
-
-    public void addCloseButtonListener(ActionListener listener) {
-        btnClose.addActionListener(listener);
-    }
-
-    public void addMinimizeButtonListener(ActionListener listener) {
-        btnMinimize.addActionListener(listener);
-    }
-
-    // Métodos para la lógica de minimización y cierre
-    public void minimize() {
-        setState(JFrame.ICONIFIED);
-    }
-
-    public void close() {
-        System.exit(0);
-    }
-
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,7 +46,7 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDomino.setText("Domino - Vice City Edition");
-        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
+        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, -1, -1));
 
         btnNextForm.setText("iniciar");
         jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));

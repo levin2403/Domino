@@ -10,7 +10,6 @@
 
 package org.itson.domino.welcome.mvc;
 
-import javax.swing.JFrame;
 import org.itson.domino.exceptions.MusicFileNotFoundException;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsView;
 import org.itson.domino.managers.ViewManager;
@@ -38,7 +37,6 @@ public class FrmWelcomeController {
         }
     }
 
-    
     private void openNextForm() {
         view.setVisible(false);
         FrmMatchSettingsView siguienteView = new FrmMatchSettingsView();

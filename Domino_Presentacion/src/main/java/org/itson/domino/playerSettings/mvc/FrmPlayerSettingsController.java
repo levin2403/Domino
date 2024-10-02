@@ -10,9 +10,6 @@
 
 package org.itson.domino.playerSettings.mvc;
 
-import org.itson.domino.matchSettings.mvc.*;
-import org.itson.domino.welcome.mvc.*;
-import javax.swing.JFrame;
 import org.itson.domino.exceptions.MusicFileNotFoundException;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsView;
 import org.itson.domino.managers.ViewManager;
@@ -29,7 +26,6 @@ public class FrmPlayerSettingsController {
         this.viewManager = ViewManager.getInstance();
         
         initialize();
-        this.view.addNextFormButtonListener(e -> openNextForm());
     }
 
     private void initialize() {
@@ -38,12 +34,6 @@ public class FrmPlayerSettingsController {
         } catch (MusicFileNotFoundException e) {
             System.err.println(e.getMessage());
         }
-        view.addMinimizeButtonListener(e -> view.setState(JFrame.ICONIFIED));
-        view.addCloseButtonListener(e -> close());
-    }
-
-    private void close() {
-        System.exit(0);
     }
     
     private void openNextForm() {

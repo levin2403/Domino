@@ -27,25 +27,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         btnNextForm.addActionListener(listener);
     }
 
-    public void addCloseButtonListener(ActionListener listener) {
-        btnClose.addActionListener(listener);
-    }
-
-    public void addMinimizeButtonListener(ActionListener listener) {
-        btnMinimize.addActionListener(listener);
-    }
-
-    // Métodos para la lógica de minimización y cierre
-    public void minimize() {
-        setState(JFrame.ICONIFIED);
-    }
-
-    public void close() {
-        System.exit(0);
-    }
-
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
