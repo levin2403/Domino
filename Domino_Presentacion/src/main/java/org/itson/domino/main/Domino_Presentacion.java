@@ -4,8 +4,8 @@
  */
 package org.itson.domino.main;
 
-import org.itson.domino.bienvenida.mvc.FrmBienvenidaController;
-import org.itson.domino.bienvenida.mvc.FrmBienvenidaView;
+import org.itson.domino.welcome.mvc.FrmWelcomeController;
+import org.itson.domino.welcome.mvc.FrmWelcomeView;
 import org.itson.domino.managers.ViewManager;
 
 /**
@@ -19,9 +19,9 @@ public class Domino_Presentacion {
      */
     public static void main(String[] args) {
         ViewManager viewManager = new ViewManager();
-        FrmBienvenidaView view = new FrmBienvenidaView();
-        FrmBienvenidaController controller = new FrmBienvenidaController(view, viewManager);
-
+        FrmWelcomeView view = new FrmWelcomeView();
+        new FrmWelcomeController(view, viewManager);
+        
         viewManager.showView(view);
     }
 }

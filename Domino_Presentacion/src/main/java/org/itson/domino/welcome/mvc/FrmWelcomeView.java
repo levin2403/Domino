@@ -1,37 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package org.itson.domino.bienvenida.mvc;
+package org.itson.domino.welcome.mvc;
 
-import java.awt.Font;
 import java.awt.event.ActionListener;
-import org.itson.domino.interfaces.IView;
-import org.itson.domino.managers.FuentesManager;
+import org.itson.domino.managers.ButtonManager;
+import org.itson.domino.singleton.FontSingleton;
 
-/**
- *
- * @author gamaliel
- */
-public class FrmBienvenidaView extends javax.swing.JFrame implements IView{
+public class FrmWelcomeView extends javax.swing.JFrame {
 
-        private FuentesManager fuentesManager;
+    public FrmWelcomeView() {
+        initComponents();
+        applyCustomFonts();
+        setLocationRelativeTo(null);
+        
+        ButtonManager buttonManager = ButtonManager.getInstance();
+        buttonManager.addCloseButton(btnClose, this);
+        buttonManager.addMinimizeButton(btnMinimize, this);
+    }
     /**
      * Creates new form FrmBienvenida
      */
-    public FrmBienvenidaView() {
-        initComponents();
+
+    public void addNextFormButtonListener(ActionListener listener) {
+        btnNextForm.addActionListener(listener);
     }
 
-    private void actualizarFuenteCuerpo() {
-        Font fuenteCuerpo = fuentesManager.getFuenteCuerpo();
-        if (fuenteCuerpo != null) {
-            lblDomino.setFont(fuenteCuerpo);
-        } else {
-            System.out.println("Fuente no cargada correctamente.");
-        }
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,19 +34,29 @@ public class FrmBienvenidaView extends javax.swing.JFrame implements IView{
 
         jPanel1 = new javax.swing.JPanel();
         lblDomino = new javax.swing.JLabel();
-        btnSigForm = new javax.swing.JButton();
+        btnNextForm = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
+        btnMinimize = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblDomino.setFont(new java.awt.Font("Roboto", 0, 80)); // NOI18N
         lblDomino.setText("Domino - Vice City Edition");
-        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
+        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
-        btnSigForm.setText("iniciar");
-        jPanel1.add(btnSigForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
+        btnNextForm.setText("iniciar");
+        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
+
+        btnClose.setText("cerrar");
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 30, -1, -1));
+
+        btnMinimize.setText("minimizar");
+        jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, -1, -1));
 
         lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/synthwaveBackground.jpg")); // NOI18N
         lblBackground.setText("jLabel2");
@@ -78,14 +79,20 @@ public class FrmBienvenidaView extends javax.swing.JFrame implements IView{
     /**
      * @param args the command line arguments
      */
-
-    @Override
-        public void addNextFormButtonListener(ActionListener listener) {
-            btnSigForm.addActionListener(listener);
-        }
     
+    private void applyCustomFonts() {
+        FontSingleton customFont = FontSingleton.getInstance();
+        lblDomino.setFont(customFont.getFontSize80());
+        btnNextForm.setFont(customFont.getFontSize26());
+        btnClose.setFont(customFont.getFontSize26());
+        btnMinimize.setFont(customFont.getFontSize26());
+    }
+
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSigForm;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnMinimize;
+    private javax.swing.JButton btnNextForm;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
