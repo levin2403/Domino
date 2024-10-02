@@ -6,7 +6,7 @@ package org.itson.domino.main;
 
 import org.itson.domino.bienvenida.mvc.FrmBienvenidaController;
 import org.itson.domino.bienvenida.mvc.FrmBienvenidaView;
-import org.itson.domino.music.MusicModel;
+import org.itson.domino.managers.ViewManager;
 
 /**
  *
@@ -18,11 +18,10 @@ public class Domino_Presentacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MusicModel model = MusicModel.getInstance();
+        ViewManager viewManager = new ViewManager();
         FrmBienvenidaView view = new FrmBienvenidaView();
-        FrmBienvenidaController controller = new FrmBienvenidaController(view);
+        FrmBienvenidaController controller = new FrmBienvenidaController(view, viewManager);
 
-        view.setVisible(true);
+        viewManager.showView(view);
     }
-    
 }

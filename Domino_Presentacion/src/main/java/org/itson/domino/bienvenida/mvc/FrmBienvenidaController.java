@@ -4,6 +4,8 @@
  */
 package org.itson.domino.bienvenida.mvc;
 
+import org.itson.domino.configuracion.mvc.FrmConfiguracionView;
+import org.itson.domino.managers.ViewManager;
 import org.itson.domino.music.MusicModel;
 
 /**
@@ -14,12 +16,19 @@ import org.itson.domino.music.MusicModel;
 public class FrmBienvenidaController {
     private FrmBienvenidaView view;
     private MusicModel musicModel;
+    private ViewManager viewManager;
 
-    public FrmBienvenidaController(FrmBienvenidaView view) {
+    public FrmBienvenidaController(FrmBienvenidaView view, ViewManager viewManager) {
         this.view = view;
         this.musicModel = MusicModel.getInstance();
+        this.viewManager = viewManager;
         
         musicModel.playMusic("resources/xD.mp3");
+        this.view.addNextFormButtonListener(e -> openNextForm());
+    }
+
+    private void openNextForm() {
+        FrmConfiguracionView siguienteView = new FrmConfiguracionView();
+        viewManager.showView(siguienteView);
     }
 }
-

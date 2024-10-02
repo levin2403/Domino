@@ -4,19 +4,35 @@
  */
 package org.itson.domino.bienvenida.mvc;
 
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import org.itson.domino.interfaces.IView;
+import org.itson.domino.managers.FuentesManager;
+
 /**
  *
  * @author gamaliel
  */
-public class FrmBienvenidaView extends javax.swing.JFrame {
+public class FrmBienvenidaView extends javax.swing.JFrame implements IView{
 
+        private FuentesManager fuentesManager;
     /**
      * Creates new form FrmBienvenida
      */
     public FrmBienvenidaView() {
         initComponents();
+        actualizarFuenteCuerpo();
     }
 
+        private void actualizarFuenteCuerpo() {
+        Font fuenteCuerpo = fuentesManager.getFuenteCuerpo();
+        if (fuenteCuerpo != null) {
+            lblDomino.setFont(fuenteCuerpo);
+        } else {
+            System.out.println("Fuente no cargada correctamente.");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,19 +43,24 @@ public class FrmBienvenidaView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblDomino = new javax.swing.JLabel();
         btnSigForm = new javax.swing.JButton();
+        lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Domino - Vice City Edition");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
+        lblDomino.setText("Domino - Vice City Edition");
+        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
 
         btnSigForm.setText("iniciar");
         jPanel1.add(btnSigForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
+
+        lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/synthwaveBackground.jpg")); // NOI18N
+        lblBackground.setText("jLabel2");
+        jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,9 +80,15 @@ public class FrmBienvenidaView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+    @Override
+        public void addNextFormButtonListener(ActionListener listener) {
+            btnSigForm.addActionListener(listener);
+        }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSigForm;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblDomino;
     // End of variables declaration//GEN-END:variables
 }

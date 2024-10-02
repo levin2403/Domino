@@ -4,11 +4,14 @@
  */
 package org.itson.domino.configuracion.mvc;
 
+import java.awt.event.ActionListener;
+import org.itson.domino.interfaces.IView;
+
 /**
  *
  * @author gamaliel
  */
-public class FrmConfiguracionView extends javax.swing.JFrame {
+public class FrmConfiguracionView extends javax.swing.JFrame implements IView{
 
     /**
      * Creates new form FrmConfiguracionView
@@ -26,17 +29,27 @@ public class FrmConfiguracionView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSigForm = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnSigForm.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(172, Short.MAX_VALUE)
+                .addComponent(btnSigForm)
+                .addGap(146, 146, 146))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(243, Short.MAX_VALUE)
+                .addComponent(btnSigForm)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -77,6 +90,12 @@ public class FrmConfiguracionView extends javax.swing.JFrame {
         });
     }
 
+    @Override
+        public void addNextFormButtonListener(ActionListener listener) {
+            btnSigForm.addActionListener(listener);
+        }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSigForm;
     // End of variables declaration//GEN-END:variables
 }
