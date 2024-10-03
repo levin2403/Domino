@@ -10,9 +10,6 @@
 
 package org.itson.domino.playerSettings.mvc;
 
-import org.itson.domino.exceptions.MusicFileNotFoundException;
-import org.itson.domino.matchSettings.mvc.FrmMatchSettingsView;
-import org.itson.domino.managers.ViewManager;
 import org.itson.domino.mediator.FormMediator;
 import org.itson.domino.singleton.MusicModelSingleton;
 

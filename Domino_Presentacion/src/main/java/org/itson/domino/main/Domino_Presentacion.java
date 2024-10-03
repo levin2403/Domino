@@ -4,9 +4,6 @@
  */
 package org.itson.domino.main;
 
-import org.itson.domino.welcome.mvc.FrmWelcomeController;
-import org.itson.domino.welcome.mvc.FrmWelcomeView;
-import org.itson.domino.managers.ViewManager;
 import org.itson.domino.mediator.FormMediator;
 
 /**

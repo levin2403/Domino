@@ -85,9 +85,9 @@ public class FrmWelcomeView extends javax.swing.JFrame {
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
         lblDomino.setFont(customFont.getFontSize80());
-        btnNextForm.setFont(customFont.getFontSize26());
-        btnClose.setFont(customFont.getFontSize26());
-        btnMinimize.setFont(customFont.getFontSize26());
+        btnNextForm.setFont(customFont.getFontSize30());
+        btnClose.setFont(customFont.getFontSize30());
+        btnMinimize.setFont(customFont.getFontSize30());
     }
 
         

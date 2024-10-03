@@ -10,7 +10,8 @@ public class FontSingleton {
     
     private Font baseFont;
     private Font fontSize80;
-    private Font fontSize26;
+    private Font fontSize30;
+    private Font fontSize20;
 
     private FontSingleton() {
         loadBaseFont("resources/fonts/Evil Empire.otf");
@@ -39,10 +40,12 @@ public class FontSingleton {
     private void deriveFonts() {
         if (baseFont != null) {
             fontSize80 = baseFont.deriveFont(80f);
-            fontSize26 = baseFont.deriveFont(26f);
+            fontSize30 = baseFont.deriveFont(30f);
+            fontSize20 = baseFont.deriveFont(20f);
         } else {
             fontSize80 = new Font("Serif", Font.PLAIN, 24);
-            fontSize26 = new Font("Serif", Font.PLAIN, 18);
+            fontSize30 = new Font("Serif", Font.PLAIN, 18);
+            fontSize20 = new Font("Serif", Font.PLAIN, 20);
         }
     }
 
@@ -50,7 +53,12 @@ public class FontSingleton {
         return fontSize80;
     }
 
-    public Font getFontSize26() {
-        return fontSize26;
+    public Font getFontSize30() {
+        return fontSize30;
     }
+
+    public Font getFontSize20() {
+        return fontSize20;
+    }
+    
 }
