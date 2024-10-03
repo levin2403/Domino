@@ -4,7 +4,7 @@ import org.itson.domino.matchSettings.mvc.*;
 import org.itson.domino.welcome.mvc.*;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import org.itson.domino.managers.ButtonManager;
+import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 
 public class FrmPlayerSettingsView extends javax.swing.JFrame {
@@ -14,7 +14,7 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         applyCustomFonts();
         setLocationRelativeTo(null);
         
-        ButtonManager buttonManager = ButtonManager.getInstance();
+        TaskbarButtonSingleton buttonManager = TaskbarButtonSingleton.getInstance();
         buttonManager.addCloseButton(btnClose, this);
         buttonManager.addMinimizeButton(btnMinimize, this);
         

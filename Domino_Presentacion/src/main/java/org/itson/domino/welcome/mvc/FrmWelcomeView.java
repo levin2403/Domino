@@ -1,7 +1,7 @@
 package org.itson.domino.welcome.mvc;
 
 import java.awt.event.ActionListener;
-import org.itson.domino.managers.ButtonManager;
+import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 
 public class FrmWelcomeView extends javax.swing.JFrame {
@@ -11,7 +11,7 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         applyCustomFonts();
         setLocationRelativeTo(null);
         
-        ButtonManager buttonManager = ButtonManager.getInstance();
+        TaskbarButtonSingleton buttonManager = TaskbarButtonSingleton.getInstance();
         buttonManager.addCloseButton(btnClose, this);
         buttonManager.addMinimizeButton(btnMinimize, this);
     }

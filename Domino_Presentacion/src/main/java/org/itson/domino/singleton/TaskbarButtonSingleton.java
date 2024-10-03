@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.itson.domino.managers;
+package org.itson.domino.singleton;
 /**
  *
  * @author gamaliel
@@ -12,14 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.itson.domino.singleton.MusicModelSingleton;
 
-public class ButtonManager {
-    private static ButtonManager instance;
+public class TaskbarButtonSingleton {
+    private static TaskbarButtonSingleton instance;
 
-    private ButtonManager() {}
+    private TaskbarButtonSingleton() {}
 
-    public static ButtonManager getInstance() {
+    public static TaskbarButtonSingleton getInstance() {
         if (instance == null) {
-            instance = new ButtonManager();
+            instance = new TaskbarButtonSingleton();
         }
         return instance;
     }

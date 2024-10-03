@@ -1,7 +1,7 @@
 package org.itson.domino.matchSettings.mvc;
 
 import java.awt.event.ActionListener;
-import org.itson.domino.managers.ButtonManager;
+import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 
 public class FrmMatchSettingsView extends javax.swing.JFrame {
@@ -11,7 +11,7 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         applyCustomFonts();
         setLocationRelativeTo(null);
         
-        ButtonManager buttonManager = ButtonManager.getInstance();
+        TaskbarButtonSingleton buttonManager = TaskbarButtonSingleton.getInstance();
         buttonManager.addCloseButton(btnClose, this);
         buttonManager.addMinimizeButton(btnMinimize, this);
     }
@@ -53,8 +53,9 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         lblDomino.setText("Configuración de la partida");
         jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 100));
 
+        btnNextForm.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnNextForm.setText("Continuar");
-        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
+        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 624, 160, 60));
 
         btnClose.setText("cerrar");
         jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 30, -1, -1));
@@ -70,10 +71,12 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         lblPlayers.setText("Cantidad de jugadores:");
         jPanel1.add(lblPlayers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
 
-        cmbPlayers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPlayers.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        cmbPlayers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4" }));
         jPanel1.add(cmbPlayers, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 320, 50));
 
-        cmbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFichas.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        cmbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6", "7" }));
         jPanel1.add(cmbFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 320, 50));
 
         lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/synthwaveBackground.jpg")); // NOI18N
