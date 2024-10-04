@@ -9,5 +9,5 @@ package Entidades;
  * @author skevi
  */
 public enum Estado {
-    
+    NO_INICIADA, EN_PROGRESO, FINALIZADA, BLOQUEADA
 }

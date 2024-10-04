@@ -9,5 +9,5 @@ package Entidades;
  * @author skevi
  */
 public enum Direccion {
-    
+    ARRIBA, ABAJO, DERECHA, IZQUIERDA
 }
