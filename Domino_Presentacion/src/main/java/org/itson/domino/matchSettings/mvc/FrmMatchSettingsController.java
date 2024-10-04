@@ -12,17 +12,20 @@ package org.itson.domino.matchSettings.mvc;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.itson.domino.exceptions.MusicFileNotFoundException;
 import org.itson.domino.mediator.FormMediator;
+import org.itson.domino.singleton.MusicModelSingleton;
 
 public class FrmMatchSettingsController {
     private FrmMatchSettingsView view;
     private FormMediator mediator;
-
+    
     public FrmMatchSettingsController(FrmMatchSettingsView view, FormMediator mediator) {
         this.view = view;
         this.mediator = mediator;
         
        openNextForm();
+       openPrevForm();
     }
 
     private void openNextForm() {
@@ -34,4 +37,15 @@ public class FrmMatchSettingsController {
             }
         });
     }
+    
+    private void openPrevForm() {
+        this.view.addPrevFormButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.dispose();
+                mediator.showFrmWelcome();
+            }
+        });
+    }
+    
 }

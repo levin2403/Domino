@@ -1,32 +1,122 @@
 package org.itson.domino.playerSettings.mvc;
 
-import org.itson.domino.matchSettings.mvc.*;
-import org.itson.domino.welcome.mvc.*;
+import java.awt.Image;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
+import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmPlayerSettingsView extends javax.swing.JFrame {
 
+    private int currentAvatarIndex = 0; // Índice del avatar actual
+    
+    private String[] avatarPaths = {
+        "resources/avatars/cactus.jpg",
+        "resources/avatars/clown.jpg",
+        "resources/avatars/dog.jpg",
+        "resources/avatars/george.jpg",
+        "resources/avatars/mexican_femboy.jpg",
+        "resources/avatars/mexican_girl.jpg",
+        "resources/avatars/robot.jpg",
+        "resources/avatars/soldier.jpg",
+        "resources/avatars/tiger.jpg"
+    };
+    
+    
     public FrmPlayerSettingsView() {
+        //ESTABLECER LIBRERÍA DE GUI'S
+        LookAndFeelSingleton.getInstance();
+        
+        //INICIO DE COMPONENTES
         initComponents();
+        
+        //APLICACIÓN DE ESTILOS
         applyCustomFonts();
+        applyButtonStyles();
+        
+        //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
         
-        TaskbarButtonSingleton buttonManager = TaskbarButtonSingleton.getInstance();
-        buttonManager.addCloseButton(btnClose, this);
-        buttonManager.addMinimizeButton(btnMinimize, this);
+        //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
+        TaskbarButtonSingleton taskbarButtonSIngleton = TaskbarButtonSingleton.getInstance();
+        taskbarButtonSIngleton.addCloseButton(btnClose, this);
+        taskbarButtonSIngleton.addMinimizeButton(btnMinimize, this);
         
+        setupAvatarCarousel();
     }
     /**
      * Creates new form FrmBienvenida
      */
 
+    private void applyButtonStyles() {
+        ButtonStyleSingleton style = ButtonStyleSingleton.getInstance();
+
+        style.applyButtonStyle(btnNextForm);
+        style.applyButtonStyle(btnPrevForm);
+        style.applyButtonStyle(btnClose);
+        style.applyButtonStyle(btnMinimize);
+        style.applyButtonStyle(btnPrevAvatar);
+        style.applyButtonStyle(btnNextAvatar);
+    }
+    
     public void addNextFormButtonListener(ActionListener listener) {
         btnNextForm.addActionListener(listener);
     }
+    
+    public void addPrevFormButtonListener(ActionListener listener){
+        btnPrevForm.addActionListener(listener);
+    }
+    
+    private void setupAvatarCarousel() {
+        // Muestra el avatar escalado al iniciar
+        lblAvatarDisplay.setIcon(scaleImage(avatarPaths[currentAvatarIndex], lblAvatarDisplay.getWidth(), lblAvatarDisplay.getHeight()));
+        btnNextAvatar.addActionListener(e -> showNextAvatar());
+        btnPrevAvatar.addActionListener(e -> showPrevAvatar());
+    }
 
+    
+    
+    // Método para escalar la imagen
+    private ImageIcon scaleImage(String path, int width, int height) {
+        ImageIcon imageIcon = new ImageIcon(path);
+        Image image = imageIcon.getImage(); // Obtiene la imagen original
+        Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); // Escala la imagen
+        return new ImageIcon(scaledImage); // Devuelve la imagen escalada
+    }
+    
+// Modifica la función que muestra el avatar
+    private void showPrevAvatar() {
+        // Mostrar el avatar anterior
+        currentAvatarIndex--;
+        if (currentAvatarIndex < 0) {
+            currentAvatarIndex = avatarPaths.length - 1; // Volver al último avatar
+        }
+        lblAvatarDisplay.setIcon(scaleImage(avatarPaths[currentAvatarIndex], lblAvatarDisplay.getWidth(), lblAvatarDisplay.getHeight()));
+    }
+
+    private void showNextAvatar() {
+        // Mostrar el siguiente avatar
+        currentAvatarIndex++;
+        if (currentAvatarIndex >= avatarPaths.length) {
+            currentAvatarIndex = 0; // Volver al primer avatar
+        }
+        lblAvatarDisplay.setIcon(scaleImage(avatarPaths[currentAvatarIndex], lblAvatarDisplay.getWidth(), lblAvatarDisplay.getHeight()));
+    }
+
+    private void applyCustomFonts() {
+        FontSingleton customFont = FontSingleton.getInstance();
+        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
+        applyFontToComponents(customFont, "Evil Empire", 30f, lblAvatar, lblPlayerName, btnNextForm, btnPrevForm, txtName);
+    }
+
+    private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
+        for (JComponent component : components) {
+            component.setFont(fontSingleton.getFont(fontName, size));
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,7 +128,15 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblDomino = new javax.swing.JLabel();
+        lblPlayerName = new javax.swing.JLabel();
+        lblAvatar = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
         btnNextForm = new javax.swing.JButton();
+        btnPrevForm = new javax.swing.JButton();
+        pnlPlayerAvatar = new javax.swing.JPanel();
+        btnNextAvatar = new javax.swing.JButton();
+        btnPrevAvatar = new javax.swing.JButton();
+        lblAvatarDisplay = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
         btnMinimize = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
@@ -53,16 +151,66 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         lblDomino.setText("Configuración del jugador");
         jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        btnNextForm.setText("iniciar");
-        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
+        lblPlayerName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        lblPlayerName.setText("Nickname del jugador:");
+        jPanel1.add(lblPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
-        btnClose.setText("cerrar");
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 30, -1, -1));
+        lblAvatar.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        lblAvatar.setText("Elige un avatar:");
+        jPanel1.add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
 
-        btnMinimize.setText("minimizar");
-        jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, -1, -1));
+        txtName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        txtName.setText("Escribe tu nickname");
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 410, 50));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/synthwaveBackground.jpg")); // NOI18N
+        btnNextForm.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnNextForm.setText("Continuar");
+        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 624, 160, 60));
+
+        btnPrevForm.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnPrevForm.setText("Regresar");
+        jPanel1.add(btnPrevForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 160, 60));
+
+        pnlPlayerAvatar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnNextAvatar.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/next.png")); // NOI18N
+        btnNextAvatar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextAvatarActionPerformed(evt);
+            }
+        });
+        pnlPlayerAvatar.add(btnNextAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 60, 290));
+
+        btnPrevAvatar.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/prev.png")); // NOI18N
+        btnPrevAvatar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevAvatarActionPerformed(evt);
+            }
+        });
+        pnlPlayerAvatar.add(btnPrevAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 290));
+        pnlPlayerAvatar.add(lblAvatarDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 300, 300));
+
+        jPanel1.add(pnlPlayerAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, 290));
+
+        btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
+
+        btnMinimize.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnMinimize.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/minimize.png")); // NOI18N
+        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
+
+        lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/backgrounds/synthwaveBackground.jpg")); // NOI18N
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
@@ -80,24 +228,42 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNextAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextAvatarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNextAvatarActionPerformed
+
+    private void btnPrevAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevAvatarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrevAvatarActionPerformed
+
+    private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMinimizeActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
-    private void applyCustomFonts() {
-        FontSingleton customFont = FontSingleton.getInstance();
-        lblDomino.setFont(customFont.getFontSize80());
-        btnNextForm.setFont(customFont.getFontSize30());
-        btnClose.setFont(customFont.getFontSize30());
-    }
 
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimize;
+    private javax.swing.JButton btnNextAvatar;
     private javax.swing.JButton btnNextForm;
+    private javax.swing.JButton btnPrevAvatar;
+    private javax.swing.JButton btnPrevForm;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblAvatar;
+    private javax.swing.JLabel lblAvatarDisplay;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
+    private javax.swing.JLabel lblPlayerName;
+    private javax.swing.JPanel pnlPlayerAvatar;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }
