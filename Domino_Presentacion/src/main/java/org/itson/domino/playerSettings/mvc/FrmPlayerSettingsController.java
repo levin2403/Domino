@@ -10,6 +10,8 @@
 
 package org.itson.domino.playerSettings.mvc;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import org.itson.domino.mediator.FormMediator;
 import org.itson.domino.singleton.MusicModelSingleton;
 
@@ -23,9 +25,26 @@ public class FrmPlayerSettingsController {
         this.musicModel = MusicModelSingleton.getInstance();
         this.mediator = mediator;
 
+        openNextForm();
+        openPrevForm();
     }
     
     private void openNextForm() {
-
+        this.view.addNextFormButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.dispose();
+                mediator.showFrmPlayerSettings();
+            }
+        });
+    }
+    private void openPrevForm() {
+        this.view.addPrevFormButtonListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.dispose();
+                mediator.showFrmMatchSettings();
+            }
+        });
     }
 }

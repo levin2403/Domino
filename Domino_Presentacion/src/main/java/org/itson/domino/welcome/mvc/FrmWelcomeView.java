@@ -1,23 +1,43 @@
 package org.itson.domino.welcome.mvc;
 
 import java.awt.event.ActionListener;
+import javax.swing.JComponent;
+import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
+import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmWelcomeView extends javax.swing.JFrame {
 
+    
     public FrmWelcomeView() {
+        //ESTABLECER LIBRERÍA DE GUI'S
+        LookAndFeelSingleton.getInstance();
+        
+        //INICIO DE COMPONENTES
         initComponents();
+        
+        //APLICACIÓN DE ESTILOS
         applyCustomFonts();
+        applyButtonStyles();
+        
+        //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
         
-        TaskbarButtonSingleton buttonManager = TaskbarButtonSingleton.getInstance();
-        buttonManager.addCloseButton(btnClose, this);
-        buttonManager.addMinimizeButton(btnMinimize, this);
+        //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
+        TaskbarButtonSingleton taskbarButtonSIngleton = TaskbarButtonSingleton.getInstance();
+        taskbarButtonSIngleton.addCloseButton(btnClose, this);
+        taskbarButtonSIngleton.addMinimizeButton(btnMinimize, this);
     }
-    /**
-     * Creates new form FrmBienvenida
-     */
+
+    
+        private void applyButtonStyles() {
+        ButtonStyleSingleton style = ButtonStyleSingleton.getInstance();
+        
+        style.applyButtonStyle(btnNextForm);
+        style.applyButtonStyle(btnClose);
+        style.applyButtonStyle(btnMinimize);
+    }
 
     public void addNextFormButtonListener(ActionListener listener) {
         btnNextForm.addActionListener(listener);
@@ -51,16 +71,29 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         lblDomino.setText("Domino - Vice City Edition");
         jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
+        btnNextForm.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         btnNextForm.setText("iniciar");
-        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 450, -1, -1));
+        btnNextForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextFormActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 190, 70));
 
-        btnClose.setText("cerrar");
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 30, -1, -1));
+        btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
 
-        btnMinimize.setText("minimizar");
-        jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, -1, -1));
+        btnMinimize.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnMinimize.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/minimize.png")); // NOI18N
+        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/synthwaveBackground.jpg")); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/backgrounds/synthwaveBackground.jpg")); // NOI18N
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
@@ -78,17 +111,30 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMinimizeActionPerformed
+
+    private void btnNextFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextFormActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNextFormActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
-        lblDomino.setFont(customFont.getFontSize80());
-        btnNextForm.setFont(customFont.getFontSize30());
-        btnClose.setFont(customFont.getFontSize30());
-        btnMinimize.setFont(customFont.getFontSize30());
+        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
+        applyFontToComponents(customFont, "Evil Empire", 30f,  btnNextForm);
     }
+
+    private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
+        for (JComponent component : components) {
+            component.setFont(fontSingleton.getFont(fontName, size));
+        }
+    }
+
 
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

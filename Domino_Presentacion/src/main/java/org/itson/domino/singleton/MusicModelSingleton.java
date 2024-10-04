@@ -10,7 +10,7 @@ public class MusicModelSingleton {
     private static MusicModelSingleton instance;
     private AdvancedPlayer player;
     private Thread musicThread;
-    private volatile boolean playing; // Variable para controlar la reproducción
+    private volatile boolean playing;
 
     private MusicModelSingleton() {}
 
@@ -22,33 +22,32 @@ public class MusicModelSingleton {
     }
 
 public void playMusic(String filePath) throws MusicFileNotFoundException {
-    // Verificar que el hilo de música no esté activo
     if (player == null || musicThread == null || !musicThread.isAlive()) {
-        playing = true; // Indica que la música está sonando
+        playing = true;
         musicThread = new Thread(() -> {
-            while (playing) { // Bucle para repetir la música mientras esté reproduciendo
+            while (playing) {
                 try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
                     player = new AdvancedPlayer(fileInputStream);
-                    player.play(); // Reproduce la música
+                    player.play();
                 } catch (JavaLayerException e) {
-                    e.printStackTrace(); // Registrar el error de JavaLayer
-                    break; // Salir del bucle si hay un error
+                    e.printStackTrace();
+                    break;
                 } catch (IOException e) {
                     System.err.println("El archivo de música no se encontró: " + filePath);
-                    break; // Salir del bucle si hay un error
+                    break;
                 }
             }
         });
-        musicThread.start(); // Inicia el hilo
+        musicThread.start();
     }
 }
 
 
     // Método para detener la música
     public void stopMusic() {
-        playing = false; // Cambiar a false para salir del bucle
+        playing = false;
         if (player != null) {
-            player.close(); // Cerrar el reproductor si está activo
+            player.close();
         }
     }
 }

@@ -31,7 +31,7 @@ public class FrmWelcomeController {
 
     private void initialize() {
         try {
-            musicModel.playMusic("resources/main_theme.mp3");
+            musicModel.playMusic("resources/music/main_theme.mp3");
         } catch (MusicFileNotFoundException e) {
             System.err.println(e.getMessage());
         }
