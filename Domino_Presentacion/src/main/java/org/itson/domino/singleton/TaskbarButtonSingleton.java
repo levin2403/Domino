@@ -37,7 +37,7 @@ public class TaskbarButtonSingleton {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MusicModelSingleton.getInstance().stopMusic();
+                MusicModelSingleton.getInstance().stopCurrentMusic();
                 System.exit(0);
             }
         });

@@ -1,50 +1,70 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-*/
-
-/**
- *
- * @author gamaliel
- */
-
 package org.itson.domino.playerSettings.mvc;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import org.itson.domino.mediator.FormMediator;
+import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
+import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsView;
 import org.itson.domino.singleton.MusicModelSingleton;
 
+
 public class FrmPlayerSettingsController {
+
     private FrmPlayerSettingsView view;
-    private MusicModelSingleton musicModel;
+    private FrmPlayerSettingsModel model;
     private FormMediator mediator;
+    private MusicModelSingleton musicModel;
 
-    public FrmPlayerSettingsController(FrmPlayerSettingsView view, FormMediator mediator) {
+    public FrmPlayerSettingsController(FrmPlayerSettingsView view, FrmPlayerSettingsModel model, FormMediator mediator) {
         this.view = view;
-        this.musicModel = MusicModelSingleton.getInstance();
+        this.model = model;
         this.mediator = mediator;
+        this.musicModel = MusicModelSingleton.getInstance();
 
-        openNextForm();
-        openPrevForm();
+        setupButtonListeners();
+        setupAvatarCarousel();
+        updateAvatarDisplay();
     }
-    
+
+    private void setupButtonListeners() {
+        view.addNextFormButtonListener(e -> openNextForm());
+        view.addPrevFormButtonListener(e -> openPrevForm());
+    }
+
+        private void setupAvatarCarousel() {
+            view.addNextAvatarListener(e -> {
+                String avatarPath = model.nextAvatar();
+                view.updateAvatarDisplay(avatarPath);
+            });
+            view.addPrevAvatarListener(e -> {
+                String avatarPath = model.previousAvatar();
+                view.updateAvatarDisplay(avatarPath);
+            });
+        }
+
+        private void updateAvatarDisplay() {
+            String avatarPath = model.getSelectedAvatarPath();
+            view.updateAvatarDisplay(avatarPath);
+        }
+
+
+    private void savePlayerSettings() {
+        model.setPlayerName(view.getPlayerName());
+    }
+
     private void openNextForm() {
-        this.view.addNextFormButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.dispose();
-                mediator.showFrmPlayerSettings();
-            }
-        });
+        savePlayerSettings();
+        model.saveSettings();
+        musicModel.stopCurrentMusic();
+        navigateToForm(mediator::showFrmLobby);
     }
+
     private void openPrevForm() {
-        this.view.addPrevFormButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.dispose();
-                mediator.showFrmMatchSettings();
-            }
-        });
+        savePlayerSettings();
+        model.saveSettings();
+        navigateToForm(mediator::showFrmMatchSettings);
+    }
+
+    private void navigateToForm(Runnable action) {
+        view.dispose();
+        action.run();
     }
 }

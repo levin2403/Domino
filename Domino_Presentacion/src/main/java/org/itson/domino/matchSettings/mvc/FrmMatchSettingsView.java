@@ -2,6 +2,7 @@ package org.itson.domino.matchSettings.mvc;
 
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
@@ -36,11 +37,19 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
     public void addPrevFormButtonListener(ActionListener listener){
         btnPrevForm.addActionListener(listener);
     }
+    
+    public void addPlayersComboBoxListener(ActionListener listener){
+        cmbPlayers.addActionListener(listener);
+    }
+
+    public void addTilesComboBoxListener(ActionListener listener){
+        cmbTiles.addActionListener(listener);
+    }
 
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
         applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
-        applyFontToComponents(customFont, "Evil Empire", 30f, lblPlayers, lblFichas, btnNextForm, btnPrevForm, cmbFichas, cmbPlayers);
+        applyFontToComponents(customFont, "Evil Empire", 30f, lblPlayers, lblFichas, btnNextForm, btnPrevForm, cmbTiles, cmbPlayers);
     }
 
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
@@ -57,6 +66,21 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         style.applyButtonStyle(btnClose);
         style.applyButtonStyle(btnMinimize);
     }
+    
+    public int getSelectedPlayers() {
+        String selectedValue = (String) cmbPlayers.getSelectedItem();
+        return selectedValue != null ? Integer.parseInt(selectedValue) : 2; // valor por defecto
+    }
+
+    public int getSelectedTiles() {
+        String selectedValue = (String) cmbTiles.getSelectedItem();
+        return selectedValue != null ? Integer.parseInt(selectedValue) : 3; // valor por defecto
+    }
+
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
     
     /**
      * Creates new form FrmBienvenida
@@ -78,7 +102,7 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         lblFichas = new javax.swing.JLabel();
         lblPlayers = new javax.swing.JLabel();
         cmbPlayers = new javax.swing.JComboBox<>();
-        cmbFichas = new javax.swing.JComboBox<>();
+        cmbTiles = new javax.swing.JComboBox<>();
         btnClose = new javax.swing.JButton();
         btnMinimize = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
@@ -113,9 +137,9 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         cmbPlayers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4" }));
         jPanel1.add(cmbPlayers, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 320, 50));
 
-        cmbFichas.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        cmbFichas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6", "7" }));
-        jPanel1.add(cmbFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 320, 50));
+        cmbTiles.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        cmbTiles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "4", "5", "6", "7" }));
+        jPanel1.add(cmbTiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 320, 50));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
@@ -157,8 +181,8 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
     private javax.swing.JButton btnMinimize;
     private javax.swing.JButton btnNextForm;
     private javax.swing.JButton btnPrevForm;
-    private javax.swing.JComboBox<String> cmbFichas;
     private javax.swing.JComboBox<String> cmbPlayers;
+    private javax.swing.JComboBox<String> cmbTiles;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;

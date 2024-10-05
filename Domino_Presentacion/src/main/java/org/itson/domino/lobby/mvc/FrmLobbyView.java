@@ -1,29 +1,20 @@
-package org.itson.domino.playerSettings.mvc;
+package org.itson.domino.lobby.mvc;
 
-import java.awt.Image;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import org.itson.domino.managers.AvatarManager;
 import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmPlayerSettingsView extends javax.swing.JFrame {
+public class FrmLobbyView extends javax.swing.JFrame {
 
-    private AvatarManager avatarManager;
-    
-    
-    
-    public FrmPlayerSettingsView() {
+    public FrmLobbyView() {
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
         
+        //INICIO DE COMPONENTES
         initComponents();
-        
-        this.avatarManager = new AvatarManager();
-        updateAvatarDisplay(avatarManager.getCurrentAvatarPath());
         
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
@@ -48,8 +39,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         style.applyButtonStyle(btnPrevForm);
         style.applyButtonStyle(btnClose);
         style.applyButtonStyle(btnMinimize);
-        style.applyButtonStyle(btnPrevAvatar);
-        style.applyButtonStyle(btnNextAvatar);
     }
     
     public void addNextFormButtonListener(ActionListener listener) {
@@ -60,32 +49,10 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         btnPrevForm.addActionListener(listener);
     }
 
-    public void addNextAvatarListener(ActionListener listener) {
-        btnNextAvatar.addActionListener(listener);
-    }
-
-    public void addPrevAvatarListener(ActionListener listener) {
-        btnPrevAvatar.addActionListener(listener);
-    }
-    
-    public void updateAvatarDisplay(String avatarPath) {
-        ImageIcon avatarIcon = new ImageIcon(avatarPath);
-        Image avatarImage = avatarIcon.getImage();
-        Image scaledAvatarImage = avatarImage.getScaledInstance(lblAvatarDisplay.getWidth(), lblAvatarDisplay.getHeight(), Image.SCALE_SMOOTH);
-        avatarIcon = new ImageIcon(scaledAvatarImage);
-        lblAvatarDisplay.setIcon(avatarIcon);
-    }
-    
-    public String getPlayerName() {
-        return txtName.getText();
-    }
-
-
-
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
         applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
-        applyFontToComponents(customFont, "Evil Empire", 30f, lblAvatar, lblPlayerName, btnNextForm, btnPrevForm, txtName);
+        applyFontToComponents(customFont, "Evil Empire", 30f, lblPlayerName, btnNextForm, btnPrevForm);
     }
 
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
@@ -105,14 +72,8 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblDomino = new javax.swing.JLabel();
         lblPlayerName = new javax.swing.JLabel();
-        lblAvatar = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
         btnNextForm = new javax.swing.JButton();
         btnPrevForm = new javax.swing.JButton();
-        pnlPlayerAvatar = new javax.swing.JPanel();
-        btnNextAvatar = new javax.swing.JButton();
-        btnPrevAvatar = new javax.swing.JButton();
-        lblAvatarDisplay = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
         btnMinimize = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
@@ -124,54 +85,25 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDomino.setFont(new java.awt.Font("Roboto", 0, 80)); // NOI18N
-        lblDomino.setText("Configuración del jugador");
-        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        lblDomino.setText("Esperando al resto de jugadores");
+        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
 
         lblPlayerName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        lblPlayerName.setText("Nickname del jugador:");
-        jPanel1.add(lblPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
-
-        lblAvatar.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        lblAvatar.setText("Elige un avatar:");
-        jPanel1.add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
-
-        txtName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        txtName.setToolTipText("");
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 420, 50));
+        lblPlayerName.setText("Disfruta la música que escuchas en esta sala de espera");
+        jPanel1.add(lblPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, -1, -1));
 
         btnNextForm.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnNextForm.setText("Continuar");
-        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(1021, 624, 160, 60));
+        btnNextForm.setText("Comenzar la partida");
+        btnNextForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextFormActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(861, 624, 320, 60));
 
         btnPrevForm.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnPrevForm.setText("Regresar");
         jPanel1.add(btnPrevForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 160, 60));
-
-        pnlPlayerAvatar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnNextAvatar.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/next.png")); // NOI18N
-        btnNextAvatar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextAvatarActionPerformed(evt);
-            }
-        });
-        pnlPlayerAvatar.add(btnNextAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 60, 290));
-
-        btnPrevAvatar.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/prev.png")); // NOI18N
-        btnPrevAvatar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrevAvatarActionPerformed(evt);
-            }
-        });
-        pnlPlayerAvatar.add(btnPrevAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 290));
-        pnlPlayerAvatar.add(lblAvatarDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 300, 290));
-
-        jPanel1.add(pnlPlayerAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, -1, 290));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
@@ -204,21 +136,13 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNextAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextAvatarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNextAvatarActionPerformed
-
-    private void btnPrevAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevAvatarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPrevAvatarActionPerformed
-
     private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMinimizeActionPerformed
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void btnNextFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextFormActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
+    }//GEN-LAST:event_btnNextFormActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,17 +153,11 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimize;
-    private javax.swing.JButton btnNextAvatar;
     private javax.swing.JButton btnNextForm;
-    private javax.swing.JButton btnPrevAvatar;
     private javax.swing.JButton btnPrevForm;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAvatar;
-    private javax.swing.JLabel lblAvatarDisplay;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
     private javax.swing.JLabel lblPlayerName;
-    private javax.swing.JPanel pnlPlayerAvatar;
-    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

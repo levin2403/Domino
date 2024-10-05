@@ -8,36 +8,48 @@
  * @author gamaliel
  */
 
-package org.itson.domino.welcome.mvc;
+package org.itson.domino.lobby.mvc;
 
 import org.itson.domino.constants.MusicPaths;
 import org.itson.domino.mediator.FormMediator;
 import org.itson.domino.singleton.MusicModelSingleton;
 
-public class FrmWelcomeController {
-    private FrmWelcomeView view;
+public class FrmLobbyController {
+    private FrmLobbyView view;
     private MusicModelSingleton musicModel;
     private FormMediator mediator;
 
-    public FrmWelcomeController(FrmWelcomeView view, FormMediator mediator) {
+    public FrmLobbyController(FrmLobbyView view, FormMediator mediator) {
         this.view = view;
-            this.musicModel = MusicModelSingleton.getInstance();
+        this.musicModel = MusicModelSingleton.getInstance();
         this.mediator = mediator;
         
-        playMainTheme();
+        playLobbyTheme();
         setupButtonListeners();
     }
-
+    
+    private void playLobbyTheme() {
+        musicModel.playMusic(MusicPaths.LOBBY_THEME);
+    }
+    
     private void playMainTheme() {
         musicModel.playMusic(MusicPaths.MAIN_THEME);
     }
 
     private void setupButtonListeners() {
         view.addNextFormButtonListener(e -> openNextForm());
+        view.addPrevFormButtonListener(e -> openPrevForm());
     }
     
     private void openNextForm() {
-        navigateToForm(() -> mediator.showFrmMatchSettings());
+        navigateToForm(() -> mediator.showFrmMatchOngoing());
+    }
+
+    private void openPrevForm() {
+        navigateToForm(() -> {
+            playMainTheme();
+            mediator.showFrmPlayerSettings();
+        });
     }
 
     private void navigateToForm(Runnable action) {

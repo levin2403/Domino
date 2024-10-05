@@ -1,4 +1,4 @@
-package org.itson.domino.welcome.mvc;
+package org.itson.domino.matchOngoing.mvc;
 
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
@@ -7,10 +7,9 @@ import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmWelcomeView extends javax.swing.JFrame {
+public class FrmMatchOngoingView extends javax.swing.JFrame {
 
-    
-    public FrmWelcomeView() {
+    public FrmMatchOngoingView() {
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
         
@@ -27,23 +26,34 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
         TaskbarButtonSingleton taskbarButtonSIngleton = TaskbarButtonSingleton.getInstance();
         taskbarButtonSIngleton.addCloseButton(btnClose, this);
-        taskbarButtonSIngleton.addMinimizeButton(btnMinimize, this);
+    }
+    
+    public void addEndMatchButtonListener(ActionListener listener) {
+        btnEndMatch.addActionListener(listener);
     }
 
+    private void applyCustomFonts() {
+        FontSingleton customFont = FontSingleton.getInstance();
+        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
+        applyFontToComponents(customFont, "Evil Empire", 30f, lblPlayers, lblFichas, btnEndMatch, btnClose);
+    }
+
+    private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
+        for (JComponent component : components) {
+            component.setFont(fontSingleton.getFont(fontName, size));
+        }
+    }
     
-        private void applyButtonStyles() {
+    private void applyButtonStyles() {
         ButtonStyleSingleton style = ButtonStyleSingleton.getInstance();
-        
-        style.applyButtonStyle(btnNextForm);
-        style.applyButtonStyle(btnClose);
-        style.applyButtonStyle(btnMinimize);
-    }
 
-    public void addNextFormButtonListener(ActionListener listener) {
-        btnNextForm.addActionListener(listener);
+        style.applyButtonStyle(btnEndMatch);
+        style.applyButtonStyle(btnClose);
     }
     
-    
+    /**
+     * Creates new form FrmBienvenida
+     */
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,9 +66,10 @@ public class FrmWelcomeView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblDomino = new javax.swing.JLabel();
-        btnNextForm = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
-        btnMinimize = new javax.swing.JButton();
+        btnEndMatch = new javax.swing.JButton();
+        lblFichas = new javax.swing.JLabel();
+        lblPlayers = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,30 +79,29 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDomino.setFont(new java.awt.Font("Roboto", 0, 80)); // NOI18N
-        lblDomino.setText("Domino - Vice City Edition");
-        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
-
-        btnNextForm.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        btnNextForm.setText("iniciar");
-        btnNextForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextFormActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 190, 70));
+        lblDomino.setText("Configuración de la partida");
+        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, 100));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
+        btnClose.setText("Salir de la partida");
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 300, 40));
 
-        btnMinimize.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnMinimize.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/minimize.png")); // NOI18N
-        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
+        btnEndMatch.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        btnEndMatch.setText("Terminar partida");
+        btnEndMatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMinimizeActionPerformed(evt);
+                btnEndMatchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
+        jPanel1.add(btnEndMatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 300, -1));
+
+        lblFichas.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        lblFichas.setText("Pozo");
+        jPanel1.add(lblFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+
+        lblPlayers.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        lblPlayers.setText("Cantidad de jugadores:");
+        jPanel1.add(lblPlayers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
 
         lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/backgrounds/synthwaveBackground.jpg")); // NOI18N
         lblBackground.setText("jLabel2");
@@ -111,36 +121,17 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
+    private void btnEndMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndMatchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMinimizeActionPerformed
-
-    private void btnNextFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextFormActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNextFormActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    
-    private void applyCustomFonts() {
-        FontSingleton customFont = FontSingleton.getInstance();
-        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
-        applyFontToComponents(customFont, "Evil Empire", 30f,  btnNextForm);
-    }
-
-    private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
-        for (JComponent component : components) {
-            component.setFont(fontSingleton.getFont(fontName, size));
-        }
-    }
+    }//GEN-LAST:event_btnEndMatchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton btnMinimize;
-    private javax.swing.JButton btnNextForm;
+    private javax.swing.JButton btnEndMatch;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
+    private javax.swing.JLabel lblFichas;
+    private javax.swing.JLabel lblPlayers;
     // End of variables declaration//GEN-END:variables
 }

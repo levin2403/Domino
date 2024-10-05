@@ -10,42 +10,63 @@
 
 package org.itson.domino.matchSettings.mvc;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import org.itson.domino.exceptions.MusicFileNotFoundException;
 import org.itson.domino.mediator.FormMediator;
-import org.itson.domino.singleton.MusicModelSingleton;
 
 public class FrmMatchSettingsController {
     private FrmMatchSettingsView view;
     private FormMediator mediator;
+    private FrmMatchSettingsModel model;
     
-    public FrmMatchSettingsController(FrmMatchSettingsView view, FormMediator mediator) {
+    public FrmMatchSettingsController(FrmMatchSettingsView view, FrmMatchSettingsModel model, FormMediator mediator) {
         this.view = view;
+        this.model = model;
         this.mediator = mediator;
-        
-       openNextForm();
-       openPrevForm();
+
+        setupListeners();
     }
 
+    private void setupListeners() {
+        view.addNextFormButtonListener(e -> openNextForm());
+        view.addPrevFormButtonListener(e -> openPrevForm());
+        view.addPlayersComboBoxListener(e -> updatePlayers());
+        view.addTilesComboBoxListener(e -> updateTiles());
+    }
+    
+    private void updatePlayers() {
+        try {
+            int players = view.getSelectedPlayers();
+            model.setNumberOfPlayers(players);
+        } catch (IllegalArgumentException ex) {
+            view.showErrorMessage("Error al establecer el número de jugadores: " + ex.getMessage());
+        }
+    }
+
+    private void updateTiles() {
+        try {
+            int tiles = view.getSelectedTiles();
+            model.setNumberOfTiles(tiles);
+        } catch (IllegalArgumentException ex) {
+            view.showErrorMessage("Error al establecer el número de fichas: " + ex.getMessage());
+        }
+    }
+    
     private void openNextForm() {
-        this.view.addNextFormButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.dispose();
-                mediator.showFrmPlayerSettings();
-            }
-        });
+        if (model.validateSettings()) {
+            model.saveSettings();
+            navigateToForm(() -> mediator.showFrmPlayerSettings());
+        } else {
+            // Mostrar un mensaje de error al usuario
+        }
     }
-    
+
     private void openPrevForm() {
-        this.view.addPrevFormButtonListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.dispose();
-                mediator.showFrmWelcome();
-            }
+        navigateToForm(() -> {
+            mediator.showFrmWelcome();
         });
     }
-    
+
+    private void navigateToForm(Runnable action) {
+        view.dispose();
+        action.run();
+    }
 }
