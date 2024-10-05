@@ -8,7 +8,9 @@ import java.util.List;
  */
 
 /**
- *
+ * Clase que define al jugador, la cual contiene diferentes metodos para sus
+ * atributos correspondientes.
+ * 
  * @author skevi
  */
 public class Jugador {
