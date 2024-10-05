@@ -4,14 +4,40 @@
  */
 package Entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author skevi
  */
 public class FabricaFichas {
     
-    private Ficha ficha;
+
+    /**
+     * Contructor por defecto
+     */
+    public FabricaFichas() {
+
+    }
     
-    
+     /**
+     * Metodo encargado de la fabricacion de las 28 fichas para la 
+     * inicializacion del pozo.
+     * 
+     * @return Lista con las 28 fichas fabricadas;
+     */
+    public List<Ficha> crearFichas() {
+        List<Ficha> fichas = new ArrayList<>();
+
+        // Generar todas las combinaciones de fichas (28 fichas en total)
+        for (int i = 0; i <= 6; i++) {
+            for (int j = i; j <= 6; j++) {
+                fichas.add(new Ficha(i, j));
+            }
+        }
+
+        return fichas;
+    }
     
 }

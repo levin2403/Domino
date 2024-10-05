@@ -21,6 +21,11 @@ public class Ficha {
         // Constructor vacío.
     }
 
+    public Ficha(int puntoAbajo, int puntoArriba) {
+        this.puntoAbajo = puntoAbajo;
+        this.puntoArriba = puntoArriba;
+    }
+
     // Constructor que inicializa los valores de la ficha.
     //la imagen y los puntos en los extremos a donde va dirigida la ficha.
     // y con este se debe de determinar si la ficha es mula
