@@ -76,4 +76,13 @@ public class Pozo {
         return Pozo.pozo.size();
     }
     
+    /**
+     * Metodo que retorna las fichas que estan dentro de la lista actual del
+     * pozo.
+     * 
+     * @return Retorna la lista de fichas del pozo.
+     */
+    public List<Ficha> getPozo(){
+        return pozo;
+    }
 }

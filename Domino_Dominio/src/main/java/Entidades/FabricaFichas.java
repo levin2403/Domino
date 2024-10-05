@@ -10,4 +10,8 @@ package Entidades;
  */
 public class FabricaFichas {
     
+    private Ficha ficha;
+    
+    
+    
 }
