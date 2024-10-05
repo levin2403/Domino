@@ -2,6 +2,7 @@
 package Entidades;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -10,60 +11,59 @@ import java.util.List;
  * @author Ruzzky
  */
   
-// Maneja una lista de fichas y proporciona métodos para agregar y validar conexiones entre ellas.
-
+/**
+ * 
+ *  Maneja una lista de fichas y proporciona métodos para agregar y validar 
+ *  conexiones entre ellas.
+ * 
+ * @author skevi
+ * @author Ruszzky
+ * 
+ */
 public class Tablero {
 
-    private List<FichaTablero> fichasTablero; // Lista que almacena las fichas en el tablero.
+    // Lista de fichas en juego
+    private List<Ficha> fichasEnJuego;
+    
+    // Fichas que están en los extremos del tablero
+    private Ficha fichaExtremo1;
+    private Ficha fichaExtremo2;
 
-    // Constructor por defecto que inicializa la lista de fichas.
     public Tablero() {
-        this.fichasTablero = new ArrayList<>();
+        fichasEnJuego = new LinkedList<>(); // Inicializamos la lista
     }
 
-    // Devuelve la lista de fichas en el tablero.
-    public List<FichaTablero> getFichasTablero() {
-        return fichasTablero;
-    }
-
-    // Establece una nueva lista de fichas en el tablero.
-    public void setFichasTablero(List<FichaTablero> fichasTablero) {
-        this.fichasTablero = fichasTablero;
-    }
-
-    // Agrega una ficha al final de la lista.
-    public void addFichasTablero(FichaTablero fichaT) {
-        fichasTablero.add(fichaT);
-    }
-
-    // Agrega una ficha al inicio de la lista.
-    public void agregarInicio(FichaTablero fichaT) {
-        fichasTablero.add(0, fichaT);
-    }
-
-    // Devuelve la ficha en el extremo derecho del tablero.
-    public FichaTablero getExtremoDerecho() {
-        if (fichasTablero.isEmpty()) {
-            return null; // Si no hay fichas, devuelve null.
+    // Método para insertar una ficha al principio
+    public void setPrimer(Ficha ficha) {
+        fichasEnJuego.add(0, ficha); // Insertamos al principio
+        if (fichaExtremo1 == null) {
+            fichaExtremo1 = ficha; // Si es la primera ficha, la establecemos como extremo
         }
-        return fichasTablero.get(fichasTablero.size() - 1);
     }
 
-    // Devuelve la ficha en el extremo izquierdo del tablero.
-    public FichaTablero getExtremoIzquierdo() {
-        if (fichasTablero.isEmpty()) {
-            return null; // Si no hay fichas, devuelve null.
+    // Método para obtener la ficha en el extremo inicial
+    public Ficha getPrimer() {
+        if (!fichasEnJuego.isEmpty()) {
+            return fichasEnJuego.get(0); // Retornamos la primera ficha
         }
-        return fichasTablero.get(0);
+        return null; // Devuelve null si no hay fichas
     }
 
-    // Valida si una ficha mula puede ser agregada al tablero.
-    public boolean validaZonaInical(FichaTablero ficha) {
-        if (ficha.isMula()) {
-            addFichasTablero(ficha);
-            return true; // Se puede agregar la ficha.
+    // Método para insertar una ficha al final (extremo 2)
+    public void setUltimo(Ficha ficha) {
+        fichasEnJuego.add(ficha); // Insertamos al final
+        if (fichaExtremo2 == null) {
+            fichaExtremo2 = ficha; // Si es la primera ficha, la establecemos como extremo
         }
-        return false; // No se puede agregar.
     }
 
+    // Método para obtener la ficha en el extremo final
+    public Ficha getUltimo() {
+        if (!fichasEnJuego.isEmpty()) {
+            return fichasEnJuego.get(fichasEnJuego.size() - 1); // Retornamos la última ficha
+        }
+        return null; // Devuelve null si no hay fichas
+    }
+
+    
 }
