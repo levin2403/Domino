@@ -20,14 +20,17 @@ public class Pozo {
     
     // Atributo que tendra todas las fichas dadas por el jugador 
     private static List<Ficha> pozo;
-    
+    private FabricaFichas fabricaFichas;
     
     /**
      * Metodo para obetener las fichas directo de la fabrica de fichas y 
      * asignarlas a la lista de fichas del poso.
      */
     public void getFichasGeneradas(){
-        
+        // instanciamos a la fabrica de fichas
+        this.fabricaFichas = new FabricaFichas();
+        // le agregamos al pozo las fichas fabricadas 
+        Pozo.pozo = fabricaFichas.crearFichas();
     }
     
      /**
