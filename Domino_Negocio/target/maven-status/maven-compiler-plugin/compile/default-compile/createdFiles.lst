@@ -1,0 +1,10 @@
+pruebas\prueba.class
+Controlers\ControlTablero.class
+Conversores\ConversorFicha.class
+com\mycompany\domino_negocio\Domino_Negocio.class
+Controlers\ControlReparteFichas.class
+DTOs\FichaDTO.class
+DTOs\DireccionDTO.class
+DTOs\LocacionDTO.class
+Controlers\ControlGeneraFichas.class
+Conversores\ConversorFicha$1.class
