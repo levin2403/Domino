@@ -41,6 +41,10 @@ public class Ficha {
     public Locacion getLocacionInferior() {
         return locacionInferior;
     }
+    
+    public boolean isMula(Ficha ficha){
+        return ficha.valorSuperior == ficha.valorInferior;    
+    }
 
 }
   
