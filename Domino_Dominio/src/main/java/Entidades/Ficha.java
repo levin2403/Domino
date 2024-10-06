@@ -12,6 +12,7 @@ public class Ficha {
     private int valorInferior; // Valor inferior de la ficha
     private Locacion locacionSuperior;
     private Locacion locacionInferior;
+    private Direccion direccion;
 
     public Ficha(int valorSuperior, int valorInferior) {
         this.valorSuperior = valorSuperior;
@@ -26,6 +27,15 @@ public class Ficha {
         this.locacionInferior = locacionInferior;
     }
 
+    public Ficha(int valorSuperior, int valorInferior, Locacion 
+            locacionSuperior, Locacion locacionInferior, Direccion direccion) {
+        this.valorSuperior = valorSuperior;
+        this.valorInferior = valorInferior;
+        this.locacionSuperior = locacionSuperior;
+        this.locacionInferior = locacionInferior;
+        this.direccion = direccion;
+    }
+    
     public int getValorSuperior() {
         return valorSuperior;
     }
@@ -41,10 +51,24 @@ public class Ficha {
     public Locacion getLocacionInferior() {
         return locacionInferior;
     }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
     
     public boolean isMula(Ficha ficha){
         return ficha.valorSuperior == ficha.valorInferior;    
     }
+
+    @Override
+    public String toString() {
+        return "Ficha{" + "valorSuperior=" + valorSuperior + 
+                ", valorInferior=" + valorInferior + ", locacionSuperior=" + 
+                locacionSuperior + ", locacionInferior=" + locacionInferior + 
+                ", direccion=" + direccion + '}';
+    }
+    
+    
 
 }
   
