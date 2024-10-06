@@ -21,49 +21,68 @@ import java.util.List;
  * 
  */
 public class Tablero {
-
-    // Lista de fichas en juego
-    private List<Ficha> fichasEnJuego;
     
-    // Fichas que están en los extremos del tablero
-    private Ficha fichaExtremo1;
-    private Ficha fichaExtremo2;
+    private LinkedList<Ficha> fichas; 
 
     public Tablero() {
-        fichasEnJuego = new LinkedList<>(); // Inicializamos la lista
+        this.fichas = new LinkedList<>(); // Inicializa la lista de fichas
     }
 
-    // Método para insertar una ficha al principio
-    public void setPrimer(Ficha ficha) {
-        fichasEnJuego.add(0, ficha); // Insertamos al principio
-        if (fichaExtremo1 == null) {
-            fichaExtremo1 = ficha; // Si es la primera ficha, la establecemos como extremo
+    /**
+     * Añade una ficha al principio de la lista.
+     * 
+     * @param ficha Ficha a añadir al tablero.
+     */
+    public void addFirst(Ficha ficha) {
+        fichas.addFirst(ficha);
+    }
+
+    /**
+     * Añade una ficha al final de la lista.
+     * 
+     * @param ficha Ficha a añadir al tablero.
+     */
+    public void addLast(Ficha ficha) {
+        fichas.addLast(ficha);
+    }
+    
+    /**
+     * Obtiene el primer elemento de la lista.
+     * 
+     * @return Retorna la primera ficha en la lista.
+     */
+    public Ficha getFirst(){
+        return fichas.getFirst();
+    }
+    
+    /**
+     * Obtiene el ultimo elemento de la lista
+     * 
+     * @return Retorna la ultima ficha en la lista.
+     */
+    public Ficha getLast(){
+        return fichas.getLast();
+    }
+    
+    /**
+     * Metodo que valida si tanto la locacionSuperior tanto como la 
+     * locacionSuperior estan ocupada por alguna otra ficha dentro de la 
+     * lista de fichas que ya se encuentran en el tablero.
+     * 
+     * @return True en caso de que la posicion no este ocupada por ninguna 
+     * otra ficha en el tablero, false si ya esta ocupada.
+     */
+    public boolean validarPosicion(Ficha ficha) {
+        // Iterar a través de la lista de fichas en el tablero
+        for (Ficha f : fichas) {
+            // Comprobar si la locación superior o inferior de la ficha ya está 
+            // ocupada
+            if (f.getLocacionSuperior().equals(ficha.getLocacionSuperior()) ||
+                f.getLocacionInferior().equals(ficha.getLocacionInferior())) {
+                return false; // Posición ocupada
+            }
         }
+        return true; // Posición disponible
     }
-
-    // Método para obtener la ficha en el extremo inicial
-    public Ficha getPrimer() {
-        if (!fichasEnJuego.isEmpty()) {
-            return fichasEnJuego.get(0); // Retornamos la primera ficha
-        }
-        return null; // Devuelve null si no hay fichas
-    }
-
-    // Método para insertar una ficha al final (extremo 2)
-    public void setUltimo(Ficha ficha) {
-        fichasEnJuego.add(ficha); // Insertamos al final
-        if (fichaExtremo2 == null) {
-            fichaExtremo2 = ficha; // Si es la primera ficha, la establecemos como extremo
-        }
-    }
-
-    // Método para obtener la ficha en el extremo final
-    public Ficha getUltimo() {
-        if (!fichasEnJuego.isEmpty()) {
-            return fichasEnJuego.get(fichasEnJuego.size() - 1); // Retornamos la última ficha
-        }
-        return null; // Devuelve null si no hay fichas
-    }
-
     
 }
