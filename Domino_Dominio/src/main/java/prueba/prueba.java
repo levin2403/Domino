@@ -28,8 +28,6 @@ public class prueba {
         
         Pozo pozo = genPozo.getPozo();
         
-        pozo.getFichasGeneradas();
-        
         Pozo pozo2 = genPozo.getPozo();
         
         System.out.println("pozo1 " + pozo.getPozo());
