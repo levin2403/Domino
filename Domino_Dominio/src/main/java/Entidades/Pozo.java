@@ -19,7 +19,7 @@ import java.util.List;
 public class Pozo {
     
     // Atributo que tendra todas las fichas dadas por el jugador 
-    private static List<Ficha> pozo;
+    private List<Ficha> pozo;
     private FabricaFichas fabricaFichas;
     
     /**
@@ -30,7 +30,7 @@ public class Pozo {
         // instanciamos a la fabrica de fichas
         this.fabricaFichas = new FabricaFichas();
         // le agregamos al pozo las fichas fabricadas 
-        Pozo.pozo = fabricaFichas.crearFichas();
+        pozo = fabricaFichas.crearFichas();
     }
     
      /**
@@ -76,7 +76,7 @@ public class Pozo {
      * @return Numero de fichas restantes en el pozo.
      */
     public int fichasDisponibles(){
-        return Pozo.pozo.size();
+        return pozo.size();
     }
     
     /**
@@ -90,6 +90,11 @@ public class Pozo {
     }
 
     public static void setPozo(List<Ficha> pozo) {
-        Pozo.pozo = pozo;
+        pozo = pozo;
     }
+    
+//    public void eliminaFicha(int i){
+//        pozo.remove(i);
+//        
+//    }
 }

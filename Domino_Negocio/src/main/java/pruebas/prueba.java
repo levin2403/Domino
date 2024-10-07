@@ -57,10 +57,9 @@ public class prueba {
         System.out.println("añade: "+ mt.addJugador(new Jugador("Manuel", new Avatar("Manuel"))));
         
         System.out.println("Asigna: "+ mt.asignarPrimerTurno());
+        System.out.println("jugador en turno: " + mt.jugadorEnTurno.toString());
         System.out.println("pasa: " + mt.pasarTurno());
         System.out.println("jugador en turno: " + mt.jugadorEnTurno.toString());
-        System.out.println("elimina: " + mt.deleteJugador(vata));
-        
         System.out.println("pasa: " + mt.pasarTurno());
         System.out.println("jugador en turno: " + mt.jugadorEnTurno.toString());
         System.out.println("pasa: " + mt.pasarTurno());

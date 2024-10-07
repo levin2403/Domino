@@ -6,6 +6,8 @@ package prueba;
 
 import Entidades.Direccion;
 import Entidades.FabricaFichas;
+import Entidades.Pozo;
+import singleton.GeneracionPozoSingleton;
 
 /**
  *
@@ -13,13 +15,28 @@ import Entidades.FabricaFichas;
  */
 public class prueba {
     public static void main(String[] args) {
-        FabricaFichas ff = new FabricaFichas();
-        Direccion direccion = Direccion.ABAJO;
+//        FabricaFichas ff = new FabricaFichas();
+//        Direccion direccion = Direccion.ABAJO;
+//        
+//        
+//        System.out.println(ff.crearFichas());
+//        
+//        System.out.println(direccion.toString());
+
+        
+        GeneracionPozoSingleton genPozo = new GeneracionPozoSingleton();
+        
+        Pozo pozo = genPozo.getPozo();
+        
+        pozo.getFichasGeneradas();
+        
+        Pozo pozo2 = genPozo.getPozo();
+        
+        System.out.println("pozo1 " + pozo.getPozo());
+        System.out.println("pozo2 " + pozo2.getPozo());
         
         
-        System.out.println(ff.crearFichas());
         
-        System.out.println(direccion.toString());
         
     }
     
