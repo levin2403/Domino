@@ -1,11 +1,10 @@
 package org.itson.domino.matchEndingRequest.mvc;
 
-import java.awt.Image;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import org.itson.domino.constants.IconPaths;
+import org.itson.domino.managers.ResourceLoader;
 import org.itson.domino.singleton.ButtonStyleSingleton;
-import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
@@ -21,6 +20,7 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
+        applyIconsAndBackground();
         
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
@@ -34,10 +34,21 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
         btnContinueMatch.addActionListener(listener);
     }
 
+    private void applyIconsAndBackground() {
+        try {
+            // Aplicar fondo
+            lblBackground.setIcon(ResourceLoader.loadBackground(IconPaths.MATCH_BG, 1200, 700));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
         applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
-        applyFontToComponents(customFont, "Evil Empire", 30f, lblPlayers, lblFichas, btnEndMatch, btnContinueMatch, lblPlayer, lblQuestion, lblHas);
+        applyFontToComponents(customFont, "Evil Empire", 30f, 
+                btnEndMatch, btnContinueMatch, 
+                lblPlayer, lblQuestion, lblHas, lblPlayerName, lblProposed);
     }
 
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
@@ -70,9 +81,9 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
         lblDomino = new javax.swing.JLabel();
         btnEndMatch = new javax.swing.JButton();
         btnContinueMatch = new javax.swing.JButton();
-        lblFichas = new javax.swing.JLabel();
+        lblProposed = new javax.swing.JLabel();
         lblPlayer = new javax.swing.JLabel();
-        lblPlayers = new javax.swing.JLabel();
+        lblPlayerName = new javax.swing.JLabel();
         lblHas = new javax.swing.JLabel();
         lblQuestion = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
@@ -105,17 +116,17 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
         });
         jPanel1.add(btnContinueMatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 400, -1));
 
-        lblFichas.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        lblFichas.setText("propuesto terminar la partida en este punto.");
-        jPanel1.add(lblFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+        lblProposed.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        lblProposed.setText("propuesto terminar la partida en este punto.");
+        jPanel1.add(lblProposed, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         lblPlayer.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         lblPlayer.setText("El jugador ");
         jPanel1.add(lblPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
-        lblPlayers.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        lblPlayers.setText("xxxxxxxxxxxxxxxxxxx");
-        jPanel1.add(lblPlayers, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        lblPlayerName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        lblPlayerName.setText("xxxxxxxxxxxxxxxxxxx");
+        jPanel1.add(lblPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
         lblHas.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         lblHas.setText("ha");
@@ -124,8 +135,6 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
         lblQuestion.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         lblQuestion.setText("¿Deseas terminar la partida?");
         jPanel1.add(lblQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, -1));
-
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgrounds/matchEndingRequest.jpg"))); // NOI18N
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,10 +165,10 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
-    private javax.swing.JLabel lblFichas;
     private javax.swing.JLabel lblHas;
     private javax.swing.JLabel lblPlayer;
-    private javax.swing.JLabel lblPlayers;
+    private javax.swing.JLabel lblPlayerName;
+    private javax.swing.JLabel lblProposed;
     private javax.swing.JLabel lblQuestion;
     // End of variables declaration//GEN-END:variables
 }

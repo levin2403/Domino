@@ -2,20 +2,21 @@ package org.itson.domino.playerSettings.mvc;
 
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import org.itson.domino.constants.IconPaths;
 import org.itson.domino.managers.AvatarManager;
+import org.itson.domino.managers.ResourceLoader;
 import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmPlayerSettingsView extends javax.swing.JFrame {
+public class FrmPlayerSettingsView extends javax.swing.JFrame  {
 
-    private AvatarManager avatarManager;
-    
-    
-    
+    private final AvatarManager avatarManager;
+
     public FrmPlayerSettingsView() {
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
@@ -23,11 +24,13 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         initComponents();
         
         this.avatarManager = new AvatarManager();
+
         updateAvatarDisplay(avatarManager.getCurrentAvatarPath());
         
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
+        applyIconsAndBackground();
         
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
@@ -52,6 +55,38 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         style.applyButtonStyle(btnNextAvatar);
     }
     
+    private void applyIconsAndBackground() {
+        try {
+            // Aplicar íconos
+            btnClose.setIcon(ResourceLoader.loadIcon(IconPaths.CLOSE_ICON, 24, 24));
+            btnMinimize.setIcon(ResourceLoader.loadIcon(IconPaths.MINIMIZE_ICON, 24, 24));
+            btnPrevAvatar.setIcon(ResourceLoader.loadIcon(IconPaths.PREV_ICON, 24, 24));
+            btnNextAvatar.setIcon(ResourceLoader.loadIcon(IconPaths.NEXT_ICON, 24, 24));
+
+            // Aplicar fondo
+            lblBackground.setIcon(ResourceLoader.loadBackground(IconPaths.COMMON_BG, 1200, 700));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAvatarDisplay(String avatarPath) {
+        try {
+            URL imageUrl = getClass().getClassLoader().getResource(avatarPath);
+            if (imageUrl != null) {
+                ImageIcon avatarIcon = new ImageIcon(imageUrl);
+                Image image = avatarIcon.getImage().getScaledInstance(
+                        lblAvatarDisplay.getWidth(), lblAvatarDisplay.getHeight(), Image.SCALE_SMOOTH);
+                lblAvatarDisplay.setIcon(new ImageIcon(image));
+            } else {
+                System.err.println("Error: No se pudo encontrar la imagen en la ruta: " + avatarPath);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al cargar la imagen: " + e.getMessage());
+        }
+    }
+
+    
     public void addNextFormButtonListener(ActionListener listener) {
         btnNextForm.addActionListener(listener);
     }
@@ -68,14 +103,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         btnPrevAvatar.addActionListener(listener);
     }
     
-    public void updateAvatarDisplay(String avatarPath) {
-        ImageIcon avatarIcon = new ImageIcon(avatarPath);
-        Image avatarImage = avatarIcon.getImage();
-        Image scaledAvatarImage = avatarImage.getScaledInstance(lblAvatarDisplay.getWidth(), lblAvatarDisplay.getHeight(), Image.SCALE_SMOOTH);
-        avatarIcon = new ImageIcon(scaledAvatarImage);
-        lblAvatarDisplay.setIcon(avatarIcon);
-    }
-    
     public String getPlayerName() {
         return txtName.getText();
     }
@@ -83,7 +110,9 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
         applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
-        applyFontToComponents(customFont, "Evil Empire", 30f, lblAvatar, lblPlayerName, btnNextForm, btnPrevForm, txtName);
+        applyFontToComponents(customFont, "Evil Empire", 30f, 
+                lblAvatar, lblPlayerName, btnNextForm, btnPrevForm);
+        applyFontToComponents(customFont, "Montserrat", 30f, txtName);
     }
 
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
@@ -152,7 +181,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
 
         pnlPlayerAvatar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNextAvatar.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/next.png")); // NOI18N
         btnNextAvatar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextAvatarActionPerformed(evt);
@@ -160,7 +188,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         });
         pnlPlayerAvatar.add(btnNextAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 60, 290));
 
-        btnPrevAvatar.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/prev.png")); // NOI18N
         btnPrevAvatar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevAvatarActionPerformed(evt);
@@ -172,11 +199,9 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         jPanel1.add(pnlPlayerAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, -1, 290));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
         jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
 
         btnMinimize.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnMinimize.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/minimize.png")); // NOI18N
         btnMinimize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizeActionPerformed(evt);
@@ -184,7 +209,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         });
         jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgrounds/synthwaveBackground.jpg"))); // NOI18N
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 

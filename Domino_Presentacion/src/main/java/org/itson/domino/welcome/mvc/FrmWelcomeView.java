@@ -2,6 +2,8 @@ package org.itson.domino.welcome.mvc;
 
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
+import org.itson.domino.constants.IconPaths;
+import org.itson.domino.managers.ResourceLoader;
 import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
@@ -20,6 +22,7 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
+        applyIconsAndBackground();
         
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
@@ -38,12 +41,25 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         style.applyButtonStyle(btnClose);
         style.applyButtonStyle(btnMinimize);
     }
+        
+    private void applyIconsAndBackground() {
+        try {
+            // Aplicar íconos
+            btnClose.setIcon(ResourceLoader.loadIcon(IconPaths.CLOSE_ICON, 24, 24));
+            btnMinimize.setIcon(ResourceLoader.loadIcon(IconPaths.MINIMIZE_ICON, 24, 24));
+
+            // Aplicar fondo
+            lblBackground.setIcon(ResourceLoader.loadBackground(IconPaths.COMMON_BG, 1200, 700));
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Manejar la excepción si no se encuentra el archivo
+        }
+    }
+
 
     public void addNextFormButtonListener(ActionListener listener) {
         btnNextForm.addActionListener(listener);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,11 +97,9 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 190, 70));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
         jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
 
         btnMinimize.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnMinimize.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/minimize.png")); // NOI18N
         btnMinimize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizeActionPerformed(evt);
@@ -93,7 +107,6 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         });
         jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgrounds/synthwaveBackground.jpg"))); // NOI18N
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 

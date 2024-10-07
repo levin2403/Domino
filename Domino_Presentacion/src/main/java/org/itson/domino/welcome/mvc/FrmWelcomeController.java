@@ -21,7 +21,7 @@ public class FrmWelcomeController {
 
     public FrmWelcomeController(FrmWelcomeView view, FormMediator mediator) {
         this.view = view;
-            this.musicModel = MusicModelSingleton.getInstance();
+        this.musicModel = MusicModelSingleton.getInstance();
         this.mediator = mediator;
         
         playMainTheme();

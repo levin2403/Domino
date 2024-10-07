@@ -1,10 +1,11 @@
 package org.itson.domino.singleton;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import org.itson.domino.constants.FontPaths;
 
 public class FontSingleton {
 
@@ -12,9 +13,10 @@ public class FontSingleton {
     private Map<String, Font> fonts = new HashMap<>();
 
     private FontSingleton() {
-        loadFont("Evil Empire", "resources/fonts/Evil Empire.otf");
-        loadFont("Montserrat", "resources/fonts/Montserrat.ttf");
+        loadFont("Evil Empire", FontPaths.EVIL_EMPIRE);
+        loadFont("Montserrat", FontPaths.MONTSERRAT);
     }
+
 
     public static FontSingleton getInstance() {
         if (instance == null) {
@@ -22,19 +24,20 @@ public class FontSingleton {
         }
         return instance;    
     }
-    
-    private void loadFont(String name, String path) {
-        try {
-            File fontFile = new File(path);
-            if (!fontFile.exists()) {
-                throw new IOException("No se pudo encontrar la fuente en la ruta: " + path);
+
+        private void loadFont(String name, String path) {
+            try (InputStream fontStream = getClass().getResourceAsStream(path)) {
+                if (fontStream == null) {
+                    throw new IOException("No se pudo encontrar la fuente en la ruta: " + path);
+                }
+                Font font = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(12f); // Cambia el tamaño según sea necesario
+                fonts.put(name, font);
+            } catch (FontFormatException | IOException e) {
+                e.printStackTrace(); // Asegúrate de que imprimas el error completo
             }
-            Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-            fonts.put(name, font);
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
         }
-    }
+
+
 
     public Font getFont(String name, float size) {
         Font font = fonts.get(name);

@@ -2,8 +2,8 @@ package org.itson.domino.singleton;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
-import java.io.FileInputStream;
 
+import java.io.InputStream;
 import java.io.IOException;
 
 public class MusicModelSingleton {
@@ -26,46 +26,44 @@ public class MusicModelSingleton {
     }
 
     public void playMusic(String filePath) {
+        // Evitar reproducir la misma canción si ya está sonando
         if (currentSong != null && currentSong.equals(filePath) && isPlaying) {
-            return; // La canción ya está sonando, no hacemos nada
+            return; // La canción ya está sonando
         }
 
-        stopCurrentMusic(); // Detiene la música anterior si está sonando
+        stopCurrentMusic(); // Detener la música actual si está sonando
         currentSong = filePath;
         isPlaying = true;
 
         playerThread = new Thread(() -> {
-            while (isPlaying) {
-                try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
-                    player = new AdvancedPlayer(fileInputStream);
-                    player.play();
-                } catch (JavaLayerException | IOException e) {
-                    System.err.println("Error al reproducir la música: " + e.getMessage());
-                    isPlaying = false;
+            try (InputStream inputStream = getClass().getResourceAsStream(filePath)) {
+                if (inputStream == null) {
+                    throw new IOException("File not found: " + filePath);
                 }
-                // La canción terminó, pero isPlaying sigue siendo true, así que vuelve a empezar
+                player = new AdvancedPlayer(inputStream);
+                player.play();
+            } catch (JavaLayerException e) {
+                System.err.println("JavaLayer error: " + e.getMessage());
+            } catch (IOException e) {
+                System.err.println("Error loading music: " + e.getMessage());
+            } finally {
+                isPlaying = false; // Asegúrate de que isPlaying se restablezca al final
+                currentSong = null; // Restablecer currentSong si es necesario
             }
         });
+
         playerThread.start();
     }
 
     public void stopCurrentMusic() {
-        isPlaying = false;
         if (player != null) {
-            player.close();
-            player = null;
+            player.close(); // Detener la reproducción
+            player = null; // Limpiar el objeto del reproductor
         }
-        if (playerThread != null) {
-            playerThread.interrupt();
-            try {
-                playerThread.join(1000); // Espera hasta 1 segundo para que el hilo termine
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-            playerThread = null;
-        }
-        currentSong = null;
+        isPlaying = false; // Marcar que no hay música sonando
+        currentSong = null; // Limpiar la canción actual
     }
+
 
     public String getCurrentSong() {
         return currentSong;

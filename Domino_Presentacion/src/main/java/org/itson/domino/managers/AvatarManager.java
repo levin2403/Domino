@@ -1,52 +1,54 @@
 package org.itson.domino.managers;
 
-import javax.swing.ImageIcon;
-import java.awt.Image;
+import java.net.URL;
 import java.util.List;
 
 public class AvatarManager {
-    private int currentAvatarIndex = 0;
 
-    // Lista inmutable de rutas de avatares
+    private int currentIndex = 0;
     private final List<String> avatarPaths = List.of(
-            "resources/avatars/cactus.jpg",
-            "resources/avatars/clown.jpg",
-            "resources/avatars/dog.jpg",
-            "resources/avatars/george.jpg",
-            "resources/avatars/mexican_femboy.jpg",
-            "resources/avatars/mexican_girl.jpg",
-            "resources/avatars/robot.jpg",
-            "resources/avatars/soldier.jpg",
-            "resources/avatars/tiger.jpg"
+            "avatars/cactus.jpg",
+            "avatars/clown.jpg",
+            "avatars/dog.jpg",
+            "avatars/george.jpg",
+            "avatars/mexican_femboy.jpg",
+            "avatars/mexican_girl.jpg",
+            "avatars/robot.jpg",
+            "avatars/soldier.jpg",
+            "avatars/tiger.jpg"
     );
 
-    // Método para obtener la ruta del avatar actual
+    public AvatarManager() {
+        loadAvatars();
+    }
+
+    public void loadAvatars() {
+        for (String path : avatarPaths) {
+            try {
+                URL imageUrl = getClass().getClassLoader().getResource(path);
+                if (imageUrl != null) {
+
+                    System.out.println("Cargado: " + path);
+                } else {
+                    System.err.println("Error: No se pudo encontrar la imagen en la ruta: " + path);
+                }
+            } catch (Exception e) {
+                System.err.println("Error al cargar la imagen: " + e.getMessage());
+            }
+        }
+    }
+
     public String getCurrentAvatarPath() {
-        return avatarPaths.get(currentAvatarIndex);
+        return avatarPaths.get(currentIndex);
     }
 
-    // Método para avanzar al siguiente avatar
     public String nextAvatar() {
-        currentAvatarIndex = (currentAvatarIndex + 1) % avatarPaths.size(); // Avanza al siguiente avatar
-        return getCurrentAvatarPath(); // Retorna la nueva ruta
+        currentIndex = (currentIndex + 1) % avatarPaths.size();
+        return getCurrentAvatarPath();
     }
 
-    // Método para retroceder al avatar anterior
     public String previousAvatar() {
-        currentAvatarIndex = (currentAvatarIndex - 1 + avatarPaths.size()) % avatarPaths.size(); // Retrocede al anterior avatar
-        return getCurrentAvatarPath(); // Retorna la nueva ruta
-    }
-
-    // Método para obtener la imagen del avatar actual escalada a un tamaño específico
-    public ImageIcon getCurrentAvatar(int width, int height) {
-        return scaleImage(getCurrentAvatarPath(), width, height);
-    }
-
-    // Método privado para escalar la imagen del avatar
-    private ImageIcon scaleImage(String path, int width, int height) {
-        ImageIcon imageIcon = new ImageIcon(path); // Cargar la imagen desde la ruta
-        Image image = imageIcon.getImage(); // Obtener el objeto de imagen
-        Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); // Escalar la imagen
-        return new ImageIcon(scaledImage); // Retornar la imagen escalada
+        currentIndex = (currentIndex - 1 + avatarPaths.size()) % avatarPaths.size();
+        return getCurrentAvatarPath();
     }
 }

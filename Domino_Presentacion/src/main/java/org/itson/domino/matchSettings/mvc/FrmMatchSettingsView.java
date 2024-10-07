@@ -3,6 +3,8 @@ package org.itson.domino.matchSettings.mvc;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import org.itson.domino.constants.IconPaths;
+import org.itson.domino.managers.ResourceLoader;
 import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
@@ -20,6 +22,7 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
+        applyIconsAndBackground();
         
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
@@ -46,6 +49,21 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         cmbTiles.addActionListener(listener);
     }
 
+    private void applyIconsAndBackground() {
+        try {
+            // Aplicar íconos
+            btnClose.setIcon(ResourceLoader.loadIcon(IconPaths.CLOSE_ICON, 24, 24));
+            btnMinimize.setIcon(ResourceLoader.loadIcon(IconPaths.MINIMIZE_ICON, 24, 24));
+
+            // Aplicar fondo
+            lblBackground.setIcon(ResourceLoader.loadBackground(IconPaths.COMMON_BG, 1200, 700));
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Manejar la excepción si no se encuentra el archivo
+        }
+    }
+
+    
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
         applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
@@ -152,7 +170,6 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         });
         jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgrounds/synthwaveBackground.jpg"))); // NOI18N
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 

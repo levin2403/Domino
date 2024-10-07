@@ -13,10 +13,10 @@ public final class MusicPaths {
     private MusicPaths() {
     }
 
-    // Rutas de los archivos de música
-    public static final String MAIN_THEME = "resources/music/main_theme.mp3";
-    public static final String LOBBY_THEME = "resources/music/lobby_theme.mp3";
-    public static final String MATCH_THEME = "resources/music/match_theme_1.mp3";
-    public static final String REQUEST_THEME = "resources/music/request_theme.mp3";
-    public static final String LEADERSHIP_THEME = "resources/music/leadership_theme.mp3";
+    // Ensure these paths match where your files are located
+    public static final String MAIN_THEME = "/music/main_theme.mp3"; // Corrected path
+    public static final String LOBBY_THEME = "/music/lobby_theme.mp3"; // Corrected path
+    public static final String MATCH_THEME = "/music/match_theme_1.mp3"; // Corrected path
+    public static final String REQUEST_THEME = "/music/request_theme.mp3"; // Corrected path
+    public static final String LEADERSHIP_THEME = "/music/leadership_theme.mp3"; // Corrected path
 }
