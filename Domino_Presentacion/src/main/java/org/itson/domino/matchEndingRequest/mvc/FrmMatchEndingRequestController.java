@@ -8,39 +8,43 @@
  * @author gamaliel
  */
 
-package org.itson.domino.matchOngoing.mvc;
+package org.itson.domino.matchEndingRequest.mvc;
 
 import org.itson.domino.constants.MusicPaths;
 import org.itson.domino.mediator.FormMediator;
 import org.itson.domino.singleton.MusicModelSingleton;
 
-public class FrmMatchOngoingController {
-    private FrmMatchOngoingView view;
+public class FrmMatchEndingRequestController {
+    private FrmMatchEndingRequestView view;
     private MusicModelSingleton musicModel;
     private FormMediator mediator;
     
-    public FrmMatchOngoingController(FrmMatchOngoingView view, FormMediator mediator) {
+    public FrmMatchEndingRequestController(FrmMatchEndingRequestView view, FormMediator mediator) {
         this.view = view;
         this.mediator = mediator;
         this.musicModel = MusicModelSingleton.getInstance();
         
-       playMatchTheme();
+       playRequestTheme();
        setupButtonListeners();
     }
 
-    private void playMatchTheme() {
-        musicModel.playMusic(MusicPaths.MATCH_THEME);
+    private void playRequestTheme() {
+        musicModel.playMusic(MusicPaths.REQUEST_THEME);
     }
     
     private void setupButtonListeners() {
-        view.addEndMatchButtonListener(e -> openNextForm());
+        view.addNextFormButtonListener(e -> openNextForm());
+        view.addPrevFormButtonListener(e -> openPrevForm());
     }
     
     private void openNextForm() {
-        musicModel.stopCurrentMusic();
-        navigateToForm(() -> mediator.showFrmMatchEndingRequest());
+        navigateToForm(() -> mediator.showFrmWelcome());
     }
-
+    
+    private void openPrevForm() {
+        navigateToForm(() -> mediator.showFrmMatchOngoing());
+    }
+    
     private void navigateToForm(Runnable action) {
         view.dispose();
         action.run();

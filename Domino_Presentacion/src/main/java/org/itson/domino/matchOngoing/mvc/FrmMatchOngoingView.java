@@ -34,8 +34,8 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
 
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
-        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
-        applyFontToComponents(customFont, "Evil Empire", 30f, lblPlayers, lblFichas, btnEndMatch, btnClose);
+//        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
+//        applyFontToComponents(customFont, "Evil Empire", 30f, lblPlayers, lblFichas, btnEndMatch, btnClose);
     }
 
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
@@ -65,22 +65,22 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblDomino = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
         btnEndMatch = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         lblFichas = new javax.swing.JLabel();
-        lblPlayers = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         lblBackground = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblFichas1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblDomino.setFont(new java.awt.Font("Roboto", 0, 80)); // NOI18N
-        lblDomino.setText("Configuración de la partida");
-        jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, 100));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnClose.setText("Salir de la partida");
@@ -96,16 +96,63 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         jPanel1.add(btnEndMatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 300, -1));
 
         lblFichas.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        lblFichas.setText("Pozo");
-        jPanel1.add(lblFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        lblFichas.setText("Player x");
 
-        lblPlayers.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        lblPlayers.setText("Cantidad de jugadores:");
-        jPanel1.add(lblPlayers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblFichas, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFichas)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 420, 140));
+
+        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 290, 500));
 
         lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/backgrounds/synthwaveBackground.jpg")); // NOI18N
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
+
+        lblFichas1.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        lblFichas1.setText("Player x");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblFichas1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 40, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFichas1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 420, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,10 +175,14 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnEndMatch;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblBackground;
-    private javax.swing.JLabel lblDomino;
     private javax.swing.JLabel lblFichas;
-    private javax.swing.JLabel lblPlayers;
+    private javax.swing.JLabel lblFichas1;
     // End of variables declaration//GEN-END:variables
 }

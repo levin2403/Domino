@@ -80,8 +80,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame {
         return txtName.getText();
     }
 
-
-
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
         applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);

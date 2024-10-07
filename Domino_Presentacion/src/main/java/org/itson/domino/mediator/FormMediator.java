@@ -7,6 +7,8 @@ package org.itson.domino.mediator;
 import org.itson.domino.lobby.mvc.FrmLobbyController;
 import org.itson.domino.lobby.mvc.FrmLobbyView;
 import org.itson.domino.managers.AvatarManager;
+import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestController;
+import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestView;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingController;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingView;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsController;
@@ -45,13 +47,21 @@ public class FormMediator {
     }
     
     public void showFrmLobby() {
-        FrmLobbyView viewLobby = new FrmLobbyView();
-        FrmLobbyController controllerLobby = new FrmLobbyController(viewLobby, this);
-        viewLobby.setVisible(true);
+        FrmLobbyView view = new FrmLobbyView();
+        FrmLobbyController controller = new FrmLobbyController(view, this);
+        view.setVisible(true);
     }
+    
     public void showFrmMatchOngoing() {
-        FrmMatchOngoingView viewMatchOngoing = new FrmMatchOngoingView();
-        FrmMatchOngoingController controllerMatchOngoing = new FrmMatchOngoingController(viewMatchOngoing, this);
-        viewMatchOngoing.setVisible(true);
+        FrmMatchOngoingView view = new FrmMatchOngoingView();
+        FrmMatchOngoingController controller = new FrmMatchOngoingController(view, this);
+        view.setVisible(true);
     }
+    
+    public void showFrmMatchEndingRequest() {
+        FrmMatchEndingRequestView view = new FrmMatchEndingRequestView();
+        FrmMatchEndingRequestController controller = new FrmMatchEndingRequestController(view, this);
+        view.setVisible(true);
+    }
+    
 }
