@@ -125,7 +125,7 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
         lblQuestion.setText("¿Deseas terminar la partida?");
         jPanel1.add(lblQuestion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, -1));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/backgrounds/matchEndingRequest.jpg")); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgrounds/matchEndingRequest.jpg"))); // NOI18N
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

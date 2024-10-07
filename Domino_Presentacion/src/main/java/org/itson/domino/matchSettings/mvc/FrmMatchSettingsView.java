@@ -142,11 +142,9 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         jPanel1.add(cmbTiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 320, 50));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnClose.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/close.png")); // NOI18N
         jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
 
         btnMinimize.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnMinimize.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/icons/minimize.png")); // NOI18N
         btnMinimize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizeActionPerformed(evt);
@@ -154,7 +152,7 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         });
         jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
 
-        lblBackground.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Domino/Domino_Presentacion/resources/backgrounds/synthwaveBackground.jpg")); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/backgrounds/synthwaveBackground.jpg"))); // NOI18N
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
