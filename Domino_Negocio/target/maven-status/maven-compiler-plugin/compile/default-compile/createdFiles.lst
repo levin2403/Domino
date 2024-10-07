@@ -8,6 +8,7 @@ DTOs\FichaDTO.class
 DTOs\DireccionDTO.class
 DTOs\LocacionDTO.class
 pruebas\prueba.class
+manejadorTurnos\ManejadorTurnos.class
 DTOs\JugadorDTO.class
 Conversores\ConversorLocacion.class
 DTOs\PozoDTO.class

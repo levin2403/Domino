@@ -119,5 +119,12 @@ public class Jugador {
     public void añadirFicha(Ficha ficha){
         this.fichas.add(ficha);
     }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "nickName=" + nickName + ", puntos=" + puntos + ", fichas=" + fichas + ", avatar=" + avatar + '}';
+    }
+    
+    
     
 }
