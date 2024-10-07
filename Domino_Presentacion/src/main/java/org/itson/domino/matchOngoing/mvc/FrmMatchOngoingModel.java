@@ -4,9 +4,6 @@
  */
 package org.itson.domino.matchOngoing.mvc;
 
-import org.itson.domino.matchSettings.mvc.*;
-import org.itson.domino.welcome.mvc.*;
-
 /**
  *
  * @author gamaliel

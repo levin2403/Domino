@@ -19,7 +19,6 @@ public class FrmMatchSettingsModel {
     private static final int MAX_TILES = 7;
 
     public FrmMatchSettingsModel() {
-        // Inicializar con valores por defecto
         this.numberOfPlayers = MIN_PLAYERS;
         this.numberOfTiles = MIN_TILES;
     }
@@ -54,8 +53,6 @@ public class FrmMatchSettingsModel {
     }
 
     public void saveSettings() {
-        // Aquí puedes implementar la lógica para guardar la configuración
-        // Por ejemplo, guardar en un archivo o en una base de datos
         System.out.println("Configuración guardada: " + numberOfPlayers + " jugadores, " + numberOfTiles + " fichas por jugador");
     }
 }

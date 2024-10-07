@@ -100,20 +100,10 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
 
         btnEndMatch.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnEndMatch.setText("Sí. Deseo terminar la partida");
-        btnEndMatch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEndMatchActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnEndMatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 400, -1));
 
         btnContinueMatch.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnContinueMatch.setText("No. Deseo continuar la partida");
-        btnContinueMatch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinueMatchActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnContinueMatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 400, -1));
 
         lblProposed.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
@@ -150,14 +140,6 @@ public class FrmMatchEndingRequestView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEndMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndMatchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEndMatchActionPerformed
-
-    private void btnContinueMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueMatchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContinueMatchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinueMatch;

@@ -164,11 +164,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame  {
 
         txtName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         txtName.setToolTipText("");
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 420, 50));
 
         btnNextForm.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
@@ -180,19 +175,7 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame  {
         jPanel1.add(btnPrevForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 160, 60));
 
         pnlPlayerAvatar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnNextAvatar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextAvatarActionPerformed(evt);
-            }
-        });
         pnlPlayerAvatar.add(btnNextAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 60, 290));
-
-        btnPrevAvatar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrevAvatarActionPerformed(evt);
-            }
-        });
         pnlPlayerAvatar.add(btnPrevAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 290));
         pnlPlayerAvatar.add(lblAvatarDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 300, 290));
 
@@ -226,21 +209,9 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame  {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNextAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextAvatarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNextAvatarActionPerformed
-
-    private void btnPrevAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevAvatarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPrevAvatarActionPerformed
-
     private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMinimizeActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
 
     /**
      * @param args the command line arguments

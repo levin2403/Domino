@@ -109,11 +109,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
 
         btnEndMatch.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnEndMatch.setText("Terminar partida");
-        btnEndMatch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEndMatchActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnEndMatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 300, -1));
 
         lblPlayer1.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
@@ -239,10 +234,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEndMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndMatchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEndMatchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;

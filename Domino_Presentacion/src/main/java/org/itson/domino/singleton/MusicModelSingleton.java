@@ -26,12 +26,11 @@ public class MusicModelSingleton {
     }
 
     public void playMusic(String filePath) {
-        // Evitar reproducir la misma canción si ya está sonando
         if (currentSong != null && currentSong.equals(filePath) && isPlaying) {
-            return; // La canción ya está sonando
+            return;
         }
 
-        stopCurrentMusic(); // Detener la música actual si está sonando
+        stopCurrentMusic();
         currentSong = filePath;
         isPlaying = true;
 
@@ -47,8 +46,8 @@ public class MusicModelSingleton {
             } catch (IOException e) {
                 System.err.println("Error loading music: " + e.getMessage());
             } finally {
-                isPlaying = false; // Asegúrate de que isPlaying se restablezca al final
-                currentSong = null; // Restablecer currentSong si es necesario
+                isPlaying = false;
+                currentSong = null;
             }
         });
 
@@ -57,11 +56,11 @@ public class MusicModelSingleton {
 
     public void stopCurrentMusic() {
         if (player != null) {
-            player.close(); // Detener la reproducción
-            player = null; // Limpiar el objeto del reproductor
+            player.close(); 
+            player = null;
         }
-        isPlaying = false; // Marcar que no hay música sonando
-        currentSong = null; // Limpiar la canción actual
+        isPlaying = false;
+        currentSong = null;
     }
 
 

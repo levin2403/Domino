@@ -30,10 +30,10 @@ public class FontSingleton {
                 if (fontStream == null) {
                     throw new IOException("No se pudo encontrar la fuente en la ruta: " + path);
                 }
-                Font font = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(12f); // Cambia el tamaño según sea necesario
+                Font font = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(12f);
                 fonts.put(name, font);
             } catch (FontFormatException | IOException e) {
-                e.printStackTrace(); // Asegúrate de que imprimas el error completo
+                e.printStackTrace();
             }
         }
 
@@ -44,6 +44,6 @@ public class FontSingleton {
         if (font != null) {
             return font.deriveFont(size);
         }
-        return new Font("Serif", Font.PLAIN, 12); // Fuente por defecto
+        return new Font("Serif", Font.PLAIN, 12);
     }
 }

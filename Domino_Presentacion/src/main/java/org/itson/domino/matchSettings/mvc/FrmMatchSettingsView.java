@@ -59,10 +59,8 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
             lblBackground.setIcon(ResourceLoader.loadBackground(IconPaths.COMMON_BG, 1200, 700));
         } catch (Exception e) {
             e.printStackTrace();
-            // Manejar la excepción si no se encuentra el archivo
         }
     }
-
     
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
@@ -163,11 +161,6 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
         jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
 
         btnMinimize.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMinimizeActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
 
         lblBackground.setText("jLabel2");
@@ -186,10 +179,6 @@ public class FrmMatchSettingsView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMinimizeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;

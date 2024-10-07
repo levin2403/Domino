@@ -6,17 +6,14 @@ import javax.swing.ImageIcon;
 
 public class ResourceLoader {
 
-    // Método para cargar íconos
     public static ImageIcon loadIcon(String iconName, int x, int y) throws Exception {
         return loadResource(iconName, x, y);
     }
 
-    // Método para cargar fondos
     public static ImageIcon loadBackground(String backgroundName, int x, int y) throws Exception {
         return loadResource(backgroundName, x, y);
     }
 
-    // Método general para cargar recursos
     private static ImageIcon loadResource(String resourcePath, int x, int y) throws Exception {
         URL imgURL = ResourceLoader.class.getResource(resourcePath);
         if (imgURL != null) {
