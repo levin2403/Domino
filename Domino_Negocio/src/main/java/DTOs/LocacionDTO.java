@@ -26,4 +26,11 @@ public class LocacionDTO {
         return y;
     }
 
+    @Override
+    public String toString() {
+        return "LocacionDTO{" + "x=" + x + ", y=" + y + '}';
+    }
+    
+    
+
 }
