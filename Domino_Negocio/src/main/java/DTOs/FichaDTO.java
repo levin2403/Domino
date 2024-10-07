@@ -64,7 +64,7 @@ public class FichaDTO {
 
     @Override
     public String toString() {
-        return "Ficha{" + "valorSuperior=" + valorSuperior + 
+        return "FichaDTO{" + "valorSuperior=" + valorSuperior + 
                 ", valorInferior=" + valorInferior + ", locacionSuperior=" + 
                 locacionSuperior + ", locacionInferior=" + locacionInferior + 
                 ", direccion=" + direccion + '}';

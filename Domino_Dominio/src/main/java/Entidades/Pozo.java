@@ -88,4 +88,8 @@ public class Pozo {
     public List<Ficha> getPozo(){
         return pozo;
     }
+
+    public static void setPozo(List<Ficha> pozo) {
+        Pozo.pozo = pozo;
+    }
 }

@@ -1,25 +1,21 @@
-package Entidades;
-
-import java.util.List;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package DTOs;
+
+import java.util.List;
 
 /**
- * Clase que define al jugador, la cual contiene diferentes metodos para sus
- * atributos correspondientes.
- * 
- * @author skevi
+ *
+ * @author Dell
  */
-public class Jugador {
-    
+public class JugadorDTO {
     // atributos de la clase 
     private String nickName;
     private int puntos;
-    private List<Ficha> fichas;
-    private Avatar avatar;
+    private List<FichaDTO> fichasDTO;
+    private AvatarDTO avatar;
 
     /**
      * constructor que inicializa tanto el nickname como el avatar del jugador
@@ -28,7 +24,7 @@ public class Jugador {
      * @param nickName nombre por el cual el jugador sera conocido.
      * @param avatar avatar el cual el jugador eligio.
      */
-    public Jugador(String nickName, Avatar avatar) {
+    public JugadorDTO(String nickName, AvatarDTO avatar) {
         this.nickName = nickName;
         this.avatar = avatar;
     }
@@ -67,7 +63,7 @@ public class Jugador {
      * 
      * @return Retornamos el avatar perteneciente al jugador.
      */
-    public Avatar getAvatar() {
+    public AvatarDTO getAvatar() {
         return avatar;
     }
     
@@ -76,8 +72,8 @@ public class Jugador {
      * 
      * @return Lista de fichas del jugador.
      */
-    public List<Ficha> getFichas() {
-        return fichas;
+    public List<FichaDTO> getFichas() {
+        return fichasDTO;
     }
 
     /**
@@ -85,8 +81,8 @@ public class Jugador {
      * 
      * @param fichas Lista de fichas para el usuario.
      */
-    public void setFichas(List<Ficha> fichas) {
-        this.fichas = fichas;
+    public void setFichas(List<FichaDTO> fichas) {
+        this.fichasDTO = fichas;
     }
     
     /**
@@ -96,8 +92,8 @@ public class Jugador {
      * 
      * @param ficha Ficha a eliminar de la mano del jugador.
      */
-    public void eliminarFicha(Ficha ficha){
-        this.fichas.remove(ficha);
+    public void eliminarFicha(FichaDTO ficha){
+        this.fichasDTO.remove(ficha);
     }
     
     /**
@@ -106,7 +102,7 @@ public class Jugador {
      * @return Numero de fichas en mano.
      */
     public int cantidadFichas(){
-        return this.fichas.size();
+        return this.fichasDTO.size();
     }
     
     /**
@@ -116,15 +112,8 @@ public class Jugador {
      * @param ficha ficha a añadir a la mano del usuario.
      * 
      */
-    public void añadirFicha(Ficha ficha){
-        this.fichas.add(ficha);
+    public void añadirFicha(FichaDTO ficha){
+        this.fichasDTO.add(ficha);
     }
-
-    @Override
-    public String toString() {
-        return "Jugador{" + "nickName=" + nickName + ", puntos=" + puntos + ", fichas=" + fichas + ", avatar=" + avatar + '}';
-    }
-    
-    
     
 }

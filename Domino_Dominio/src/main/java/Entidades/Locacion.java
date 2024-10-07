@@ -25,5 +25,12 @@ public class Locacion {
     public int getY() {
         return y;
     }
+
+    @Override
+    public String toString() {
+        return "Locacion{" + "x=" + x + ", y=" + y + '}';
+    }
+    
+    
     
 }
