@@ -16,7 +16,6 @@ public class JugadorRegistrado {
     
     public JugadorDTO getInstance() {
         if (instance == null) {
-            // Sincronización para asegurar seguridad en multihilo
             synchronized (JugadorRegistrado.class) {
                 if (instance == null) {
                     instance = new JugadorDTO();
