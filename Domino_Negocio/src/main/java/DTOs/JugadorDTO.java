@@ -18,6 +18,12 @@ public class JugadorDTO {
     private AvatarDTO avatar;
 
     /**
+     * Constructor vacio
+     */
+    public JugadorDTO() {
+    }
+    
+    /**
      * constructor que inicializa tanto el nickname como el avatar del jugador
      * al momento de elegir ambos.
      * 

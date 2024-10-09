@@ -15,7 +15,7 @@ import Entidades.Jugador;
 import Entidades.Locacion;
 import Entidades.Pozo;
 import java.util.List;
-import manejadorTurnos.ManejadorTurnos;
+import BO.ManejadorTurnos;
 
 /**
  *
