@@ -33,22 +33,6 @@ public class ManejadorTurnos {
         return true;
     }
     
-//    public boolean pasarTurno(){
-//        for (int i = 0; i < jugadores.size(); i++) {
-//            if (jugadorEnTurno.equals(jugadores.get(i))) {
-//                if (jugadores.getLast().equals(jugadorEnTurno)) {
-//                    jugadorEnTurno = jugadores.getFirst();
-//                    return true;
-//                }
-//                else{
-//                    jugadorEnTurno = jugadores.get(i+1);
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-    
     public boolean asignarPrimerTurno(){
         jugadorEnTurno = jugadores.getFirst();
         contador++;
