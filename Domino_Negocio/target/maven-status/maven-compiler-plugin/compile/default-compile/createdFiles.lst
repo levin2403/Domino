@@ -15,3 +15,4 @@ DTOs\PozoDTO.class
 Controlers\ControlGeneraFichas.class
 Conversores\ConversorDireccion$1.class
 DTOs\AvatarDTO.class
+DTOs\TableroDTO.class
