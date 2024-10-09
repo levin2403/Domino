@@ -11,17 +11,29 @@ import Entidades.Pozo;
  * @author Dell
  */
 public class GeneracionPozoSingleton {
-    
+
     private static Pozo instance;
 
+
+    // Método para obtener la instancia única de Pozo
     public Pozo getPozo() {
         if (instance == null) {
-            instance = new Pozo();
+            // Sincronización para asegurar seguridad en multihilo
+            synchronized (GeneracionPozoSingleton.class) {
+                if (instance == null) {
+                    instance = new Pozo();
+                }
+            }
         }
         return instance;
     }
 
-    public void setPozo(Pozo instance) {
-        GeneracionPozoSingleton.instance = instance;
+    public  void setPozo(Pozo pozo) {
+        synchronized (GeneracionPozoSingleton.class) {
+            instance = pozo;
+        }
     }
+    
+    
 }
+
