@@ -4,18 +4,10 @@
  */
 package pruebas;
 
-import Controlers.ControlGeneraFichas;
-import Controlers.ControlReparteFichas;
-import Conversores.ConversorFicha;
-import DTOs.FichaDTO;
+
 import Entidades.Avatar;
-import Entidades.Direccion;
-import Entidades.Ficha;
 import Entidades.Jugador;
-import Entidades.Locacion;
-import Entidades.Pozo;
-import java.util.List;
-import BO.ManejadorTurnos;
+import Logica.ManejadorTurnos;
 
 /**
  *
@@ -51,10 +43,10 @@ public class prueba {
         Jugador vata = new Jugador("Vata", new Avatar("Vata"));
         
         
-        System.out.println("Añade: "+ mt.addJugador(vata));
-        System.out.println("añade: "+ mt.addJugador(new Jugador("Vato", new Avatar("Vato"))));
-        System.out.println("añade: "+ mt.addJugador(new Jugador("Manuela", new Avatar("Manuela"))));
-        System.out.println("añade: "+ mt.addJugador(new Jugador("Manuel", new Avatar("Manuel"))));
+//        System.out.println("Añade: "+ mt.addJugador(vata));
+//        System.out.println("añade: "+ mt.addJugador(new Jugador("Vato", new Avatar("Vato"))));
+//        System.out.println("añade: "+ mt.addJugador(new Jugador("Manuela", new Avatar("Manuela"))));
+//        System.out.println("añade: "+ mt.addJugador(new Jugador("Manuel", new Avatar("Manuel"))));
         
         System.out.println("Asigna: "+ mt.asignarPrimerTurno());
         System.out.println("jugador en turno: " + mt.jugadorEnTurno.toString());

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.itson.domino.mediator;
+package Mediator;
 
 import org.itson.domino.lobby.mvc.FrmLobbyController;
 import org.itson.domino.lobby.mvc.FrmLobbyView;
@@ -22,9 +22,11 @@ import org.itson.domino.welcome.mvc.FrmWelcomeView;
 
 /**
  *
- * @author gamaliel
+ * @author skevi
  */
-public class FormMediator {
+public class Mediator {
+    
+    
     public void showFrmWelcome(){
         FrmWelcomeView view = new FrmWelcomeView();
         FrmWelcomeController controller = new FrmWelcomeController(view, this);

@@ -1,14 +1,25 @@
 package org.itson.domino.playerSettings.mvc;
 
+
 import org.itson.domino.managers.AvatarManager;
+import org.itson.domino.observable.ObserverbableRegistrarJugador;
+import org.itson.domino.observer.ObserverRegistrarJugador;
 
-public class FrmPlayerSettingsModel {
+/**
+ * 
+ * @author skevi
+ */
+public class FrmPlayerSettingsModel implements ObserverbableRegistrarJugador {
 
+    ObserverRegistrarJugador orj;
+    
+    // asdasdasd
     private String playerName;
     private AvatarManager avatarManager;
 
-    public FrmPlayerSettingsModel(AvatarManager avatarManager) {
-        this.avatarManager = avatarManager;
+    
+    public FrmPlayerSettingsModel() {
+        this.avatarManager = new AvatarManager();
     }
 
     public void setPlayerName(String name) {
@@ -34,4 +45,26 @@ public class FrmPlayerSettingsModel {
     public void saveSettings() {
         System.out.println("Configuración guardada: " + playerName + " es Jugador.");
     }
+    
+    // observer que notifica al observador suscrito para que realice el
+    // registro de un usuario.
+    public void registrarJugador(){
+        notificar();
+    }
+
+    @Override
+    public void registrarObservador(ObserverRegistrarJugador orj) {
+       this.orj = orj;
+    }
+
+    @Override
+    public void aliminarObservador(ObserverRegistrarJugador orj) {
+        this.orj = null;
+    }
+
+    @Override
+    public void notificar() {
+        orj.actualizar();
+    }
+
 }
