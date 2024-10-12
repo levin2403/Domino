@@ -4,13 +4,12 @@
  */
 package Controlers;
 
-import DTOs.FichaDTO;
-import DTOs.JugadorDTO;
+
 import Entidades.Ficha;
 import Entidades.Jugador;
 import Entidades.Pozo;
 import java.util.List;
-import singleton.GeneracionPozoSingleton;
+import singleton.PozoST;
 
 /**
  *
@@ -19,17 +18,17 @@ import singleton.GeneracionPozoSingleton;
 public class ControlReparteFichas {
     ControlGeneraFichas controlGF;
     Pozo pozo;
-    GeneracionPozoSingleton genPozo;
+    PozoST genPozo;
     
     public ControlReparteFichas() {
         controlGF = new ControlGeneraFichas();
-        genPozo = new GeneracionPozoSingleton();
+        genPozo = new PozoST();
     }
     
     
 
     public boolean repartirFichas2Jugadores(byte numeroFichas,Jugador jugador1, Jugador jugador2){
-        pozo = genPozo.getPozo();
+        pozo = genPozo.getInstance();
         this.reparteFichasAJugador(numeroFichas, jugador1);
         this.reparteFichasAJugador(numeroFichas, jugador2);
         
@@ -38,7 +37,7 @@ public class ControlReparteFichas {
     }
     
     public boolean repartirFichas3Jugadores(byte numeroFichas,Jugador jugador1, Jugador jugador2, Jugador jugador3){
-        pozo = genPozo.getPozo();
+        pozo = genPozo.getInstance();
         this.reparteFichasAJugador(numeroFichas, jugador1);
         this.reparteFichasAJugador(numeroFichas, jugador2);
         this.reparteFichasAJugador(numeroFichas, jugador3);
@@ -48,7 +47,7 @@ public class ControlReparteFichas {
     }
     
     public boolean repartirFichas4Jugadores(byte numeroFichas,Jugador jugador1, Jugador jugador2, Jugador jugador3, Jugador jugador4){
-        pozo = genPozo.getPozo();
+        pozo = genPozo.getInstance();
         this.reparteFichasAJugador(numeroFichas, jugador1);
         this.reparteFichasAJugador(numeroFichas, jugador2);
         this.reparteFichasAJugador(numeroFichas, jugador3);

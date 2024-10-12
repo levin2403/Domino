@@ -7,7 +7,7 @@ package prueba;
 import Entidades.Direccion;
 import Entidades.FabricaFichas;
 import Entidades.Pozo;
-import singleton.GeneracionPozoSingleton;
+import singleton.PozoST;
 
 /**
  *
@@ -24,11 +24,11 @@ public class prueba {
 //        System.out.println(direccion.toString());
 
         
-        GeneracionPozoSingleton genPozo = new GeneracionPozoSingleton();
+        PozoST genPozo = new PozoST();
         
-        Pozo pozo = genPozo.getPozo();
+        Pozo pozo = genPozo.getInstance();
         
-        Pozo pozo2 = genPozo.getPozo();
+        Pozo pozo2 = genPozo.getInstance();
         
         System.out.println("pozo1 " + pozo.getPozo());
         System.out.println("pozo2 " + pozo2.getPozo());

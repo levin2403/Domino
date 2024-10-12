@@ -10,4 +10,5 @@ package Logica;
  */
 public class ObtenerFichaPozo {
     
+    
 }

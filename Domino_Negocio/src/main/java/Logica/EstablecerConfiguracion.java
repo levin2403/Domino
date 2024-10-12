@@ -5,7 +5,8 @@
 package Logica;
 
 import DTOs.ConfiguracionDTO;
-import Singleton.ConfiguracionInicial;
+import Singleton.ConfiguracionInicialST;
+import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
 
 /**
  *
@@ -13,15 +14,32 @@ import Singleton.ConfiguracionInicial;
  */
 public class EstablecerConfiguracion {
     
-    
-    ConfiguracionDTO configuracionDTO;
-    ConfiguracionInicial ci;
+    ConfiguracionInicialST configuracionInicial; //instancia golbal de la configuracion
 
+    //instancia para obtener la informacion del frame correspondiente
+    FrmMatchSettingsModel settingsModel;
+    
+    /**
+     * Constructor de la clase;
+     */
     public EstablecerConfiguracion() {
-        this.configuracionDTO = ci.getInstance();
+
+        //iniciamos instancia del modelo
+        this.settingsModel = new FrmMatchSettingsModel(); 
     }
     
-    
-    
+    /**
+     * Establecemos la configuracion al singletone para su uso en otras clases
+     */
+    public void establecerConfiguracionInicial(){
+        int numfichas = settingsModel.getNumberOfTiles(); // numero de fichas
+        int numJugadores = settingsModel.getNumberOfPlayers(); //numero de jugadores
+        
+        //instanciamos una nueva configuracion con los datos del modelo
+        ConfiguracionDTO configuracion = new ConfiguracionDTO(numfichas, numJugadores);
+        
+        //establecemos la nueva configuracion a la instancia global 
+        configuracionInicial.setInstance(configuracion); 
+    }
     
 }
