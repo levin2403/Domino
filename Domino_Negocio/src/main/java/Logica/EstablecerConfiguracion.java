@@ -14,7 +14,8 @@ import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
  */
 public class EstablecerConfiguracion {
     
-    ConfiguracionInicialST configuracionInicial; //instancia golbal de la configuracion
+    //instancia golbal de la configuracion
+    ConfiguracionInicialST configuracionInicial; 
 
     //instancia para obtener la informacion del frame correspondiente
     FrmMatchSettingsModel settingsModel;
