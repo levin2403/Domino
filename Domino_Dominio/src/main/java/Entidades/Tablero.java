@@ -27,6 +27,10 @@ public class Tablero {
     public Tablero() {
         this.fichas = new LinkedList<>(); // Inicializa la lista de fichas
     }
+    
+    public Tablero(LinkedList<Ficha> fichas) {
+        this.fichas = new LinkedList<>(); // Inicializa la lista de fichas
+    }
 
     /**
      * Añade una ficha al principio de la lista.
@@ -84,5 +88,8 @@ public class Tablero {
         }
         return true; // Posición disponible
     }
-    
+
+    public LinkedList<Ficha> getFichas() {
+        return fichas;
+    }
 }
