@@ -10,7 +10,7 @@ import DTOs.JugadorDTO;
  *
  * @author skevi
  */
-public class JugadorRegistradoST {
+public class MiJugadorST {
     
     //
     private static JugadorDTO instance;
@@ -21,7 +21,7 @@ public class JugadorRegistradoST {
      */
     public JugadorDTO getInstance() {
         if (instance == null) {
-            synchronized (JugadorRegistradoST.class) {
+            synchronized (MiJugadorST.class) {
                 if (instance == null) {
                     instance = new JugadorDTO();
                 }
@@ -35,7 +35,7 @@ public class JugadorRegistradoST {
      * @param instance 
      */
     public void setInstance(JugadorDTO instance) {
-        JugadorRegistradoST.instance = instance;
+        MiJugadorST.instance = instance;
     }
     
     

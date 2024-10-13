@@ -10,6 +10,7 @@ import org.itson.domino.managers.AvatarManager;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestController;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestView;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingController;
+import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingModel;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingView;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsController;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
@@ -25,7 +26,11 @@ import org.itson.domino.welcome.mvc.FrmWelcomeView;
  * @author skevi
  */
 public class Mediator {
+
     
+    public Mediator() {
+        
+    }
     
     public void showFrmWelcome(){
         FrmWelcomeView view = new FrmWelcomeView();
@@ -43,6 +48,7 @@ public class Mediator {
     public void showFrmPlayerSettings() {
         FrmPlayerSettingsView view = new FrmPlayerSettingsView();
         AvatarManager avatarManager = new AvatarManager();
+        
         FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
         FrmPlayerSettingsController controller = new FrmPlayerSettingsController(view, model, this);
         view.setVisible(true);
@@ -55,8 +61,9 @@ public class Mediator {
     }
     
     public void showFrmMatchOngoing() {
-        FrmMatchOngoingView view = new FrmMatchOngoingView();
-        FrmMatchOngoingController controller = new FrmMatchOngoingController(view, this);
+        FrmMatchOngoingModel model = new FrmMatchOngoingModel();
+        FrmMatchOngoingView view = new FrmMatchOngoingView(model);
+        FrmMatchOngoingController controller = new FrmMatchOngoingController(view, model);
         view.setVisible(true);
     }
     

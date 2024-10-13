@@ -5,6 +5,7 @@
 package Logica;
 
 
+import DTOs.FichaDTO;
 import DTOs.JugadorDTO;
 import Entidades.Jugador;
 import java.util.LinkedList;
@@ -16,8 +17,8 @@ import java.util.List;
  */
 public class ManejadorTurnos {
     
-    public List <JugadorDTO> jugadores;
-    public JugadorDTO jugadorEnTurno;
+    private List <JugadorDTO> jugadores;
+    private JugadorDTO jugadorEnTurno;
     private int contador = 0; 
 
     public ManejadorTurnos() {
@@ -36,7 +37,6 @@ public class ManejadorTurnos {
     
     public boolean asignarPrimerTurno(){
         jugadorEnTurno = jugadores.getFirst();
-        contador++;
         return true;
     }
     
@@ -46,9 +46,17 @@ public class ManejadorTurnos {
             contador = 0;
         }
         
-        jugadorEnTurno = jugadores.get(contador);
+        jugadorEnTurno = jugadores.get(contador + 1);
         contador ++;
         return true;
+    }
+    
+    public void darFichaAJugador(FichaDTO ficha){
+        jugadores.get(contador).añadirFicha(ficha);
+    }
+
+    public JugadorDTO getJugadorEnTurno() {
+        return jugadorEnTurno;
     }
     
 }

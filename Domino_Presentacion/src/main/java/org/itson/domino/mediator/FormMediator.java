@@ -10,6 +10,7 @@ import org.itson.domino.managers.AvatarManager;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestController;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestView;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingController;
+import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingModel;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingView;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsController;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
@@ -53,7 +54,8 @@ public class FormMediator {
     }
     
     public void showFrmMatchOngoing() {
-        FrmMatchOngoingView view = new FrmMatchOngoingView();
+        FrmMatchOngoingModel model = new FrmMatchOngoingModel();
+        FrmMatchOngoingView view = new FrmMatchOngoingView(model);
         FrmMatchOngoingController controller = new FrmMatchOngoingController(view, this);
         view.setVisible(true);
     }

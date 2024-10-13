@@ -10,8 +10,10 @@ import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmMatchOngoingView extends javax.swing.JFrame {
+    FrmMatchOngoingModel model;
 
-    public FrmMatchOngoingView() {
+    public FrmMatchOngoingView(FrmMatchOngoingModel model) {
+        this.model = model;
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
         

@@ -85,6 +85,9 @@ public class Pozo {
      * @return Numero de fichas restantes en el pozo.
      */
     public int fichasDisponibles(){
+        if(pozo == null){
+            return 0;
+        }
         return pozo.size();
     }
     
