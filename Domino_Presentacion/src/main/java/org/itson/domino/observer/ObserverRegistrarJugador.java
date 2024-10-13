@@ -11,4 +11,5 @@ package org.itson.domino.observer;
 public interface ObserverRegistrarJugador {
     
     public void actualizar();
+   
 }

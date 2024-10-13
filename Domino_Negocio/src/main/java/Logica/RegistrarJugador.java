@@ -8,8 +8,8 @@ import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
 import Mediator.Mediator;
 import Singleton.ManejadorTurnosST;
-import org.itson.domino.observer.ObserverRegistrarJugador;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
+import org.itson.domino.observer.ObserverRegistrarJugador;
 
 /**
  *
