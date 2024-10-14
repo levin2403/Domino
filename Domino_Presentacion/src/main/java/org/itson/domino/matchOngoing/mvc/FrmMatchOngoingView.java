@@ -1,7 +1,15 @@
 package org.itson.domino.matchOngoing.mvc;
 
+import DTOs.FichaDTO;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import org.itson.domino.constants.IconPaths;
 import org.itson.domino.managers.ResourceLoader;
 import org.itson.domino.singleton.ButtonStyleSingleton;
@@ -67,6 +75,95 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         style.applyButtonStyle(btnEndMatch);
         style.applyButtonStyle(btnClose);
     }
+    
+    public ImageIcon loadResource(String resourcePath, int x, int y) {
+        URL imgURL = FrmMatchOngoingView.class.getResource("/im/"+resourcePath);
+        if (imgURL != null) {
+            ImageIcon originalIcon = new ImageIcon(imgURL);
+            Image image = originalIcon.getImage().getScaledInstance(x, y, Image.SCALE_SMOOTH);
+            return new ImageIcon(image);
+        } else {
+            return null;
+        }
+    }
+    
+    public String identificaFicha(int x, int y){
+        String key = x + "," + y;
+        switch (key) {
+            case "0,1":
+                return "0-1.png";
+            case "0,2":
+                return "0-2.png";
+            case "0,3":
+                return "0-3.png";
+            case "0,4":
+                return "0-4.png";
+            case "0,5":
+                return "0-5.png";
+            case "0,6":
+                return "0-6.png";
+            case "1,1":
+                return "mula1.png";
+            case "1,2":
+                return "1-2.png";
+            case "1,3":
+                return "1-3.png";
+            case "1,4":
+                return "1-4.png";
+            case "1,5":
+                return "1-5.png";
+            case "1,6":
+                return "1-6.png";
+            case "2,2":
+                return "mula2.png";
+            case "2,3":
+                return "2-3.png";
+            case "2,4":
+                return "2-4.png";
+            case "2,5":
+                return "2-5.png";
+            case "2,6":
+                return "2-6.png";
+            case "3,3":
+                return "mula3.png";
+            case "3,4":
+                return "3-4.png";
+            case "3,5":
+                return "3-5.png";
+            case "3,6":
+                return "3-6.png";
+            case "4,4":
+                return "mula4.png";
+            case "4,5":
+                return "4-5.png";
+            case "4,6":
+                return "4-6.png";
+            case "5,5":
+                return "mula5.png";
+            case "5,6":
+                return "5-6.png";
+            case "6,6":
+                return "6-6.png";
+        }
+       return null; 
+    }
+    
+    public void pintaPrimerFicha(FichaDTO ficha, JPanel panel){
+        JLabel labelFicha = new JLabel();
+        labelFicha.setSize(new Dimension(25, 15));
+        
+        labelFicha.setIcon(this.loadResource(this.identificaFicha(ficha.getValorSuperior(), ficha.getValorInferior()), 25, 15));
+        
+//        labelFicha.setIcon(this.loadResource(
+//                        "mula2.png", 25, 15));
+//        labelFicha.setBounds(panel.getWidth()/2, panel.getHeight()/2, 25, 15);
+        labelFicha.setVisible(true);
+        panel.add(labelFicha);
+        panel.repaint();
+        
+//        return labelFicha;
+        
+}
     
     /**
      * Creates new form FrmBienvenida
