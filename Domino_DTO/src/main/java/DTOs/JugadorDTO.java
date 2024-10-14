@@ -4,13 +4,14 @@
  */
 package DTOs;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Dell
  */
-public class JugadorDTO {
+public class JugadorDTO implements Serializable {
     // atributos de la clase 
     private String nickName;
     private int puntos;

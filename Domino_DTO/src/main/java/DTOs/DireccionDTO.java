@@ -4,11 +4,13 @@
  */
 package DTOs;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dell
  */
-public enum DireccionDTO {
+public enum DireccionDTO implements Serializable {
     ARRIBA, ABAJO, DERECHA, IZQUIERDA;
     
 }

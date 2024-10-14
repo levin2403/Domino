@@ -4,11 +4,13 @@
  */
 package DTOs;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dell
  */
-public class AvatarDTO {
+public class AvatarDTO implements Serializable {
     
     //atributo de clase para la ruta.
     private String imageURL;

@@ -4,11 +4,13 @@
  */
 package DTOs;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dell
  */
-public class FichaDTO {
+public class FichaDTO implements Serializable {
     
     private int valorSuperior; // Valor superior de la ficha
     private int valorInferior; // Valor inferior de la ficha

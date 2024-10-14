@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Ruzzky
  */
-public class TableroDTO implements Serializable{
+public class TableroDTO implements Serializable {
     
     private List<FichaDTO> fichasTablero;
 

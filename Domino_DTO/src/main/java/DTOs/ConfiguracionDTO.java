@@ -4,11 +4,13 @@
  */
 package DTOs;
 
+import java.io.Serializable;
+
 /**
  *
  * @author skevi
  */
-public class ConfiguracionDTO {
+public class ConfiguracionDTO implements Serializable {
     
     private int fichasARepartir;
     private int numJugadores;

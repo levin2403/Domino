@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Dell
  */
-public class PozoDTO implements Serializable{
+public class PozoDTO implements Serializable {
     
     private List<FichaDTO> fichasPozo;
 

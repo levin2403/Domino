@@ -26,6 +26,7 @@ import org.itson.domino.welcome.mvc.FrmWelcomeView;
  * @author gamaliel
  */
 public class FormMediator {
+    
     public void showFrmWelcome(){
         FrmWelcomeView view = new FrmWelcomeView();
         FrmWelcomeController controller = new FrmWelcomeController(view, this);

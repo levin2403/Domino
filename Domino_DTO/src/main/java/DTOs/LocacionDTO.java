@@ -4,11 +4,13 @@
  */
 package DTOs;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Dell
  */
-public class LocacionDTO {
+public class LocacionDTO implements Serializable {
 
     private int x;
     private int y;
