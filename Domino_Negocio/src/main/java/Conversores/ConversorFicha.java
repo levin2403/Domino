@@ -42,11 +42,11 @@ public class ConversorFicha {
     public Ficha fichaConvertirDTOAEntidad(FichaDTO fichaDTO) {
         int valorSuperior = fichaDTO.getValorSuperior();
         int valorinferior = fichaDTO.getValorInferior();
-        Locacion locacionSuperior = converLoca.locacionConvertirDTOAEntidad(fichaDTO.getLocacionSuperior());
-        Locacion locacionInferior = converLoca.locacionConvertirDTOAEntidad(fichaDTO.getLocacionInferior());
-        Direccion direccion = converDirec.direccionConvertirDTOAEntidad(fichaDTO.getDireccion());
+        Locacion centerLocacion = converLoca.locacionConvertirDTOAEntidad(fichaDTO.getCenterLocacion());
+        Direccion direccionLado = converDirec.direccionConvertirDTOAEntidad(fichaDTO.getDireccionLado());
+        Direccion direccionPosicion = converDirec.direccionConvertirDTOAEntidad(fichaDTO.getDireccionPosicion());
 
-        Ficha ficha = new Ficha(valorSuperior, valorinferior, locacionSuperior, locacionInferior, direccion);
+        Ficha ficha = new Ficha(valorSuperior, valorinferior, centerLocacion, direccionLado, direccionPosicion);
         return ficha;
     }
 
@@ -59,11 +59,11 @@ public class ConversorFicha {
     public FichaDTO fichaConvertirEntidadADTO(Ficha ficha) {
         int valorSuperior = ficha.getValorSuperior();
         int valorinferior = ficha.getValorInferior();
-        LocacionDTO locacionSuperior = converLoca.locacionConvertirEntidadADTO(ficha.getLocacionSuperior());
-        LocacionDTO locacionInferior = converLoca.locacionConvertirEntidadADTO(ficha.getLocacionInferior());
-        DireccionDTO direccion = converDirec.direccionConvertirEntidadADTO(ficha.getDireccion());
+        LocacionDTO centerLocacion = converLoca.locacionConvertirEntidadADTO(ficha.getCenterLocacion());
+        DireccionDTO direccionLado = converDirec.direccionConvertirEntidadADTO(ficha.getDireccionLado());
+        DireccionDTO direccionPosicion = converDirec.direccionConvertirEntidadADTO(ficha.getDireccionPosicion());
 
-        FichaDTO fichaDTO = new FichaDTO(valorSuperior, valorinferior, locacionSuperior, locacionInferior, direccion);
+        FichaDTO fichaDTO = new FichaDTO(valorSuperior, valorinferior, centerLocacion, direccionLado, direccionPosicion);
         return fichaDTO;
     }
 

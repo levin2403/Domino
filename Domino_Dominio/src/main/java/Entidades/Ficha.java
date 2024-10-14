@@ -2,7 +2,7 @@
 package Entidades;
 
 /**
- *
+ * 
  * @author skevi
  * @author RUZZKY
  */
@@ -10,30 +10,31 @@ public class Ficha {
     
     private int valorSuperior; // Valor superior de la ficha
     private int valorInferior; // Valor inferior de la ficha
-    private Locacion locacionSuperior;
-    private Locacion locacionInferior;
-    private Direccion direccion;
+    private Locacion centerLocacion;
+    private Direccion direccionLado;
+    private Direccion direccionPosicion;
 
+    public Ficha() {
+    }
+            
     public Ficha(int valorSuperior, int valorInferior) {
         this.valorSuperior = valorSuperior;
         this.valorInferior = valorInferior;
     }
 
     public Ficha(int valorSuperior, int valorInferior, Locacion 
-            locacionSuperior, Locacion locacionInferior) {
+            centerLocacion) {
         this.valorSuperior = valorSuperior;
         this.valorInferior = valorInferior;
-        this.locacionSuperior = locacionSuperior;
-        this.locacionInferior = locacionInferior;
+        this.centerLocacion = centerLocacion;
     }
 
-    public Ficha(int valorSuperior, int valorInferior, Locacion 
-            locacionSuperior, Locacion locacionInferior, Direccion direccion) {
+    public Ficha(int valorSuperior, int valorInferior, Locacion centerLocacion, Direccion direccionLado, Direccion direccionPosicion) {
         this.valorSuperior = valorSuperior;
         this.valorInferior = valorInferior;
-        this.locacionSuperior = locacionSuperior;
-        this.locacionInferior = locacionInferior;
-        this.direccion = direccion;
+        this.centerLocacion = centerLocacion;
+        this.direccionLado = direccionLado;
+        this.direccionPosicion = direccionPosicion;
     }
     
     public int getValorSuperior() {
@@ -44,16 +45,16 @@ public class Ficha {
         return valorInferior;
     }
 
-    public Locacion getLocacionSuperior() {
-        return locacionSuperior;
+    public Locacion getCenterLocacion() {
+        return centerLocacion;
     }
 
-    public Locacion getLocacionInferior() {
-        return locacionInferior;
+    public Direccion getDireccionLado() {
+        return direccionLado;
     }
 
-    public Direccion getDireccion() {
-        return direccion;
+    public Direccion getDireccionPosicion() {
+        return direccionPosicion;
     }
     
     public boolean isMula(Ficha ficha){
@@ -62,11 +63,10 @@ public class Ficha {
 
     @Override
     public String toString() {
-        return "Ficha{" + "valorSuperior=" + valorSuperior + 
-                ", valorInferior=" + valorInferior + ", locacionSuperior=" + 
-                locacionSuperior + ", locacionInferior=" + locacionInferior + 
-                ", direccion=" + direccion + '}';
+        return "Ficha{" + "valorSuperior=" + valorSuperior + ", valorInferior=" + valorInferior + ", centerLocacion=" + centerLocacion + ", direccionLado=" + direccionLado + ", direccionPosicion=" + direccionPosicion + '}';
     }
+
+    
     
     
 

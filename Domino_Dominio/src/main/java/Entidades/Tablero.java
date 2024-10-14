@@ -23,9 +23,11 @@ import java.util.List;
 public class Tablero {
     
     private LinkedList<Ficha> fichas; 
+    private static Ficha primerFicha; 
 
     public Tablero() {
         this.fichas = new LinkedList<>(); // Inicializa la lista de fichas
+        primerFicha = new Ficha();
     }
     
     public Tablero(LinkedList<Ficha> fichas) {
@@ -38,7 +40,13 @@ public class Tablero {
      * @param ficha Ficha a añadir al tablero.
      */
     public void addFirst(Ficha ficha) {
-        fichas.addFirst(ficha);
+        if(fichas.isEmpty()){
+            fichas.addFirst(ficha);
+            primerFicha = ficha;
+        }
+        else{
+            fichas.addFirst(ficha);
+        }
     }
 
     /**
@@ -47,7 +55,13 @@ public class Tablero {
      * @param ficha Ficha a añadir al tablero.
      */
     public void addLast(Ficha ficha) {
-        fichas.addLast(ficha);
+        if(fichas.isEmpty()){
+            fichas.addLast(ficha);
+            primerFicha = ficha;
+        }
+        else{
+            fichas.addLast(ficha);
+        }
     }
     
     /**
@@ -81,8 +95,7 @@ public class Tablero {
         for (Ficha f : fichas) {
             // Comprobar si la locación superior o inferior de la ficha ya está 
             // ocupada
-            if (f.getLocacionSuperior().equals(ficha.getLocacionSuperior()) ||
-                f.getLocacionInferior().equals(ficha.getLocacionInferior())) {
+            if (f.getCenterLocacion().equals(ficha.getCenterLocacion())) {
                 return false; // Posición ocupada
             }
         }
@@ -92,4 +105,6 @@ public class Tablero {
     public LinkedList<Ficha> getFichas() {
         return fichas;
     }
+    
+    
 }

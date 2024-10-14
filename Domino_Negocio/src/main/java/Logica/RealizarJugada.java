@@ -13,6 +13,7 @@ import Entidades.Ficha;
 import Entidades.Jugador;
 import Entidades.Tablero;
 import Singleton.ManejadorTurnosST;
+import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingView;
 import singleton.TableroST;
 
 /**
@@ -43,7 +44,11 @@ public class RealizarJugada {
         JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
         Jugador jugadorEnt = convertJugador.jugadorConvertirDTOAEntidad(jugadorEnTurno);
         
-        switch (ficha.getDireccion()) {
+        if(tablero.getFichas().isEmpty()){
+            FrmMatchOngoingView.pintaPrimerFicha();
+        }
+        
+        switch (ficha.getDireccionLado()) {
             case DERECHA:
                 tablero.addLast(fichaAColocar);
                 break;
@@ -51,10 +56,5 @@ public class RealizarJugada {
                 tablero.addFirst(fichaAColocar);
                 break;
         }
-        
-        
-        
-        
-        
     }
 }

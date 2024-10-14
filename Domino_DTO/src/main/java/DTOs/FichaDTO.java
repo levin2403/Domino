@@ -14,30 +14,27 @@ public class FichaDTO implements Serializable {
     
     private int valorSuperior; // Valor superior de la ficha
     private int valorInferior; // Valor inferior de la ficha
-    private LocacionDTO locacionSuperior;
-    private LocacionDTO locacionInferior;
-    private DireccionDTO direccion;
+    private LocacionDTO centerLocacion;
+    private DireccionDTO direccionLado;
+    private DireccionDTO direccionPosicion;
 
     public FichaDTO(int valorSuperior, int valorInferior) {
         this.valorSuperior = valorSuperior;
         this.valorInferior = valorInferior;
     }
 
-    public FichaDTO(int valorSuperior, int valorInferior, LocacionDTO 
-            locacionSuperior, LocacionDTO locacionInferior) {
+    public FichaDTO(int valorSuperior, int valorInferior, LocacionDTO centerLocacion) {
         this.valorSuperior = valorSuperior;
         this.valorInferior = valorInferior;
-        this.locacionSuperior = locacionSuperior;
-        this.locacionInferior = locacionInferior;
+        this.centerLocacion = centerLocacion;
     }
 
-    public FichaDTO(int valorSuperior, int valorInferior, LocacionDTO 
-            locacionSuperior, LocacionDTO locacionInferior, DireccionDTO direccion) {
+    public FichaDTO(int valorSuperior, int valorInferior, LocacionDTO centerLocacion, DireccionDTO direccionLado, DireccionDTO direccionPosicion) {
         this.valorSuperior = valorSuperior;
         this.valorInferior = valorInferior;
-        this.locacionSuperior = locacionSuperior;
-        this.locacionInferior = locacionInferior;
-        this.direccion = direccion;
+        this.centerLocacion = centerLocacion;
+        this.direccionLado = direccionLado;
+        this.direccionPosicion = direccionPosicion;
     }
     
     public int getValorSuperior() {
@@ -48,16 +45,16 @@ public class FichaDTO implements Serializable {
         return valorInferior;
     }
 
-    public LocacionDTO getLocacionSuperior() {
-        return locacionSuperior;
+    public LocacionDTO getCenterLocacion() {
+        return centerLocacion;
     }
 
-    public LocacionDTO getLocacionInferior() {
-        return locacionInferior;
+    public DireccionDTO getDireccionLado() {
+        return direccionLado;
     }
 
-    public DireccionDTO getDireccion() {
-        return direccion;
+    public DireccionDTO getDireccionPosicion() {
+        return direccionPosicion;
     }
     
     public boolean isMula(FichaDTO ficha){
@@ -66,10 +63,9 @@ public class FichaDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "FichaDTO{" + "valorSuperior=" + valorSuperior + 
-                ", valorInferior=" + valorInferior + ", locacionSuperior=" + 
-                locacionSuperior + ", locacionInferior=" + locacionInferior + 
-                ", direccion=" + direccion + '}';
+        return "FichaDTO{" + "valorSuperior=" + valorSuperior + ", valorInferior=" + valorInferior + ", centerLocacion=" + centerLocacion + ", direccionLado=" + direccionLado + ", direccionPosicion=" + direccionPosicion + '}';
     }
+
+    
     
 }

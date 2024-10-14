@@ -98,6 +98,7 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         lblPlayer4 = new javax.swing.JLabel();
         pnlLeftTiles = new javax.swing.JPanel();
         lblBackground = new javax.swing.JLabel();
+        tableroPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -223,6 +224,11 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         lblBackground.setText("jLabel2");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
+        tableroPanel.setBackground(new java.awt.Color(0, 153, 51));
+        tableroPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tableroPanel.setLayout(null);
+        jPanel1.add(tableroPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 720, 380));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,5 +261,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPlayer2;
     private javax.swing.JPanel pnlPlayer3;
     private javax.swing.JPanel pnlPlayer4;
+    private javax.swing.JPanel tableroPanel;
     // End of variables declaration//GEN-END:variables
 }

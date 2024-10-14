@@ -5,7 +5,7 @@
 package Entidades;
 
 /**
- *
+ * x1=0 y1=0 tamtotal=6cm  y2=y1 x2=x1-7cm  x3=x2+3cm y3=y2+7cm
  * @author skevi
  */
 public class Locacion {
