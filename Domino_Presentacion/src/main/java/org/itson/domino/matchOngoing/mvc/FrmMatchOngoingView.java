@@ -18,24 +18,30 @@ import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmMatchOngoingView extends javax.swing.JFrame {
-    FrmMatchOngoingModel model;
 
+    FrmMatchOngoingModel model;
+    
     public FrmMatchOngoingView(FrmMatchOngoingModel model) {
         this.model = model;
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
-        
+
         //INICIO DE COMPONENTES
         initComponents();
-        
+
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
         applyIconsAndBackground();
-        
+
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
         
+        FichaDTO ficha = new FichaDTO(2, 2);
+        
+        this.pintaPrimerFicha(ficha);
+        
+
         //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
         TaskbarButtonSingleton taskbarButtonSIngleton = TaskbarButtonSingleton.getInstance();
         taskbarButtonSIngleton.addCloseButton(btnClose, this);
@@ -53,16 +59,16 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+    
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
 //        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
-        applyFontToComponents(customFont, "Evil Empire", 30f,  
-                btnEndMatch, btnClose, 
+        applyFontToComponents(customFont, "Evil Empire", 30f,
+                btnEndMatch, btnClose,
                 lblAvatar1, lblAvatar2, lblAvatar3, lblAvatar4,
                 lblPlayer1, lblPlayer2, lblPlayer3, lblPlayer4);
     }
-
+    
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
         for (JComponent component : components) {
             component.setFont(fontSingleton.getFont(fontName, size));
@@ -71,13 +77,13 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
     
     private void applyButtonStyles() {
         ButtonStyleSingleton style = ButtonStyleSingleton.getInstance();
-
+        
         style.applyButtonStyle(btnEndMatch);
         style.applyButtonStyle(btnClose);
     }
     
     public ImageIcon loadResource(String resourcePath, int x, int y) {
-        URL imgURL = FrmMatchOngoingView.class.getResource("/im/"+resourcePath);
+        URL imgURL = FrmMatchOngoingView.class.getResource("/tiles/" + resourcePath);
         if (imgURL != null) {
             ImageIcon originalIcon = new ImageIcon(imgURL);
             Image image = originalIcon.getImage().getScaledInstance(x, y, Image.SCALE_SMOOTH);
@@ -87,7 +93,7 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         }
     }
     
-    public String identificaFicha(int x, int y){
+    public String identificaFicha(int x, int y) {
         String key = x + "," + y;
         switch (key) {
             case "0,1":
@@ -145,30 +151,74 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
             case "6,6":
                 return "6-6.png";
         }
-       return null; 
+        return null;        
     }
     
-    public void pintaPrimerFicha(FichaDTO ficha, JPanel panel){
+    public void pintaPrimerFicha(FichaDTO ficha) {
         JLabel labelFicha = new JLabel();
-        labelFicha.setSize(new Dimension(25, 15));
+        ImageIcon imagen = this.loadResource(this.identificaFicha(ficha.getValorSuperior(), ficha.getValorInferior()), 45, 25);
         
-        labelFicha.setIcon(this.loadResource(this.identificaFicha(ficha.getValorSuperior(), ficha.getValorInferior()), 25, 15));
+        ImageIcon imagenVertical;
         
+        labelFicha.setSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+        
+        labelFicha.setIcon(imagen);
+//        labelFicha.setIcon(this.loadResource(this.identificaFicha(ficha.getValorSuperior(), ficha.getValorInferior()), 45, 25));
+        labelFicha.setBounds(tableroPanel.getWidth() / 2, tableroPanel.getHeight() / 2, 45, 25);
+
 //        labelFicha.setIcon(this.loadResource(
 //                        "mula2.png", 25, 15));
 //        labelFicha.setBounds(panel.getWidth()/2, panel.getHeight()/2, 25, 15);
+        
+        
         labelFicha.setVisible(true);
-        panel.add(labelFicha);
-        panel.repaint();
-        
+        this.tableroPanel.add(labelFicha);
+        this.tableroPanel.repaint();
+
 //        return labelFicha;
-        
-}
+    }
     
+    public void rotarVertical(ImageIcon i) {
+        
+        
+    }
+    
+    public static void main(String args[]) {
+        FrmMatchOngoingModel m = new FrmMatchOngoingModel();
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrmMatchOngoingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmMatchOngoingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmMatchOngoingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmMatchOngoingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmMatchOngoingView(m).setVisible(true);
+            }
+        });
+    }
+
     /**
      * Creates new form FrmBienvenida
      */
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,8 +244,8 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         lblAvatar4 = new javax.swing.JLabel();
         lblPlayer4 = new javax.swing.JLabel();
         pnlLeftTiles = new javax.swing.JPanel();
-        lblBackground = new javax.swing.JLabel();
         tableroPanel = new javax.swing.JPanel();
+        lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -318,13 +368,13 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         pnlLeftTiles.setLayout(new java.awt.GridLayout(1, 0));
         jPanel1.add(pnlLeftTiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 290, 500));
 
-        lblBackground.setText("jLabel2");
-        jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
-
         tableroPanel.setBackground(new java.awt.Color(0, 153, 51));
         tableroPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tableroPanel.setLayout(null);
         jPanel1.add(tableroPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 720, 380));
+
+        lblBackground.setText("jLabel2");
+        jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -33,7 +33,9 @@ public class FabricaFichas {
         // Generar todas las combinaciones de fichas (28 fichas en total)
         for (int i = 0; i <= 6; i++) {
             for (int j = i; j <= 6; j++) {
-                fichas.add(new Ficha(i, j));
+                Ficha ficha = new Ficha(i, j);
+                ficha.setIcon(i+"-"+j);
+                fichas.add(ficha);
             }
         }
 

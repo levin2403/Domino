@@ -13,6 +13,7 @@ public class Ficha {
     private Locacion centerLocacion;
     private Direccion direccionLado;
     private Direccion direccionPosicion;
+    private String icon;
 
     public Ficha() {
     }
@@ -59,6 +60,14 @@ public class Ficha {
     
     public boolean isMula(Ficha ficha){
         return ficha.valorSuperior == ficha.valorInferior;    
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     @Override
