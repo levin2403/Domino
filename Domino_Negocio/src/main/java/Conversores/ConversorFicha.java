@@ -23,14 +23,14 @@ import java.util.List;
  */
 public class ConversorFicha {
     private ConversorLocacion converLoca;
-    private ConversorDireccion converDirec;
+    private DireccionCVR converDirec;
 
     /**
      * Constructor de la clase ConversorFicha.
      */
     public ConversorFicha() {
         converLoca = new ConversorLocacion();
-        converDirec = new ConversorDireccion();
+        converDirec = new DireccionCVR();
     }
 
     /**

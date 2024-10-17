@@ -12,5 +12,4 @@ import java.io.Serializable;
  */
 public enum DireccionDTO implements Serializable {
     ARRIBA, ABAJO, DERECHA, IZQUIERDA;
-    
 }

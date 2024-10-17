@@ -7,7 +7,6 @@ package pruebas;
 
 import Entidades.Avatar;
 import Entidades.Jugador;
-import Logica.ManejadorTurnos;
 
 /**
  *
@@ -38,9 +37,9 @@ public class prueba {
         //        System.out.println(jugador2.getFichas());
         //        System.out.println(pozo.getPozo());
         
-        ManejadorTurnos mt = new ManejadorTurnos();
-        
-        Jugador vata = new Jugador("Vata", new Avatar("Vata"));
+//        ManejadorTurnos mt = new ManejadorTurnos();
+//        
+//        Jugador vata = new Jugador("Vata", new Avatar("Vata"));
         
         
 //        System.out.println("Añade: "+ mt.addJugador(vata));

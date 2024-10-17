@@ -27,5 +27,10 @@ public class TableroDTO implements Serializable {
     public void setFichasTablero(List<FichaDTO> fichasTablero) {
         this.fichasTablero = fichasTablero;
     }
+
+    @Override
+    public String toString() {
+        return "TableroDTO{" + "fichasTablero=" + fichasTablero + '}';
+    }
     
 }

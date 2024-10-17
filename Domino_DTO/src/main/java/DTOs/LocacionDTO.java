@@ -12,14 +12,28 @@ import java.io.Serializable;
  */
 public class LocacionDTO implements Serializable {
 
-    private int x;
-    private int y;
+    private int x; // Locacion en x
+    private int y; // Locacion en y
 
+    /**
+     * Constructor por defecto
+     */
+    public LocacionDTO() {
+    }
+    
+    /**
+     * Constructor que inicializa todos los atributos de la clase.
+     * 
+     * @param x Locacion en x
+     * @param y Locacion en y
+     */
     public LocacionDTO(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
+    // Getters y Setters
+    
     public int getX() {
         return x;
     }
@@ -33,6 +47,4 @@ public class LocacionDTO implements Serializable {
         return "LocacionDTO{" + "x=" + x + ", y=" + y + '}';
     }
     
-    
-
 }

@@ -30,5 +30,10 @@ public class PozoDTO implements Serializable {
         
         this.fichasPozo = fichasPozo;
     }
+
+    @Override
+    public String toString() {
+        return "PozoDTO{" + "fichasPozo=" + fichasPozo + '}';
+    }
     
 }

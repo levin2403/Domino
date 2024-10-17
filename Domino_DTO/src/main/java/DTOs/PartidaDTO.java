@@ -14,7 +14,7 @@ public class PartidaDTO implements Serializable{
     private TableroDTO tablero;
     private PozoDTO pozo;
     private ConfiguracionDTO configuracion;
-    private ManejadorTurnos manejadorTurnos;
+    private ManejadorTurnosDTO manejadorTurnos;
 
     public TableroDTO getTablero() {
         return tablero;
@@ -40,11 +40,11 @@ public class PartidaDTO implements Serializable{
         this.configuracion = configuracion;
     }
 
-    public ManejadorTurnos getManejadorTurnos() {
+    public ManejadorTurnosDTO getManejadorTurnos() {
         return manejadorTurnos;
     }
 
-    public void setManejadorTurnos(ManejadorTurnos manejadorTurnos) {
+    public void setManejadorTurnos(ManejadorTurnosDTO manejadorTurnos) {
         this.manejadorTurnos = manejadorTurnos;
     }
 

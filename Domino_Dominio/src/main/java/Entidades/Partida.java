@@ -10,4 +10,41 @@ package Entidades;
  */
 public class Partida {
     
+    private Tablero tablero;
+    private Pozo pozo;
+    private Configuracion configuracion;
+    private ManejadorTurnos manejadorTurnos;
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
+    public Pozo getPozo() {
+        return pozo;
+    }
+
+    public void setPozo(Pozo pozo) {
+        this.pozo = pozo;
+    }
+
+    public Configuracion getConfiguracion() {
+        return configuracion;
+    }
+
+    public void setConfiguracion(Configuracion configuracion) {
+        this.configuracion = configuracion;
+    }
+
+    public ManejadorTurnos getManejadorTurnos() {
+        return manejadorTurnos;
+    }
+
+    public void setManejadorTurnos(ManejadorTurnos manejadorTurnos) {
+        this.manejadorTurnos = manejadorTurnos;
+    }
+    
 }

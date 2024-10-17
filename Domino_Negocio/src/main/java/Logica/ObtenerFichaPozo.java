@@ -5,12 +5,12 @@
 package Logica;
 
 import Conversores.ConversorFicha;
-import Conversores.ConversorJugador;
 import DTOs.FichaDTO;
 import DTOs.JugadorDTO;
+import DTOs.ManejadorTurnosDTO;
 import Entidades.Ficha;
 import Entidades.Pozo;
-import Singleton.ManejadorTurnosST;
+import Singleton.PartidaST;
 import javax.swing.JOptionPane;
 import org.itson.domino.observer.ObserverObtenerFichaPozo;
 import org.itson.domino.singleton.MiJugadorST;
@@ -21,25 +21,27 @@ import singleton.PozoST;
  * @author skevi
  */
 public class ObtenerFichaPozo implements ObserverObtenerFichaPozo{
-
-    ManejadorTurnosST mts;
-    ManejadorTurnos manejadorTurnos;
+    
+    PartidaST partida;
+    
+    ManejadorTurnosDTO manejadorTurnos;
     PozoST ps;
     Pozo pozo;
     ConversorFicha convertFicha;
     MiJugadorST miJugador;
 
     public ObtenerFichaPozo() {
-        mts = new ManejadorTurnosST();
-        manejadorTurnos = mts.getInstance();
+        manejadorTurnos = partida.getInstance().getManejadorTurnos();
         ps = new PozoST();
         pozo = ps.getInstance();
         miJugador = new MiJugadorST();
     }
 
     private FichaDTO jalarFicha() {
+        
         JugadorDTO miJugadorDTO = miJugador.getInstance();
         JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
+        
         if (miJugadorDTO.getNickName().equals(jugadorEnTurno.getNickName())) {
             if (pozo.fichasDisponibles() == 0) {
                 JOptionPane.showMessageDialog(null, "El pozo esta vaio");

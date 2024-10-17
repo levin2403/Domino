@@ -12,10 +12,19 @@ import java.io.Serializable;
  */
 public class AvatarDTO implements Serializable {
     
-    //atributo de clase para la ruta.
+    //Atributo de clase para la ruta.
     private String imageURL;
 
-    //constructor para establecer la ruta de la imagen
+    /**
+     * Constructor vacio por defecto
+     */
+    public AvatarDTO() {
+    }
+    
+    /**
+     * Constructor para establecer la ruta de la imagen
+     * @param imageURL 
+     */
     public AvatarDTO(String imageURL) {
         this.imageURL = imageURL;
     }    
@@ -27,4 +36,10 @@ public class AvatarDTO implements Serializable {
     public String getImageURL() {
         return imageURL;
     }
+
+    @Override
+    public String toString() {
+        return "AvatarDTO{" + "imageURL=" + imageURL + '}';
+    }
+    
 }

@@ -15,9 +15,9 @@ import static Entidades.Direccion.IZQUIERDA;
  *
  * @author Dell
  */
-public class ConversorDireccion {
+public class DireccionCVR {
 
-    public ConversorDireccion() {
+    public DireccionCVR() {
     }
     
     /**

@@ -122,5 +122,11 @@ public class JugadorDTO implements Serializable {
     public void añadirFicha(FichaDTO ficha){
         this.fichasDTO.add(ficha);
     }
+
+    @Override
+    public String toString() {
+        return "JugadorDTO{" + "nickName=" + nickName + ", puntos=" + puntos + 
+                ", fichasDTO=" + fichasDTO + ", avatar=" + avatar + '}';
+    }
     
 }

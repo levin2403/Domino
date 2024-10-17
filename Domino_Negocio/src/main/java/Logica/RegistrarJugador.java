@@ -6,8 +6,9 @@ package Logica;
 
 import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
+import DTOs.ManejadorTurnosDTO;
 import Mediator.Mediator;
-import Singleton.ManejadorTurnosST;
+import Singleton.PartidaST;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.observer.ObserverRegistrarJugador;
 
@@ -17,9 +18,10 @@ import org.itson.domino.observer.ObserverRegistrarJugador;
  */
 public class RegistrarJugador implements ObserverRegistrarJugador{
     
+    PartidaST partida;
+    
     // para registrar al jugador
-    ManejadorTurnosST manejadorTurnosST;
-    ManejadorTurnos manejadorTurnos;
+    ManejadorTurnosDTO manejadorTurnos;
 
     //para el frame que usaremos
     FrmPlayerSettingsModel psm;
@@ -31,7 +33,7 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
      * Constructor que inicializa la clase 
      */
     public RegistrarJugador() {
-        this.manejadorTurnos = manejadorTurnosST.getInstance();
+        this.manejadorTurnos = partida.getInstance().getManejadorTurnos();
         this.psm = new FrmPlayerSettingsModel();
         
         //registramos a la clase como observadora
@@ -55,12 +57,13 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
         manejadorTurnos.addJugador(jugador);
         
         // abrimos el frame del lobby 
-        mediador.showFrmLobby();
+        //mediador.showFrmLobby();
     }
 
     /**
      * Metodo de actualizar desencadenado por el Observable que 
      * realiza la accion de registrar a un nuevo jugador.
+     * 
      */
     @Override
     public void actualizar() {
