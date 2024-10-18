@@ -15,6 +15,13 @@ public class Partida {
     private Configuracion configuracion;
     private ManejadorTurnos manejadorTurnos;
 
+    public Partida() {
+        this.tablero = new Tablero();
+        this.pozo = new Pozo();
+        this.configuracion = new Configuracion();
+        this.manejadorTurnos = new ManejadorTurnos();
+    }
+    
     public Tablero getTablero() {
         return tablero;
     }

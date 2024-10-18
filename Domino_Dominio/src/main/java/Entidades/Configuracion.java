@@ -12,8 +12,14 @@ package Entidades;
  */
 public class Configuracion {
     
-    private static byte numJugadores;
-    private static byte FichasPorJugador;
+    private byte numJugadores;
+    private byte FichasPorJugador;
+    
+    /**
+     * Constructor por defecto de la clase.
+     */
+    public Configuracion() {
+    }
 
     /**
      * Constructor que inicializa ambos atributos de la clase. 
@@ -43,6 +49,24 @@ public class Configuracion {
      */
     public byte getFichasPorJugador() {
         return FichasPorJugador;
+    }
+
+    /**
+     * Metodo para establecer el numero de jugadores.
+     * 
+     * @param numJugadores Numero de jugadores.
+     */
+    public void setNumJugadores(byte numJugadores) {
+        this.numJugadores = numJugadores;
+    }
+
+    /**
+     * Metodo para establecer el numero de fichas por jugador.
+     * 
+     * @param FichasPorJugador Fichas por jugador.
+     */
+    public void setFichasPorJugador(byte FichasPorJugador) {
+        this.FichasPorJugador = FichasPorJugador;
     }
     
 }

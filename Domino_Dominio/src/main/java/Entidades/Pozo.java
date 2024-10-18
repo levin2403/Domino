@@ -29,19 +29,6 @@ public class Pozo {
         pozo = fabricaFichas.crearFichas(); 
     }
     
-    
-    
-    /**
-     * Metodo para obetener las fichas directo de la fabrica de fichas y 
-     * asignarlas a la lista de fichas del poso.
-     */
-//    public void getFichasGeneradas(){
-//        // instanciamos a la fabrica de fichas
-//        this.fabricaFichas = new FabricaFichas();
-//        // le agregamos al pozo las fichas fabricadas 
-//        pozo = fabricaFichas.crearFichas();
-//    }
-    
      /**
      * Obtiene un número determinado de fichas aleatorias del pozo,
      * posteriormente elimina las fichas obtenidas del pozo para mantener
@@ -105,8 +92,4 @@ public class Pozo {
         pozo = pozo;
     }
     
-//    public void eliminaFicha(int i){
-//        pozo.remove(i);
-//        
-//    }
 }
