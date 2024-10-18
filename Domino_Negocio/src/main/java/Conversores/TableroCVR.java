@@ -16,11 +16,11 @@ import java.util.List;
  *
  * @author Dell
  */
-public class ConversorTablero {
-    ConversorFicha convertFicha;
+public class TableroCVR {
+    FichaCVR convertFicha;
 
-    public ConversorTablero() {
-        convertFicha = new ConversorFicha();
+    public TableroCVR() {
+        convertFicha = new FichaCVR();
     }
     
     public Tablero convertirTableroDTOAEntidad(TableroDTO tableroDTO){

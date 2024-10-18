@@ -1,10 +1,13 @@
 prueba\prueba.class
+singleton\TableroST.class
 Entidades\Tablero.class
+Entidades\ManejadorTurnos.class
 Entidades\Direccion.class
 Entidades\Estado.class
+singleton\PartidaST.class
 Entidades\Ficha.class
-singleton\GeneracionPozoSingleton.class
 Entidades\Jugador.class
+singleton\PozoST.class
 Entidades\Pozo.class
 Entidades\FabricaFichas.class
 Entidades\Partida.class

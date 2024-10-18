@@ -4,16 +4,17 @@
  */
 package Logica;
 
-import Conversores.ConversorFicha;
+import Conversores.FichaCVR;
 import DTOs.FichaDTO;
 import DTOs.JugadorDTO;
 import DTOs.ManejadorTurnosDTO;
 import Entidades.Ficha;
+import Entidades.ManejadorTurnos;
 import Entidades.Pozo;
-import Singleton.PartidaST;
 import javax.swing.JOptionPane;
 import org.itson.domino.observer.ObserverObtenerFichaPozo;
 import org.itson.domino.singleton.MiJugadorST;
+import singleton.PartidaST;
 import singleton.PozoST;
 
 /**
@@ -24,10 +25,10 @@ public class ObtenerFichaPozo implements ObserverObtenerFichaPozo{
     
     PartidaST partida;
     
-    ManejadorTurnosDTO manejadorTurnos;
+    ManejadorTurnos manejadorTurnos;
     PozoST ps;
     Pozo pozo;
-    ConversorFicha convertFicha;
+    FichaCVR convertFicha;
     MiJugadorST miJugador;
 
     public ObtenerFichaPozo() {
@@ -39,23 +40,23 @@ public class ObtenerFichaPozo implements ObserverObtenerFichaPozo{
 
     private FichaDTO jalarFicha() {
         
-        JugadorDTO miJugadorDTO = miJugador.getInstance();
-        JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
-        
-        if (miJugadorDTO.getNickName().equals(jugadorEnTurno.getNickName())) {
-            if (pozo.fichasDisponibles() == 0) {
-                JOptionPane.showMessageDialog(null, "El pozo esta vaio");
-                return null;
-            }
-            Ficha fichaJalada = pozo.obtenerFicha();
-            FichaDTO fichaDTO = convertFicha.fichaConvertirEntidadADTO(fichaJalada);
-            manejadorTurnos.darFichaAJugador(fichaDTO);
-            return fichaDTO;
-        } else {
-            JOptionPane.showMessageDialog(null, "Espera tu turno");
-            return null;
-        }
-
+//        JugadorDTO miJugadorDTO = miJugador.getInstance();
+//        JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
+//        
+//        if (miJugadorDTO.getNickName().equals(jugadorEnTurno.getNickName())) {
+//            if (pozo.fichasDisponibles() == 0) {
+//                JOptionPane.showMessageDialog(null, "El pozo esta vaio");
+//                return null;
+//            }
+//            Ficha fichaJalada = pozo.obtenerFicha();
+//            FichaDTO fichaDTO = convertFicha.fichaConvertirEntidadADTO(fichaJalada);
+//            manejadorTurnos.darFichaAJugador(fichaDTO);
+//            return fichaDTO;
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Espera tu turno");
+//            return null;
+//        }
+          return null;
     }
 
     @Override

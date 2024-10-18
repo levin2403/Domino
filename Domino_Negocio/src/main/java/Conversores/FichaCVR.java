@@ -21,15 +21,15 @@ import java.util.List;
  *
  * @author Dell
  */
-public class ConversorFicha {
-    private ConversorLocacion converLoca;
+public class FichaCVR {
+    private LocacionCVR converLoca;
     private DireccionCVR converDirec;
 
     /**
      * Constructor de la clase ConversorFicha.
      */
-    public ConversorFicha() {
-        converLoca = new ConversorLocacion();
+    public FichaCVR() {
+        converLoca = new LocacionCVR();
         converDirec = new DireccionCVR();
     }
 

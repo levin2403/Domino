@@ -16,11 +16,11 @@ import java.util.List;
  *
  * @author Dell
  */
-public class ConversorJugador {
-    ConversorFicha convertFicha;
+public class JugadorCVR {
+    FichaCVR convertFicha;
 
-    public ConversorJugador() {
-        convertFicha = new ConversorFicha();
+    public JugadorCVR() {
+        convertFicha = new FichaCVR();
     }
     
     public Jugador jugadorConvertirDTOAEntidad(JugadorDTO jugadorDTO){

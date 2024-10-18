@@ -4,7 +4,7 @@
  */
 package Controlers;
 
-import Conversores.ConversorFicha;
+import Conversores.FichaCVR;
 import DTOs.FichaDTO;
 import Entidades.Direccion;
 import Entidades.FabricaFichas;
@@ -35,7 +35,7 @@ public class ControlGeneraFichas {
      * @return una lista de objetos FichaDTO generados
      */
     public List<FichaDTO> generaFichas() {
-        ConversorFicha convert = new ConversorFicha();
+        FichaCVR convert = new FichaCVR();
         FabricaFichas fabricaFichas = new FabricaFichas();
         
         List<Ficha> fichasGen = fabricaFichas.crearFichas();

@@ -37,7 +37,8 @@ public class EstablecerConfiguracion {
         int numJugadores = settingsModel.getNumberOfPlayers(); //numero de jugadores
         
         //instanciamos una nueva configuracion con los datos del modelo
-        ConfiguracionDTO configuracion = new ConfiguracionDTO(numfichas, numJugadores);
+        ConfiguracionDTO configuracion = 
+                new ConfiguracionDTO(numfichas, numJugadores);
         
         //establecemos la nueva configuracion a la instancia global 
         configuracionInicial.setInstance(configuracion); 

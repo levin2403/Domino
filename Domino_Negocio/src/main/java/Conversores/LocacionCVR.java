@@ -11,9 +11,9 @@ import Entidades.Locacion;
  *
  * @author Dell
  */
-public class ConversorLocacion {
+public class LocacionCVR {
 
-    public ConversorLocacion() {
+    public LocacionCVR() {
     }
     
     /**

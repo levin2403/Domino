@@ -15,7 +15,7 @@ public class PartidaST {
     private static Partida instance; 
     
     /**
-     * 
+     * Obtenemos una instancia global del singletone a usar en la clase 
      * @return 
      */
     public Partida getInstance() {
@@ -30,7 +30,7 @@ public class PartidaST {
     }
     
     /**
-     * Este metodo estblece una nueva configuracion al singletone en caso 
+     * Este metodo estblece una nueva Partida al singletone en caso 
      * de ser requerido ser modificado fuera de la clase.
      * 
      * @param newInstance nueva instancia a incluir dentro del singletone

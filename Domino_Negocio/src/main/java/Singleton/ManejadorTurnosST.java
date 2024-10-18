@@ -4,7 +4,9 @@
  */
 package Singleton;
 
-import Logica.ManejadorTurnos;
+import Entidades.ManejadorTurnos;
+
+
 
 /**
  *

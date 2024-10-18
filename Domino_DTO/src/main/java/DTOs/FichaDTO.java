@@ -25,6 +25,17 @@ public class FichaDTO implements Serializable {
     }
 
     /**
+     * Constructor que inicializa los valores de la ficha.
+     * 
+     * @param valorSuperior Valor superior de la ficha
+     * @param valorInferior Valor inferior de la ficha
+     */
+    public FichaDTO(int valorSuperior, int valorInferior) {
+        this.valorSuperior = valorSuperior;
+        this.valorInferior = valorInferior;
+    }
+    
+    /**
      * Constructor que inicializa todos los atributos de la clase. 
      * 
      * @param valorSuperior Valor superior de la ficha

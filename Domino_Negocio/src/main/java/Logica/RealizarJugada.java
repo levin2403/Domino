@@ -4,13 +4,14 @@
  */
 package Logica;
 
-import Conversores.ConversorFicha;
-import Conversores.ConversorJugador;
+import Conversores.FichaCVR;
+import Conversores.JugadorCVR;
 import DTOs.FichaDTO;
 import DTOs.JugadorDTO;
 import Entidades.Direccion;
 import Entidades.Ficha;
 import Entidades.Jugador;
+import Entidades.ManejadorTurnos;
 import Entidades.Tablero;
 import Singleton.ManejadorTurnosST;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingView;
@@ -25,8 +26,8 @@ public class RealizarJugada {
     TableroST ts;
     ManejadorTurnos manejadorTurnos;
     Tablero tablero;
-    ConversorFicha convertFicha;
-    ConversorJugador convertJugador;
+    FichaCVR convertFicha;
+    JugadorCVR convertJugador;
 //    FrmMatchOngoingModel mugm;
 
     public RealizarJugada() {
@@ -34,8 +35,8 @@ public class RealizarJugada {
         manejadorTurnos = mts.getInstance();
         ts = new TableroST();
         tablero = ts.getInstance();
-        convertFicha = new ConversorFicha();
-        convertJugador = new ConversorJugador();
+        convertFicha = new FichaCVR();
+        convertJugador = new JugadorCVR();
     }
     
     

@@ -6,9 +6,8 @@ package Logica;
 
 import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
-import DTOs.ManejadorTurnosDTO;
 import Mediator.Mediator;
-import Singleton.PartidaST;
+import ObjetosNegocio.ManejadorTurnosBO;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.observer.ObserverRegistrarJugador;
 
@@ -18,11 +17,9 @@ import org.itson.domino.observer.ObserverRegistrarJugador;
  */
 public class RegistrarJugador implements ObserverRegistrarJugador{
     
-    PartidaST partida;
+    //intancia del manejador de turnos 
+    ManejadorTurnosBO manejadorTurnos;
     
-    // para registrar al jugador
-    ManejadorTurnosDTO manejadorTurnos;
-
     //para el frame que usaremos
     FrmPlayerSettingsModel psm;
     
@@ -33,11 +30,7 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
      * Constructor que inicializa la clase 
      */
     public RegistrarJugador() {
-        this.manejadorTurnos = partida.getInstance().getManejadorTurnos();
         this.psm = new FrmPlayerSettingsModel();
-        
-        //registramos a la clase como observadora
-        psm.registrarObservador(this);
     }
     
     /**
@@ -54,7 +47,6 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
         JugadorDTO jugador = new JugadorDTO(user, avatar);
         
         //registramos al jugador dentro del manejador de turnos
-        manejadorTurnos.addJugador(jugador);
         
         // abrimos el frame del lobby 
         //mediador.showFrmLobby();
