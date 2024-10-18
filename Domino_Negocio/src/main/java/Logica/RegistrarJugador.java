@@ -6,7 +6,6 @@ package Logica;
 
 import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
-import Mediator.Mediator;
 import ObjetosNegocio.ManejadorTurnosBO;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.observer.ObserverRegistrarJugador;
