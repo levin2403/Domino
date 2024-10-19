@@ -83,4 +83,22 @@ public class ManejadorTurnos {
         }
     }
     
+    /**
+     * Metodo para establecer la lista de jugadores.
+     * 
+     * @param jugadores Lista de jugadores a establecer 
+     */
+    public void setJugadores(List<Jugador> jugadores){
+        this.jugadores = jugadores;
+    }
+
+    /**
+     * Metodo para establecer al jugador en turno.
+     * 
+     * @param jugadorEnTurno Jugador a establecer en turno.
+     */
+    public void setJugadorEnTurno(Jugador jugadorEnTurno) {
+        this.jugadorEnTurno = jugadorEnTurno;
+    }
+    
 }

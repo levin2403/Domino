@@ -14,6 +14,7 @@ import Entidades.Partida;
 public class PartidaCVR {
     
     public Partida toEntity(PartidaDTO partidaDTO){
+        Partida partida = new Partida();
         return null;
     }
     

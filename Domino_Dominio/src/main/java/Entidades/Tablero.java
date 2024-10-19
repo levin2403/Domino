@@ -102,6 +102,10 @@ public class Tablero {
         return true; // Posición disponible
     }
 
+    /**
+     * 
+     * @return 
+     */
     public LinkedList<Ficha> getFichas() {
         return fichas;
     }

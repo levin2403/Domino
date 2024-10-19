@@ -30,8 +30,8 @@ public class prueba {
         
         Pozo pozo2 = genPozo.getInstance();
         
-        System.out.println("pozo1 " + pozo.getPozo());
-        System.out.println("pozo2 " + pozo2.getPozo());
+//        System.out.println("pozo1 " + pozo.getPozo());
+//        System.out.println("pozo2 " + pozo2.getPozo());
         
         
         

@@ -4,8 +4,11 @@
  */
 package ObjetosNegocio;
 
+import Conversores.FichaCVR;
 import DTOs.FichaDTO;
+import Entidades.Ficha;
 import Entidades.Partida;
+import java.util.ArrayList;
 import java.util.List;
 import singleton.PartidaST;
 
@@ -25,10 +28,11 @@ public class PozoBO {
     private Partida partida;
     
     //convertidor de ficha
-    
+    FichaCVR fichaCVR;
 
     public PozoBO() {
         this.partida = partidaST.getInstance();
+        this.fichaCVR = new FichaCVR();
     }
     
     /**
@@ -40,7 +44,14 @@ public class PozoBO {
      * @return Lista de fichas extraídas del pozo.
      */
     public List<FichaDTO> obtenerFichas(byte numero) {
-        return null;
+        List<Ficha> fichas = partida.getPozo().obtenerFichas(numero);
+        List<FichaDTO> fichasDTO = new ArrayList<>();
+        
+        for (int i = 0; i < fichas.size(); i++) {
+            fichasDTO.add(fichaCVR.fichaConvertirEntidadADTO(fichas.get(i)));
+        }
+        
+        return fichasDTO;
     }
     
     /**
@@ -50,7 +61,10 @@ public class PozoBO {
      * @return La ficha extraída del pozo o null si no hay fichas disponibles.
      */
     public FichaDTO obtenerFicha() {
-        return null;
+        FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getPozo().
+                obtenerFicha());
+        
+        return ficha;
     }
     
     /**
@@ -59,17 +73,7 @@ public class PozoBO {
      * @return Numero de fichas restantes en el pozo.
      */
     public int fichasDisponibles(){
-        return 0;
-    }
-    
-    /**
-     * Metodo que retorna las fichas que estan dentro de la lista actual del
-     * pozo.
-     * 
-     * @return Retorna la lista de fichas del pozo.
-     */
-    public List<FichaDTO> getPozo(){
-        return null;
+        return partida.getPozo().fichasDisponibles();
     }
     
 }

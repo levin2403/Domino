@@ -6,6 +6,7 @@ package Logica;
 
 import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
+import Mediator.Mediador;
 import ObjetosNegocio.ManejadorTurnosBO;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.observer.ObserverRegistrarJugador;
@@ -23,13 +24,14 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
     FrmPlayerSettingsModel psm;
     
     //mediador para abrir nuevos frames 
-    Mediator mediador;
+    Mediador mediador;
 
     /**
      * Constructor que inicializa la clase 
      */
     public RegistrarJugador() {
         this.psm = new FrmPlayerSettingsModel();
+        this.mediador = new Mediador();
     }
     
     /**

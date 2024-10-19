@@ -4,7 +4,9 @@
  */
 package ObjetosNegocio;
 
+import Conversores.FichaCVR;
 import DTOs.FichaDTO;
+import Entidades.Ficha;
 import Entidades.Partida;
 import singleton.PartidaST;
 
@@ -17,32 +19,38 @@ import singleton.PartidaST;
  */
 public class TableroBO {
     
-    //instancia del singletone de partida
+    //Instancia del singletone de partida
     private PartidaST partidaST;
     
-    //instancia de partida
+    //Instancia de partida
     private Partida partida;
 
+    //Convertidor de ficha
+    FichaCVR fichaCVR;
+    
     public TableroBO() {
         this.partida = partidaST.getInstance();
+        this.fichaCVR = new FichaCVR();
     }
     
     /**
      * Añade una ficha al principio de la lista.
      * 
-     * @param ficha Ficha a añadir al tablero.
+     * @param fichaDTO Ficha a añadir al tablero.
      */
-    public void addFirst(FichaDTO ficha) {
-        
+    public void addFirst(FichaDTO fichaDTO) {
+        Ficha ficha = fichaCVR.fichaConvertirDTOAEntidad(fichaDTO);
+        partida.getTablero().addFirst(ficha);
     }
 
     /**
      * Añade una ficha al final de la lista.
      * 
-     * @param ficha Ficha a añadir al tablero.
+     * @param fichaDTO Ficha a añadir al tablero.
      */
-    public void addLast(FichaDTO ficha) {
-
+    public void addLast(FichaDTO fichaDTO) {
+        Ficha ficha = fichaCVR.fichaConvertirDTOAEntidad(fichaDTO);
+        partida.getTablero().addLast(ficha);    
     }
     
     /**
@@ -51,7 +59,8 @@ public class TableroBO {
      * @return Retorna la primera ficha en la lista.
      */
     public FichaDTO getFirst(){
-        return null;
+        FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getTablero().getFirst());
+        return ficha;
     }
     
     /**
@@ -60,7 +69,8 @@ public class TableroBO {
      * @return Retorna la ultima ficha en la lista.
      */
     public FichaDTO getLast(){
-        return null;
+        FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getTablero().getLast());
+        return ficha;
     }
     
     /**
@@ -71,7 +81,10 @@ public class TableroBO {
      * @return True en caso de que la posicion no este ocupada por ninguna 
      * otra ficha en el tablero, false si ya esta ocupada.
      */
-    public boolean validarPosicion(FichaDTO ficha) {
-        return false;
+    public boolean validarPosicion(FichaDTO fichaDTO) {
+        Ficha ficha = fichaCVR.fichaConvertirDTOAEntidad(fichaDTO);
+        boolean validar = partida.getTablero().validarPosicion(ficha);
+        
+        return validar;
     }
 }

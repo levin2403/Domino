@@ -14,11 +14,15 @@ import Entidades.Avatar;
 public class AvatarCVR {
     
     public Avatar toEntity(AvatarDTO avatarDTO){
-        return null;
+        return new Avatar(
+            avatarDTO.getImageURL()
+        );
     }
     
     public AvatarDTO toDTO(Avatar avatar){
-        return null;
+        return new AvatarDTO(
+            avatar.getImageURL()
+        );
     }
     
 }

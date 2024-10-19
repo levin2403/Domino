@@ -4,7 +4,9 @@
  */
 package ObjetosNegocio;
 
+import Conversores.JugadorCVR;
 import DTOs.JugadorDTO;
+import Entidades.Jugador;
 import Entidades.Partida;
 import singleton.PartidaST;
 
@@ -24,6 +26,16 @@ public class ManejadorTurnosBO {
     private Partida partida;
     
     //convertidor para jugador.
+    private JugadorCVR jugadorCVR;
+    
+    /**
+     * Contructor de la clase.
+     */
+    public ManejadorTurnosBO() {
+        this.partida = partidaST.getInstance();
+        this.jugadorCVR = new JugadorCVR();
+    }
+    
 
    /**
     * Metodo que determina turnos aleatorios para los jugadores, este metodo 
@@ -31,14 +43,19 @@ public class ManejadorTurnosBO {
     * Igualmente asignara a un jugador en turno al momento de ejecutarse.
     */
     public void determinarTurnos() {
-        
+        partida.getManejadorTurnos().determinarTurnos();
     }
     
     /**
      * Metodo que añade a un jugador a la lista actual de jugadores.
      */
     public void añadirJugador(JugadorDTO jugador) {
+        //Convertimos el jugador recibido en el parametro
+        Jugador jugadorEntidad = jugadorCVR.
+                jugadorConvertirDTOAEntidad(jugador);
         
+        // pasamos el jugador a dominio
+        partida.getManejadorTurnos().añadirJugador(jugadorEntidad);
     }
     
     /**
@@ -47,7 +64,11 @@ public class ManejadorTurnosBO {
      * 
      */
     public void eliminarJugador(JugadorDTO jugador) {
+        //Convertimos el jugador recibido en el parametro
+        Jugador jugadorEntidad = jugadorCVR.
+                jugadorConvertirDTOAEntidad(jugador);
         
+        partida.getManejadorTurnos().eliminarJugador(jugadorEntidad);
     }
     
     /**
@@ -56,7 +77,12 @@ public class ManejadorTurnosBO {
      * @return Jugador en turno.
      */
     public JugadorDTO getJugadorEnturno() {
-        return null;
+        
+        JugadorDTO jugador = jugadorCVR.
+                jugadorConvertirEntidadADTO(partida.getManejadorTurnos().
+                        getJugadorEnturno());
+        
+        return jugador;
     }
     
     /**
@@ -65,7 +91,7 @@ public class ManejadorTurnosBO {
      * 
      */
     public void pasarTurno() {
-        
+        partida.getManejadorTurnos().pasarTurno();
     }
     
 }

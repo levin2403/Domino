@@ -42,8 +42,8 @@ public class RealizarJugada {
     
     public void realizarJugada(FichaDTO ficha, FrmMatchOngoingView juego){
         Ficha fichaAColocar = convertFicha.fichaConvertirDTOAEntidad(ficha);
-        JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
-        Jugador jugadorEnt = convertJugador.jugadorConvertirDTOAEntidad(jugadorEnTurno);
+//        JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
+//        Jugador jugadorEnt = convertJugador.jugadorConvertirDTOAEntidad(jugadorEnTurno);
         
         if(tablero.getFichas().isEmpty()){
             juego.pintaPrimerFicha(ficha);
