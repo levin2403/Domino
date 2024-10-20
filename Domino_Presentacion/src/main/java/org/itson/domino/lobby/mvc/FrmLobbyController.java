@@ -57,4 +57,5 @@ public class FrmLobbyController {
         view.dispose();
         action.run();
     }
+    
 }

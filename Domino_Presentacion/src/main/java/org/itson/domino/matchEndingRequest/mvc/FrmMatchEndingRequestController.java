@@ -46,9 +46,10 @@ public class FrmMatchEndingRequestController {
     private void openPrevForm() {
         navigateToForm(() -> mediator.showFrmMatchOngoing());
     }
-    
+ 
     private void navigateToForm(Runnable action) {
         view.dispose();
         action.run();
     }
+    
 }

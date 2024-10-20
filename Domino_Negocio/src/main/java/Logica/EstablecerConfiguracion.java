@@ -27,8 +27,7 @@ public class EstablecerConfiguracion {
 
         //iniciamos instancia del modelo
         this.settingsModel = new FrmMatchSettingsModel(); 
-        
-        //
+           
     }
     
     /**

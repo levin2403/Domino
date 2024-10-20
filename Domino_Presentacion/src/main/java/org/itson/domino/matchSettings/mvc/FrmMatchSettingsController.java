@@ -70,4 +70,5 @@ public class FrmMatchSettingsController {
         view.dispose();
         action.run();
     }
+    
 }

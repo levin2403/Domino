@@ -44,4 +44,5 @@ public class FrmWelcomeController {
         view.dispose();
         action.run();
     }
+    
 }
