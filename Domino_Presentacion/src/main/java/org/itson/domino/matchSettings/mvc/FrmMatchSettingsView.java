@@ -12,7 +12,12 @@ import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmMatchSettingsView extends javax.swing.JFrame {
 
-    public FrmMatchSettingsView() {
+    private FrmMatchSettingsModel model;
+    
+    public FrmMatchSettingsView(FrmMatchSettingsModel model) {
+        //instancia del modelo
+        this.model = model;
+        
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
         

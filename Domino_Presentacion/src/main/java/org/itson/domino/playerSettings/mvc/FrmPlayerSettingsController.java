@@ -1,6 +1,6 @@
 package org.itson.domino.playerSettings.mvc;
 
-import org.itson.domino.mediator.FormMediator;
+import Mediator.Mediador;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsView;
 import org.itson.domino.singleton.MusicModelSingleton;
@@ -9,13 +9,13 @@ public class FrmPlayerSettingsController {
 
     private FrmPlayerSettingsView view;
     private FrmPlayerSettingsModel model;
-    private FormMediator mediator;
+    private Mediador mediator;
     private MusicModelSingleton musicModel;
 
-    public FrmPlayerSettingsController(FrmPlayerSettingsView view, FrmPlayerSettingsModel model, FormMediator mediator) {
+    public FrmPlayerSettingsController(FrmPlayerSettingsModel model, FrmPlayerSettingsView view) {
         this.view = view;
         this.model = model;
-        this.mediator = mediator;
+        this.mediator = new Mediador();
         this.musicModel = MusicModelSingleton.getInstance();
 
         setupButtonListeners();

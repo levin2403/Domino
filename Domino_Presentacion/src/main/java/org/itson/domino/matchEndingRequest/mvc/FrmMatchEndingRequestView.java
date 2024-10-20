@@ -10,7 +10,12 @@ import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmMatchEndingRequestView extends javax.swing.JFrame {
 
-    public FrmMatchEndingRequestView() {
+    private FrmMatchEndingRequestModel model;
+    
+    public FrmMatchEndingRequestView(FrmMatchEndingRequestModel model) {
+        //establecemos el modelo
+        this.model = model;
+        
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
         

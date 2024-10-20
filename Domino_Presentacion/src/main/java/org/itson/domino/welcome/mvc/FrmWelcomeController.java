@@ -7,22 +7,22 @@
  *
  * @author gamaliel
  */
-
 package org.itson.domino.welcome.mvc;
 
+import Mediator.Mediador;
 import org.itson.domino.constants.MusicPaths;
-import org.itson.domino.mediator.FormMediator;
 import org.itson.domino.singleton.MusicModelSingleton;
 
 public class FrmWelcomeController {
+    private FrmWelcomeModel model;
     private FrmWelcomeView view;
     private MusicModelSingleton musicModel;
-    private FormMediator mediator;
+    private Mediador mediator;
 
-    public FrmWelcomeController(FrmWelcomeView view, FormMediator mediator) {
+    public FrmWelcomeController(FrmWelcomeModel model ,FrmWelcomeView view) {
         this.view = view;
         this.musicModel = MusicModelSingleton.getInstance();
-        this.mediator = mediator;
+        this.mediator = new Mediador();
         
         playMainTheme();
         setupButtonListeners();

@@ -10,14 +10,14 @@
 
 package org.itson.domino.lobby.mvc;
 
+import Mediator.Mediador;
 import org.itson.domino.constants.MusicPaths;
-import org.itson.domino.mediator.FormMediator;
 import org.itson.domino.singleton.MusicModelSingleton;
 
 public class FrmLobbyController {
     private FrmLobbyView view;
     private MusicModelSingleton musicModel;
-    private FormMediator mediator;
+    private Mediador mediator;
     private FrmLobbyView model;
 
     public FrmLobbyController(FrmLobbyView model ,FrmLobbyView view) {

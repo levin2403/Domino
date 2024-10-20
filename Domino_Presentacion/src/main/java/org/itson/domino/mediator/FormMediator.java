@@ -27,44 +27,44 @@ import org.itson.domino.welcome.mvc.FrmWelcomeView;
  */
 public class FormMediator {
     
-    public void showFrmWelcome(){
-        FrmWelcomeView view = new FrmWelcomeView();
-        FrmWelcomeController controller = new FrmWelcomeController(view, this);
-        view.setVisible(true);
-    }
-    
-    public void showFrmMatchSettings() {
-        FrmMatchSettingsView view = new FrmMatchSettingsView();
-        FrmMatchSettingsModel model = new FrmMatchSettingsModel();
-        FrmMatchSettingsController controller = new FrmMatchSettingsController(view, model, this);
-        view.setVisible(true);
-    }
-    
-    public void showFrmPlayerSettings() {
-        FrmPlayerSettingsView view = new FrmPlayerSettingsView();
-        AvatarManager avatarManager = new AvatarManager();
-        FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
-        FrmPlayerSettingsController controller = new FrmPlayerSettingsController(view, model, this);
-        view.setVisible(true);
-    }
-    
-    public void showFrmLobby() {
-        FrmLobbyView view = new FrmLobbyView();
-        FrmLobbyController controller = new FrmLobbyController(view, this);
-        view.setVisible(true);
-    }
-    
-    public void showFrmMatchOngoing() {
-        FrmMatchOngoingModel model = new FrmMatchOngoingModel();
-        FrmMatchOngoingView view = new FrmMatchOngoingView(model);
-        FrmMatchOngoingController controller = new FrmMatchOngoingController(view, this);
-        view.setVisible(true);
-    }
-    
-    public void showFrmMatchEndingRequest() {
-        FrmMatchEndingRequestView view = new FrmMatchEndingRequestView();
-        FrmMatchEndingRequestController controller = new FrmMatchEndingRequestController(view, this);
-        view.setVisible(true);
-    }
+//    public void showFrmWelcome(){
+//        FrmWelcomeView view = new FrmWelcomeView();
+//        FrmWelcomeController controller = new FrmWelcomeController(view, this);
+//        view.setVisible(true);
+//    }
+//    
+//    public void showFrmMatchSettings() {
+//        FrmMatchSettingsView view = new FrmMatchSettingsView();
+//        FrmMatchSettingsModel model = new FrmMatchSettingsModel();
+//        FrmMatchSettingsController controller = new FrmMatchSettingsController(view, model, this);
+//        view.setVisible(true);
+//    }
+//    
+//    public void showFrmPlayerSettings() {
+//        FrmPlayerSettingsView view = new FrmPlayerSettingsView();
+//        AvatarManager avatarManager = new AvatarManager();
+//        FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
+//        FrmPlayerSettingsController controller = new FrmPlayerSettingsController(view, model, this);
+//        view.setVisible(true);
+//    }
+//    
+//    public void showFrmLobby() {
+//        FrmLobbyView view = new FrmLobbyView();
+//        FrmLobbyController controller = new FrmLobbyController(view, this);
+//        view.setVisible(true);
+//    }
+//    
+//    public void showFrmMatchOngoing() {
+//        FrmMatchOngoingModel model = new FrmMatchOngoingModel();
+//        FrmMatchOngoingView view = new FrmMatchOngoingView(model);
+//        FrmMatchOngoingController controller = new FrmMatchOngoingController(view, this);
+//        view.setVisible(true);
+//    }
+//    
+//    public void showFrmMatchEndingRequest() {
+//        FrmMatchEndingRequestView view = new FrmMatchEndingRequestView();
+//        FrmMatchEndingRequestController controller = new FrmMatchEndingRequestController(view, this);
+//        view.setVisible(true);
+//    }
     
 }

@@ -11,8 +11,12 @@ import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmWelcomeView extends javax.swing.JFrame {
 
+    private FrmWelcomeModel model;
     
-    public FrmWelcomeView() {
+    public FrmWelcomeView(FrmWelcomeModel model) {
+        //instancia del modelo;        
+        this.model = model;
+        
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
         
