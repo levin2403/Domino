@@ -10,18 +10,20 @@
 
 package org.itson.domino.matchEndingRequest.mvc;
 
+import Mediator.Mediador;
 import org.itson.domino.constants.MusicPaths;
-import org.itson.domino.mediator.FormMediator;
 import org.itson.domino.singleton.MusicModelSingleton;
 
 public class FrmMatchEndingRequestController {
+    private FrmMatchEndingRequestModel model;
     private FrmMatchEndingRequestView view;
     private MusicModelSingleton musicModel;
-    private FormMediator mediator;
+    private Mediador mediator;
     
-    public FrmMatchEndingRequestController(FrmMatchEndingRequestView view, FormMediator mediator) {
+    public FrmMatchEndingRequestController(FrmMatchEndingRequestModel model,FrmMatchEndingRequestView view) {
+        this.model = model;
         this.view = view;
-        this.mediator = mediator;
+        this.mediator = new Mediador();
         this.musicModel = MusicModelSingleton.getInstance();
         
        playRequestTheme();

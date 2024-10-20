@@ -4,7 +4,7 @@
  */
 package org.itson.domino.main;
 
-import org.itson.domino.mediator.FormMediator;
+import Mediator.Mediador;
 
 /**
  *
@@ -16,7 +16,7 @@ public class Domino_Presentacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FormMediator mediator = new FormMediator();
+        Mediador mediator = new Mediador();
         mediator.showFrmWelcome();
     }
 }

@@ -10,17 +10,18 @@
 
 package org.itson.domino.matchSettings.mvc;
 
-import org.itson.domino.mediator.FormMediator;
+import Mediator.Mediador;
 
 public class FrmMatchSettingsController {
     private FrmMatchSettingsView view;
-    private FormMediator mediator;
     private FrmMatchSettingsModel model;
+    private Mediador mediator;
     
-    public FrmMatchSettingsController(FrmMatchSettingsView view, FrmMatchSettingsModel model, FormMediator mediator) {
+    
+    public FrmMatchSettingsController(FrmMatchSettingsModel model ,FrmMatchSettingsView view) {
         this.view = view;
         this.model = model;
-        this.mediator = mediator;
+        this.mediator = new Mediador();
 
         setupListeners();
     }
