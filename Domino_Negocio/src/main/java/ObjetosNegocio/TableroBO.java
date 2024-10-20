@@ -71,7 +71,8 @@ public class TableroBO {
     public FichaDTO getLast(){
         FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getTablero().getLast());
         return ficha;
-    }
+    }    /**
+
     
     /**
      * Metodo que valida si tanto la locacionSuperior tanto como la 

@@ -5,7 +5,7 @@
 package Logica;
 
 import DTOs.ConfiguracionDTO;
-import Singleton.ConfiguracionInicialST;
+import ObjetosNegocio.ConfiguracionBO;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
 
 /**
@@ -15,22 +15,24 @@ import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
 public class EstablecerConfiguracion {
     
     //instancia golbal de la configuracion
-    ConfiguracionInicialST configuracionInicial; 
+    ConfiguracionBO configuracion; 
 
     //instancia para obtener la informacion del frame correspondiente
     FrmMatchSettingsModel settingsModel;
     
     /**
-     * Constructor de la clase;
+     * Constructor de la clase.
      */
     public EstablecerConfiguracion() {
 
         //iniciamos instancia del modelo
         this.settingsModel = new FrmMatchSettingsModel(); 
+        
+        //
     }
     
     /**
-     * Establecemos la configuracion al singletone para su uso en otras clases
+     * Establecemos la configuracion al singletone para su uso en otras clases.
      */
     public void establecerConfiguracionInicial(){
         int numfichas = settingsModel.getNumberOfTiles(); // numero de fichas
@@ -41,7 +43,14 @@ public class EstablecerConfiguracion {
                 new ConfiguracionDTO(numfichas, numJugadores);
         
         //establecemos la nueva configuracion a la instancia global 
-        configuracionInicial.setInstance(configuracion); 
+        configuracion.setFichasARepartir(numfichas);
+        configuracion.setNumJugadores(numJugadores);
+        
+        //pasamos la configuracion a su primera pipe
+        //para que se vaya al servidor.
+        
     }
+    
+    //Aqui estara el observer 
     
 }

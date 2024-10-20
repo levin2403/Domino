@@ -48,9 +48,13 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
         JugadorDTO jugador = new JugadorDTO(user, avatar);
         
         //registramos al jugador dentro del manejador de turnos
+        manejadorTurnos.añadirJugador(jugador);
         
         // abrimos el frame del lobby 
-        //mediador.showFrmLobby();
+        mediador.showFrmLobby();
+        
+        //pasamos la informacion por su pipe correspondiente
+        
     }
 
     /**

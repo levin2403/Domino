@@ -15,6 +15,7 @@ import Entidades.ManejadorTurnos;
 import Entidades.Tablero;
 import Singleton.ManejadorTurnosST;
 import org.itson.domino.matchOngoing.mvc.FrmMatchOngoingView;
+import singleton.PartidaST;
 import singleton.TableroST;
 
 /**
@@ -22,19 +23,25 @@ import singleton.TableroST;
  * @author skevi
  */
 public class RealizarJugada {
-    ManejadorTurnosST mts;
-    TableroST ts;
+    
+    //instancia global de partida
+    PartidaST partida;
+    
+    //instancia del manejador de turnos
     ManejadorTurnos manejadorTurnos;
+    
+    //instancia de tablero
     Tablero tablero;
+    
+    //convertidor de ficha
     FichaCVR convertFicha;
+    
+    //convertidor de ficha
     JugadorCVR convertJugador;
-//    FrmMatchOngoingModel mugm;
 
     public RealizarJugada() {
-        mts = new ManejadorTurnosST();
-        manejadorTurnos = mts.getInstance();
-        ts = new TableroST();
-        tablero = ts.getInstance();
+        manejadorTurnos = partida.getInstance().getManejadorTurnos();
+        tablero = partida.getInstance().getTablero();
         convertFicha = new FichaCVR();
         convertJugador = new JugadorCVR();
     }

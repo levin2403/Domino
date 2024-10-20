@@ -8,9 +8,6 @@ package Logica;
  *
  * @author skevi
  */
-public class IniciarPartida {
+public class SalirLobby {
     
-    //Instancia del manejador de turnos.
-    
-    //
 }
