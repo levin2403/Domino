@@ -6,8 +6,10 @@ package Logica;
 
 import Conversores.FichaCVR;
 import DTOs.FichaDTO;
+import DTOs.JugadorDTO;
 import Entidades.ManejadorTurnos;
 import Entidades.Pozo;
+import javax.swing.JOptionPane;
 import org.itson.domino.observer.ObserverObtenerFichaPozo;
 import org.itson.domino.singleton.MiJugadorST;
 import singleton.PozoST;
@@ -19,9 +21,10 @@ import singleton.PozoST;
 public class ObtenerFichaPozo implements ObserverObtenerFichaPozo{
     
     //intancia singletone del jugador propio
+    MiJugadorST miJugador;
     
     //intancia de jugador 
-    
+    JugadorDTO jugador;
     
     /**
      * Constructor para inicializar las instancias de la clase
@@ -41,11 +44,15 @@ public class ObtenerFichaPozo implements ObserverObtenerFichaPozo{
             //se la asignamos al usario que la pidio
             
             
-            //
+            //actualizamos al usuario del singletone
+            
+            //modificamos el frame de para representar la nueva ficha
             
         }
         else{
-            
+            JOptionPane.showMessageDialog(null, 
+                    "Espere a su turno para tomar una ficha del pozo", 
+                    "Obtener ficha", JOptionPane.INFORMATION_MESSAGE);
         }
         
 
