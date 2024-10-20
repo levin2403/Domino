@@ -26,7 +26,7 @@ public class Pozo {
        // instanciamos a la fabrica de fichas
         this.fabricaFichas = new FabricaFichas();
         // le agregamos al pozo las fichas fabricadas 
-        pozo = fabricaFichas.crearFichas(); 
+//        pozo = fabricaFichas.crearFichas(); 
     }
     
      /**
@@ -59,6 +59,11 @@ public class Pozo {
      * @return La ficha extraída del pozo o null si no hay fichas disponibles.
      */
     public Ficha obtenerFicha() {
+        //retornamos null en caso de que el poso este vacio.
+        if (pozo.isEmpty()) {
+            return null;
+        }
+
         // Mezclamos el pozo para obtener una ficha aleatoria
         Collections.shuffle(pozo);
 
@@ -76,6 +81,17 @@ public class Pozo {
             return 0;
         }
         return pozo.size();
+    }
+    
+    /**
+     * Metodo que devuelve las fichas restantes de un jugador en caso 
+     * de que haya abandonado la partida.
+     * 
+     * @param fichas 
+     */
+    public void devolverFichas(List<Ficha> fichas) {
+            // Agregamos las fichas devueltas al pozo
+            pozo.addAll(fichas);
     }
     
 }

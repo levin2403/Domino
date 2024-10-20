@@ -18,11 +18,12 @@ public class FrmLobbyController {
     private FrmLobbyView view;
     private MusicModelSingleton musicModel;
     private FormMediator mediator;
+    private FrmLobbyView model;
 
-    public FrmLobbyController(FrmLobbyView view, FormMediator mediator) {
+    public FrmLobbyController(FrmLobbyView model ,FrmLobbyView view) {
+        this.model = model;
         this.view = view;
         this.musicModel = MusicModelSingleton.getInstance();
-        this.mediator = mediator;
         
         playLobbyTheme();
         setupButtonListeners();
