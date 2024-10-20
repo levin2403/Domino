@@ -11,9 +11,9 @@ import org.itson.domino.singleton.LookAndFeelSingleton;
 
 public class FrmLobbyView extends javax.swing.JFrame {
 
-    private FrmLobbyView model;
+    private FrmLobbyModel model;
     
-    public FrmLobbyView(FrmLobbyView model) {
+    public FrmLobbyView(FrmLobbyModel model) {
         //establecemos el modelo dentro de la clase
         this.model = model;
         

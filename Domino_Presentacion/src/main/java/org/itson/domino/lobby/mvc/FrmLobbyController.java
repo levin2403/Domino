@@ -18,9 +18,9 @@ public class FrmLobbyController {
     private FrmLobbyView view;
     private MusicModelSingleton musicModel;
     private Mediador mediator;
-    private FrmLobbyView model;
+    private FrmLobbyModel model;
 
-    public FrmLobbyController(FrmLobbyView model ,FrmLobbyView view) {
+    public FrmLobbyController(FrmLobbyModel model ,FrmLobbyView view) {
         this.model = model;
         this.view = view;
         this.musicModel = MusicModelSingleton.getInstance();
