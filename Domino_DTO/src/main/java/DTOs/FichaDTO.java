@@ -17,6 +17,7 @@ public class FichaDTO implements Serializable {
     private LocacionDTO centerLocacion; // Locacion de la primera parte
     private DireccionDTO direccionLado; // Locacion de la segunda parte
     private DireccionDTO direccionPosicion; // Direccion de la ficha(Orientacion)
+    private String icon;
 
     /**
      * Construcor por defecto
@@ -78,6 +79,14 @@ public class FichaDTO implements Serializable {
     
     public boolean isMula(FichaDTO ficha){
         return ficha.valorSuperior == ficha.valorInferior;    
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     @Override
