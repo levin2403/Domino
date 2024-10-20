@@ -15,6 +15,7 @@ public class FrmMatchOngoingModel implements ObservableObtenerFichaPozo{
     ObserverObtenerFichaPozo observer;
     ObserverObtenerFichaPozo orj;
     
+    
     @Override
     public void registrarObservador(ObserverObtenerFichaPozo orj) {
         this.observer = orj;
