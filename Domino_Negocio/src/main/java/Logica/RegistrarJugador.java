@@ -9,7 +9,7 @@ import DTOs.JugadorDTO;
 import Mediator.Mediador;
 import ObjetosNegocio.ManejadorTurnosBO;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
-import org.itson.domino.observer.ObserverRegistrarJugador;
+import Observer.ObserverRegistrarJugador;
 
 /**
  *
@@ -63,7 +63,7 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
      * 
      */
     @Override
-    public void actualizar() {
+    public void actualizarRegistrarJugador() {
         RegistrarJugador();
     }
     

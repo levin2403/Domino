@@ -4,8 +4,8 @@
  */
 package org.itson.domino.matchOngoing.mvc;
 
-import org.itson.domino.observable.ObservableObtenerFichaPozo;
-import org.itson.domino.observer.ObserverObtenerFichaPozo;
+import Observable.ObservableObtenerFichaPozo;
+import Observer.ObserverObtenerFichaPozo;
 
 /**
  *

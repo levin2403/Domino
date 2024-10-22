@@ -2,14 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package org.itson.domino.observer;
+package Observable;
+
+import Observer.ObserverSalirLobby;
 
 /**
  *
- * @author Dell
+ * @author skevi
  */
-public interface ObserverObtenerFichaPozo {
+public interface ObservableSalirLobby {
     
-    public void jalarDelPozo();
+    public void registrarObservador(ObserverSalirLobby o);
+    public void notificarSalida();
     
 }

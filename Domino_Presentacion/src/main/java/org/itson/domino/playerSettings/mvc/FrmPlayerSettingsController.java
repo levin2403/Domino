@@ -1,6 +1,7 @@
 package org.itson.domino.playerSettings.mvc;
 
 //import Mediator.Mediador;
+import Mediator.Mediador;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsView;
 import org.itson.domino.singleton.MusicModelSingleton;
@@ -9,24 +10,24 @@ public class FrmPlayerSettingsController {
 
     private FrmPlayerSettingsView view;
     private FrmPlayerSettingsModel model;
-//    private Mediador mediator;
+    private Mediador mediator;
     private MusicModelSingleton musicModel;
 
     public FrmPlayerSettingsController(FrmPlayerSettingsModel model, FrmPlayerSettingsView view) {
         this.view = view;
         this.model = model;
-//        this.mediator = new Mediador();
+        this.mediator = new Mediador();
         this.musicModel = MusicModelSingleton.getInstance();
 
-//        setupButtonListeners();
+        setupButtonListeners();
         setupAvatarCarousel();
         updateAvatarDisplay();
     }
 
-//    private void setupButtonListeners() {
-//        view.addNextFormButtonListener(e -> openNextForm());
-//        view.addPrevFormButtonListener(e -> openPrevForm());
-//    }
+    private void setupButtonListeners() {
+        view.addNextFormButtonListener(e -> openNextForm());
+        view.addPrevFormButtonListener(e -> openPrevForm());
+    }
 
     private void setupAvatarCarousel() {
         view.addNextAvatarListener(e -> {
@@ -48,18 +49,18 @@ public class FrmPlayerSettingsController {
         model.setPlayerName(view.getPlayerName());
     }
 
-//    private void openNextForm() {
-//        savePlayerSettings();
-//        model.saveSettings();
-//        musicModel.stopCurrentMusic();
-//        navigateToForm(mediator::showFrmLobby);
-//    }
-//
-//    private void openPrevForm() {
-//        savePlayerSettings();
-//        model.saveSettings();
-//        navigateToForm(mediator::showFrmMatchSettings);
-//    }
+    private void openNextForm() {
+        savePlayerSettings();
+        model.saveSettings();
+        musicModel.stopCurrentMusic();
+        navigateToForm(mediator::showFrmLobby);
+    }
+
+    private void openPrevForm() {
+        savePlayerSettings();
+        model.saveSettings();
+        navigateToForm(mediator::showFrmMatchSettings);
+    }
 
     private void navigateToForm(Runnable action) {
         view.dispose();

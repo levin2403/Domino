@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package org.itson.domino.observable;
+package Observable;
 
-import org.itson.domino.observer.ObserverObtenerFichaPozo;
+import Observer.ObserverObtenerFichaPozo;
 
 /**
  *
@@ -12,7 +12,7 @@ import org.itson.domino.observer.ObserverObtenerFichaPozo;
  */
 public interface ObservableObtenerFichaPozo {
     
-    public void registrarObservador(ObserverObtenerFichaPozo orj);
-    public void notificar();
+    public void registrarObservador(ObserverObtenerFichaPozo o);
+    public void notificarObtencionFicha();
     
 }

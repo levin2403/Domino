@@ -10,7 +10,7 @@ import DTOs.JugadorDTO;
 import Entidades.ManejadorTurnos;
 import Entidades.Pozo;
 import javax.swing.JOptionPane;
-import org.itson.domino.observer.ObserverObtenerFichaPozo;
+import Observer.ObserverObtenerFichaPozo;
 import org.itson.domino.singleton.MiJugadorST;
 import singleton.PozoST;
 
@@ -59,7 +59,7 @@ public class ObtenerFichaPozo implements ObserverObtenerFichaPozo{
     }
 
     @Override
-    public void jalarDelPozo() {
+    public void actualizarObtenerFicha() {
         this.jalarFicha();
     }
 

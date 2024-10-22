@@ -2,14 +2,14 @@ package org.itson.domino.playerSettings.mvc;
 
 
 import org.itson.domino.managers.AvatarManager;
-import org.itson.domino.observable.ObserverbableRegistrarJugador;
-import org.itson.domino.observer.ObserverRegistrarJugador;
+import Observer.ObserverRegistrarJugador;
+import Observable.ObservableRegistrarJugador;
 
 /**
  * 
  * @author skevi
  */
-public class FrmPlayerSettingsModel implements ObserverbableRegistrarJugador {
+public class FrmPlayerSettingsModel implements ObservableRegistrarJugador {
 
     ObserverRegistrarJugador orj;
     
@@ -48,23 +48,17 @@ public class FrmPlayerSettingsModel implements ObserverbableRegistrarJugador {
     
     // observer que notifica al observador suscrito para que realice el
     // registro de un usuario.
-    public void registrarJugador(){
-        notificar();
-    }
-
     @Override
     public void registrarObservador(ObserverRegistrarJugador orj) {
        this.orj = orj;
     }
 
+    /**
+     * 
+     */
     @Override
-    public void aliminarObservador(ObserverRegistrarJugador orj) {
-        this.orj = null;
-    }
-
-    @Override
-    public void notificar() {
-        orj.actualizar();
+    public void notificarRegistro() {
+        orj.actualizarRegistrarJugador();
     }
 
 }
