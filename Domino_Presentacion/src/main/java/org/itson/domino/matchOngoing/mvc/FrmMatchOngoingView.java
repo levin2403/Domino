@@ -95,6 +95,16 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         }
     }
     
+    
+    
+    
+    
+    
+    //de aqui en adelante esta la logica perrona
+    
+    
+    
+    
     public void pintaPrimerFicha(FichaDTO ficha) {
         JLabel labelFicha = new JLabel();
         ImageIcon imagen = this.loadResource(ficha.getIcon(), 45, 25);

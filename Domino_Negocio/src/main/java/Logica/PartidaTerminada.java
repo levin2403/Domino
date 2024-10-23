@@ -10,9 +10,9 @@ package Logica;
  *
  * @author skevi
  */ 
-public class TerminarPartida {
+public class PartidaTerminada {
 
-    public TerminarPartida() {
+    public PartidaTerminada() {
     }
     
     public void partidaTerminada(){

@@ -23,6 +23,7 @@ public class FrmLobbyController {
     public FrmLobbyController(FrmLobbyModel model ,FrmLobbyView view) {
         this.model = model;
         this.view = view;
+        this.mediator = new Mediador();
         this.musicModel = MusicModelSingleton.getInstance();
         
         playLobbyTheme();

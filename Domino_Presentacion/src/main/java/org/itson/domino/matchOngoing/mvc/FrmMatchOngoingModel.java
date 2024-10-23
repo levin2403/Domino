@@ -22,8 +22,8 @@ public class FrmMatchOngoingModel implements ObservableObtenerFichaPozo{
     }
     
     @Override
-    public void notificar() {
-        this.observer.jalarDelPozo();
+    public void notificarObtencionFicha() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
