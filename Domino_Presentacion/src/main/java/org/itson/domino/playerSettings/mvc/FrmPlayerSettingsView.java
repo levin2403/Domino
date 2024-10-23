@@ -1,5 +1,6 @@
 package org.itson.domino.playerSettings.mvc;
 
+import Observable.ObservableRegistrarJugador;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -12,8 +13,9 @@ import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
+import Observer.Vista.ObserverFrmPlayerSettingsView;
 
-public class FrmPlayerSettingsView extends javax.swing.JFrame  {
+public class FrmPlayerSettingsView extends javax.swing.JFrame implements ObserverFrmPlayerSettingsView{
 
     private final AvatarManager avatarManager;
 
@@ -235,4 +237,9 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame  {
     private javax.swing.JPanel pnlPlayerAvatar;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarVista(ObservableRegistrarJugador observable) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

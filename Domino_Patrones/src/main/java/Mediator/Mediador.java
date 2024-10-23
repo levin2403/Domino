@@ -53,6 +53,7 @@ public class Mediador {
         FrmPlayerSettingsView view = new FrmPlayerSettingsView();
         AvatarManager avatarManager = new AvatarManager();
         FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
+        model.registrarObservadorVista(view);
         FrmPlayerSettingsController controller = new FrmPlayerSettingsController(model ,view);
         view.setVisible(true);
     }

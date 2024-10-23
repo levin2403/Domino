@@ -5,6 +5,7 @@
 package Observable;
 
 import Observer.ObserverRegistrarJugador;
+import Observer.Vista.ObserverFrmPlayerSettingsView;
 
 /**
  *
@@ -12,7 +13,9 @@ import Observer.ObserverRegistrarJugador;
  */
 public interface ObservableRegistrarJugador {
     
-    public void registrarObservador(ObserverRegistrarJugador o);
+    public void registrarObservadorLogica(ObserverRegistrarJugador o);
+    public void registrarObservadorVista(ObserverFrmPlayerSettingsView o);
     public void notificarRegistro();
+    
     
 }
