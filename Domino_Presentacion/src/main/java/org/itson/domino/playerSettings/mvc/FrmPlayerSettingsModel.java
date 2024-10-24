@@ -1,6 +1,7 @@
 package org.itson.domino.playerSettings.mvc;
 
 
+import DTOs.PlayerSettingsModelDTO;
 import org.itson.domino.managers.AvatarManager;
 import Observer.ObserverRegistrarJugador;
 import Observable.ObservableRegistrarJugador;
@@ -44,9 +45,9 @@ public class FrmPlayerSettingsModel implements ObservableRegistrarJugador {
         return avatarManager.previousAvatar();
     }
     
-    public void saveSettings() {
-        System.out.println("Configuración guardada: " + playerName + " es Jugador.");
-    }
+//    public void saveSettings() {
+//        System.out.println("Configuración guardada: " + playerName + " es Jugador.");
+//    }
     
     // observer que notifica al observador suscrito para que realice el
     // registro de un usuario.
@@ -60,7 +61,8 @@ public class FrmPlayerSettingsModel implements ObservableRegistrarJugador {
      */
     @Override
     public void notificarRegistro() {
-        orj.actualizarRegistrarJugador();
+        PlayerSettingsModelDTO modelDTO = new PlayerSettingsModelDTO(getPlayerName(),getSelectedAvatarPath());
+        orj.actualizarRegistrarJugador(modelDTO);
     }
 
     @Override

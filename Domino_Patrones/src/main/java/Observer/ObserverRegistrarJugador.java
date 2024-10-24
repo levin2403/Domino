@@ -4,12 +4,14 @@
  */
 package Observer;
 
+import DTOs.PlayerSettingsModelDTO;
+
 /**
  *
  * @author skevi
  */
 public interface ObserverRegistrarJugador {
     
-    public void actualizarRegistrarJugador();
+    public void actualizarRegistrarJugador(PlayerSettingsModelDTO dto);
    
 }

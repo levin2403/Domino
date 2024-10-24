@@ -51,7 +51,7 @@ public class Mediador {
     }
     
     //Le asignas un observer a este metodo y le pides que te regrese el modelo que se creara dentro (esto para que logica le pueda asignar el observer)
-    public FrmPlayerSettingsModel showFrmPlayerSettings(ObserverRegistrarJugador observer) {
+    public void showFrmPlayerSettings(ObserverRegistrarJugador observer) {
         FrmPlayerSettingsView view = new FrmPlayerSettingsView();
         AvatarManager avatarManager = new AvatarManager();
         FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
@@ -59,8 +59,6 @@ public class Mediador {
         model.registrarObservadorLogica(observer);//le asignas el observador de logica
         FrmPlayerSettingsController controller = new FrmPlayerSettingsController(model ,view);
         view.setVisible(true);
-        
-        return model;
     }
     
     public void showFrmLobby() {

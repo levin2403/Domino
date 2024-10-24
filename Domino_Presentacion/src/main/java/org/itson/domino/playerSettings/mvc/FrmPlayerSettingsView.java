@@ -90,7 +90,7 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame implements Observe
     }
 
     
-    public void addNextFormButtonListener(ActionListener listener) {
+    public void addContinuarButtonListener(ActionListener listener) {
         btnNextForm.addActionListener(listener);
     }
     

@@ -25,7 +25,7 @@ public class FrmPlayerSettingsController {
     }
 
     private void setupButtonListeners() {
-        view.addNextFormButtonListener(e -> openNextForm());
+        view.addContinuarButtonListener(e -> openNextForm());
         view.addPrevFormButtonListener(e -> openPrevForm());
     }
 
@@ -51,14 +51,13 @@ public class FrmPlayerSettingsController {
 
     private void openNextForm() {
         savePlayerSettings();
-        model.saveSettings();
         musicModel.stopCurrentMusic();
-        navigateToForm(mediator::showFrmLobby);
+        model.notificarRegistro();
     }
 
     private void openPrevForm() {
         savePlayerSettings();
-        model.saveSettings();
+//        model.saveSettings();
         navigateToForm(mediator::showFrmMatchSettings);
     }
 

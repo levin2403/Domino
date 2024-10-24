@@ -32,6 +32,7 @@ public class ManejadorTurnosBO {
      * Contructor de la clase.
      */
     public ManejadorTurnosBO() {
+        partidaST = new PartidaST();
         this.partida = partidaST.getInstance();
         this.jugadorCVR = new JugadorCVR();
     }

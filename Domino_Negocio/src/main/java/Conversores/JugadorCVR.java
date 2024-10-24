@@ -29,7 +29,7 @@ public class JugadorCVR {
         Avatar avatar = new Avatar(avatarURL);
         Jugador jugador= new Jugador(nickName, avatar);
         
-        if(jugadorDTO.cantidadFichas() == 0){
+        if(jugadorDTO.getFichas() == null){
             jugador.setFichas(null);
         }
         else{

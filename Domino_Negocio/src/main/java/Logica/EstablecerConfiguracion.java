@@ -7,6 +7,8 @@ package Logica;
 import DTOs.ConfiguracionDTO;
 import Mediator.Mediador;
 import ObjetosNegocio.ConfiguracionBO;
+import fachada.Fachada;
+import fachadas.IFachada;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 
@@ -22,13 +24,17 @@ public class EstablecerConfiguracion {
     //instancia para obtener la informacion del frame correspondiente
     FrmMatchSettingsModel settingsModel;
     
+    IFachada fachada;
+    
     /**
      * Constructor de la clase.
      */
     public EstablecerConfiguracion() {
 
         //iniciamos instancia del modelo
-        this.settingsModel = new FrmMatchSettingsModel(); 
+        this.settingsModel = new FrmMatchSettingsModel();
+        Fachada facha= new Fachada();
+        fachada = facha.getFachada();
            
     }
     
@@ -53,13 +59,12 @@ public class EstablecerConfiguracion {
     }
     
     public void siguienteFrame(){
-        //Creas el mediador
-        Mediador mediador = new Mediador();
+        //Creas el mediador (Hacer fachada al mediador y hacer el mediador singleton)
         //Creas el siguiente evento (este aun  no se usa pero es para abrir el frame)
-        RegistrarJugador rJ= new RegistrarJugador();
+        LogicaRegistrarJugador rJ= new LogicaRegistrarJugador();
+        Observer.ObserverRegistrarJugador observer= rJ.getObserverRegistrarJugador();
         //EL metodo del mediador regresa un modelo para poderlo asignar al evento que le corresponde
-        FrmPlayerSettingsModel model= mediador.showFrmPlayerSettings(rJ); //pides al mediador que abra el frame y guardas el modelo de ese frame
-        rJ.setPsm(model);//asiganas el modelo al Evento para decir que a ese modelo observara.
+        fachada.showFrmPlayerSettings(observer); //pides al mediador que abra el frame y guardas el modelo de ese frame
     }
     
     //Aqui estara el observer 
