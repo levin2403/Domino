@@ -41,7 +41,7 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
         
         FichaDTO ficha = new FichaDTO(2, 2);
         
-        this.pintaPrimerFicha(ficha);
+//        this.pintaPrimerFicha(ficha);
         
 
         //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
@@ -105,29 +105,29 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
     
     
     
-    public void pintaPrimerFicha(FichaDTO ficha) {
-        JLabel labelFicha = new JLabel();
-        ImageIcon imagen = this.loadResource(ficha.getIcon(), 45, 25);
-        
-        ImageIcon imagenVertical;
-        
-        labelFicha.setSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
-        
-        labelFicha.setIcon(imagen);
-//        labelFicha.setIcon(this.loadResource(this.identificaFicha(ficha.getValorSuperior(), ficha.getValorInferior()), 45, 25));
-        labelFicha.setBounds(tableroPanel.getWidth() / 2, tableroPanel.getHeight() / 2, 45, 25);
-
-//        labelFicha.setIcon(this.loadResource(
-//                        "mula2.png", 25, 15));
-//        labelFicha.setBounds(panel.getWidth()/2, panel.getHeight()/2, 25, 15);
-        
-        
-        labelFicha.setVisible(true);
-        this.tableroPanel.add(labelFicha);
-        this.tableroPanel.repaint();
-
-//        return labelFicha;
-    }
+//    public void pintaPrimerFicha(FichaDTO ficha) {
+//        JLabel labelFicha = new JLabel();
+//        ImageIcon imagen = this.loadResource(ficha.getIcon(), 45, 25);
+//        
+//        ImageIcon imagenVertical;
+//        
+//        labelFicha.setSize(new Dimension(imagen.getIconWidth(), imagen.getIconHeight()));
+//        
+//        labelFicha.setIcon(imagen);
+////        labelFicha.setIcon(this.loadResource(this.identificaFicha(ficha.getValorSuperior(), ficha.getValorInferior()), 45, 25));
+//        labelFicha.setBounds(tableroPanel.getWidth() / 2, tableroPanel.getHeight() / 2, 45, 25);
+//
+////        labelFicha.setIcon(this.loadResource(
+////                        "mula2.png", 25, 15));
+////        labelFicha.setBounds(panel.getWidth()/2, panel.getHeight()/2, 25, 15);
+//        
+//        
+//        labelFicha.setVisible(true);
+//        this.tableroPanel.add(labelFicha);
+//        this.tableroPanel.repaint();
+//
+////        return labelFicha;
+//    }
     
     public static void main(String args[]) {
         FrmMatchOngoingModel m = new FrmMatchOngoingModel();

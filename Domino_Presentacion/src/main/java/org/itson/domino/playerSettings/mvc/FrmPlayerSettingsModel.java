@@ -67,5 +67,6 @@ public class FrmPlayerSettingsModel implements ObservableRegistrarJugador {
     public void registrarObservadorVista(ObserverFrmPlayerSettingsView o) {
         this.observerVista = o;
     }
+    
 
 }

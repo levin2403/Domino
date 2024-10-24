@@ -11,6 +11,7 @@
 package org.itson.domino.lobby.mvc;
 
 import Mediator.Mediador;
+import Observer.ObserverRegistrarJugador;
 import org.itson.domino.constants.MusicPaths;
 import org.itson.domino.singleton.MusicModelSingleton;
 
@@ -27,7 +28,7 @@ public class FrmLobbyController {
         this.musicModel = MusicModelSingleton.getInstance();
         
         playLobbyTheme();
-        setupButtonListeners();
+//        setupButtonListeners();
     }
     
     private void playLobbyTheme() {
@@ -38,25 +39,25 @@ public class FrmLobbyController {
         musicModel.playMusic(MusicPaths.MAIN_THEME);
     }
 
-    private void setupButtonListeners() {
-        view.addNextFormButtonListener(e -> openNextForm());
-        view.addPrevFormButtonListener(e -> openPrevForm());
-    }
-    
-    private void openNextForm() {
-        navigateToForm(() -> mediator.showFrmMatchOngoing());
-    }
-
-    private void openPrevForm() {
-        navigateToForm(() -> {
-            playMainTheme();
-            mediator.showFrmPlayerSettings();
-        });
-    }
-
-    private void navigateToForm(Runnable action) {
-        view.dispose();
-        action.run();
-    }
+//    private void setupButtonListeners(ObserverRegistrarJugador observer) {
+//        view.addNextFormButtonListener(e -> openNextForm());
+//        view.addPrevFormButtonListener(e -> openPrevForm(observer));
+//    }
+//    
+//    private void openNextForm() {
+//        navigateToForm(() -> mediator.showFrmMatchOngoing());
+//    }
+//
+//    private void openPrevForm(ObserverRegistrarJugador observer) {
+//        navigateToForm(() -> {
+//            playMainTheme();
+//            mediator.showFrmPlayerSettings(observer);
+//        });
+//    }
+//
+//    private void navigateToForm(Runnable action) {
+//        view.dispose();
+//        action.run();
+//    }
     
 }

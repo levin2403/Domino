@@ -47,22 +47,22 @@ public class RealizarJugada {
     }
     
     
-    public void realizarJugada(FichaDTO ficha, FrmMatchOngoingView juego){
-        Ficha fichaAColocar = convertFicha.fichaConvertirDTOAEntidad(ficha);
-//        JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
-//        Jugador jugadorEnt = convertJugador.jugadorConvertirDTOAEntidad(jugadorEnTurno);
-        
-        if(tablero.getFichas().isEmpty()){
-            juego.pintaPrimerFicha(ficha);
-        }
-        
-        switch (ficha.getDireccionLado()) {
-            case DERECHA:
-                tablero.addLast(fichaAColocar);
-                break;
-            case IZQUIERDA:
-                tablero.addFirst(fichaAColocar);
-                break;
-        }
-    }
+//    public void realizarJugada(FichaDTO ficha, FrmMatchOngoingView juego){
+//        Ficha fichaAColocar = convertFicha.fichaConvertirDTOAEntidad(ficha);
+////        JugadorDTO jugadorEnTurno = manejadorTurnos.getJugadorEnTurno();
+////        Jugador jugadorEnt = convertJugador.jugadorConvertirDTOAEntidad(jugadorEnTurno);
+//        
+//        if(tablero.getFichas().isEmpty()){
+//            juego.pintaPrimerFicha(ficha);
+//        }
+//        
+//        switch (ficha.getDireccionLado()) {
+//            case DERECHA:
+//                tablero.addLast(fichaAColocar);
+//                break;
+//            case IZQUIERDA:
+//                tablero.addFirst(fichaAColocar);
+//                break;
+//        }
+//    }
 }

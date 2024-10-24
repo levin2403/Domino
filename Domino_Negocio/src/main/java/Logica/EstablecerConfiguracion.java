@@ -5,8 +5,10 @@
 package Logica;
 
 import DTOs.ConfiguracionDTO;
+import Mediator.Mediador;
 import ObjetosNegocio.ConfiguracionBO;
 import org.itson.domino.matchSettings.mvc.FrmMatchSettingsModel;
+import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 
 /**
  *
@@ -48,6 +50,16 @@ public class EstablecerConfiguracion {
         //pasamos la configuracion a su primera pipe
         //para que se vaya al servidor.
         
+    }
+    
+    public void siguienteFrame(){
+        //Creas el mediador
+        Mediador mediador = new Mediador();
+        //Creas el siguiente evento (este aun  no se usa pero es para abrir el frame)
+        RegistrarJugador rJ= new RegistrarJugador();
+        //EL metodo del mediador regresa un modelo para poderlo asignar al evento que le corresponde
+        FrmPlayerSettingsModel model= mediador.showFrmPlayerSettings(rJ); //pides al mediador que abra el frame y guardas el modelo de ese frame
+        rJ.setPsm(model);//asiganas el modelo al Evento para decir que a ese modelo observara.
     }
     
     //Aqui estara el observer 

@@ -10,6 +10,7 @@ import Mediator.Mediador;
 import ObjetosNegocio.ManejadorTurnosBO;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import Observer.ObserverRegistrarJugador;
+import javax.swing.JFrame;
 
 /**
  *
@@ -30,8 +31,11 @@ public class RegistrarJugador implements ObserverRegistrarJugador{
      * Constructor que inicializa la clase 
      */
     public RegistrarJugador() {
-        this.psm = new FrmPlayerSettingsModel();
         this.mediador = new Mediador();
+    }
+
+    public void setPsm(FrmPlayerSettingsModel psm) {
+        this.psm = psm;
     }
     
     /**

@@ -23,15 +23,15 @@ public class FrmMatchSettingsController {
         this.model = model;
         this.mediator = new Mediador();
 
-        setupListeners();
+//        setupListeners();
     }
 
-    private void setupListeners() {
-        view.addNextFormButtonListener(e -> openNextForm());
-        view.addPrevFormButtonListener(e -> openPrevForm());
-        view.addPlayersComboBoxListener(e -> updatePlayers());
-        view.addTilesComboBoxListener(e -> updateTiles());
-    }
+//    private void setupListeners() {
+//        view.addNextFormButtonListener(e -> openNextForm());
+//        view.addPrevFormButtonListener(e -> openPrevForm());
+//        view.addPlayersComboBoxListener(e -> updatePlayers());
+//        view.addTilesComboBoxListener(e -> updateTiles());
+//    }
     
     private void updatePlayers() {
         try {
@@ -51,24 +51,24 @@ public class FrmMatchSettingsController {
         }
     }
     
-    private void openNextForm() {
-        if (model.validateSettings()) {
-            model.saveSettings();
-            navigateToForm(() -> mediator.showFrmPlayerSettings());
-        } else {
-            // Mostrar un mensaje de error al usuario
-        }
-    }
-
-    private void openPrevForm() {
-        navigateToForm(() -> {
-            mediator.showFrmWelcome();
-        });
-    }
-
-    private void navigateToForm(Runnable action) {
-        view.dispose();
-        action.run();
-    }
+//    private void openNextForm() {
+//        if (model.validateSettings()) {
+//            model.saveSettings();
+//            navigateToForm(() -> mediator.showFrmPlayerSettings());
+//        } else {
+//            // Mostrar un mensaje de error al usuario
+//        }
+//    }
+//
+//    private void openPrevForm() {
+//        navigateToForm(() -> {
+//            mediator.showFrmWelcome();
+//        });
+//    }
+//
+//    private void navigateToForm(Runnable action) {
+//        view.dispose();
+//        action.run();
+//    }
     
 }

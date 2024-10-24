@@ -7,12 +7,12 @@ ObjetosNegocio\TableroBO.class
 Conversores\TableroCVR.class
 Conversores\LocacionCVR.class
 Logica\SalirPartida.class
-TerminarPartida.class
 Conversores\PozoCVR.class
 Logica\IniciarPartida.class
 Conversores\DireccionCVR$1.class
 Conversores\ManejadorTurnosCVR.class
 Singleton\ConfiguracionInicialST.class
+PartidaTerminada.class
 ObjetosNegocio\PozoBO.class
 Logica\SalirLobby.class
 Controlers\ControlGeneraFichas.class
@@ -20,7 +20,6 @@ Logica\IniciarVotacion.class
 Controlers\ControlTablero.class
 Logica\ObtenerFichaPozo.class
 Logica\RealizarJugada.class
-Logica\RealizarJugada$1.class
 ObjetosNegocio\ManejadorTurnosBO.class
 Conversores\DireccionCVR.class
 Singleton\ManejadorTurnosST.class

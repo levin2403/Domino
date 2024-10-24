@@ -18,6 +18,7 @@ import Observer.Vista.ObserverFrmPlayerSettingsView;
 public class FrmPlayerSettingsView extends javax.swing.JFrame implements ObserverFrmPlayerSettingsView{
 
     private final AvatarManager avatarManager;
+    private ObservableRegistrarJugador observable;
 
     public FrmPlayerSettingsView() {
         //ESTABLECER LIBRERÍA DE GUI'S
@@ -240,6 +241,6 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame implements Observe
 
     @Override
     public void actualizarVista(ObservableRegistrarJugador observable) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

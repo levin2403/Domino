@@ -4,6 +4,8 @@
  */
 package Mediator;
 
+import Observer.ObserverRegistrarJugador;
+import javax.swing.JFrame;
 import org.itson.domino.lobby.mvc.FrmLobbyController;
 import org.itson.domino.lobby.mvc.FrmLobbyModel;
 import org.itson.domino.lobby.mvc.FrmLobbyView;
@@ -29,7 +31,6 @@ import org.itson.domino.welcome.mvc.FrmWelcomeView;
  * @author skevi
  */
 public class Mediador {
-
     
     public Mediador() {
         
@@ -49,13 +50,17 @@ public class Mediador {
         view.setVisible(true);
     }
     
-    public void showFrmPlayerSettings() {
+    //Le asignas un observer a este metodo y le pides que te regrese el modelo que se creara dentro (esto para que logica le pueda asignar el observer)
+    public FrmPlayerSettingsModel showFrmPlayerSettings(ObserverRegistrarJugador observer) {
         FrmPlayerSettingsView view = new FrmPlayerSettingsView();
         AvatarManager avatarManager = new AvatarManager();
         FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
-        model.registrarObservadorVista(view);
+        model.registrarObservadorVista(view);//Asignas el observador vista en caso de necesitarlo
+        model.registrarObservadorLogica(observer);//le asignas el observador de logica
         FrmPlayerSettingsController controller = new FrmPlayerSettingsController(model ,view);
         view.setVisible(true);
+        
+        return model;
     }
     
     public void showFrmLobby() {
