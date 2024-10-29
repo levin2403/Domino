@@ -33,8 +33,7 @@ public class EstablecerConfiguracion {
 
         //iniciamos instancia del modelo
         this.settingsModel = new FrmMatchSettingsModel();
-        Fachada facha= new Fachada();
-        fachada = facha.getFachada();
+        fachada = Fachada.getFachada();
            
     }
     

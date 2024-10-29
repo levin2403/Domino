@@ -30,8 +30,7 @@ public class LogicaRegistrarJugador {
      * Constructor que inicializa la clase 
      */
     public LogicaRegistrarJugador() {
-        Fachada facha = new Fachada();
-        this.fachada = facha.getFachada();
+        this.fachada = Fachada.getFachada();
         manejadorTurnos = new ManejadorTurnosBO();
         
     }
@@ -56,9 +55,6 @@ public class LogicaRegistrarJugador {
         
         //registramos al jugador dentro del manejador de turnos
         manejadorTurnos.añadirJugador(jugador);
-        
-        // abrimos el frame del lobby 
-//        fachada.showFrmLobby();
         
         //pasamos la informacion por su pipe correspondiente
         

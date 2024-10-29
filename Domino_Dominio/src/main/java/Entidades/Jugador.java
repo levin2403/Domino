@@ -119,6 +119,18 @@ public class Jugador {
     public void añadirFicha(Ficha ficha){
         this.fichas.add(ficha);
     }
+    
+    public Ficha mulaMasGrande(){
+        Ficha mula = null;
+        for (Ficha ficha : fichas) {
+            if(ficha.isMula(ficha)){
+                if(mula == null || ficha.getValorSuperior()> mula.getValorSuperior()){
+                    mula = ficha;
+                }
+            }
+        }
+        return mula;
+    }
 
     @Override
     public String toString() {

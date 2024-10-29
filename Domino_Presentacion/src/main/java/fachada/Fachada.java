@@ -10,20 +10,21 @@ import fachadas.IFachada;
 import org.itson.domino.singleton.MediadorSingleton;
 
 /**
- *
+ * Aqui tenemos que poner tambien los metodos necesarios para que logica se comunique con presentacion al momento de que le llegue info del server
+ * Y esta fachada es entre logica y presentacion, ocupamos hacer otra fachada para las comunicaciones.
  * @author Dell
  */
-public class Fachada {
+public class Fachada implements IFachada{
 
     Mediador mediador;
+    private static Fachada fachada;
 
-    public Fachada() {
+    private Fachada() {
         MediadorSingleton mS = new MediadorSingleton();
         mediador = mS.getInstance();
     }
 
-    IFachada fachada = new IFachada() {
-        @Override
+    @Override
         public void showFrmWelcome() {
             mediador.showFrmWelcome();
         }
@@ -52,9 +53,11 @@ public class Fachada {
         public void showFrmMatchEndingRequest() {
             mediador.showFrmMatchEndingRequest();
         }
-    };
 
-    public IFachada getFachada() {
+    public static IFachada getFachada() {
+        if(fachada == null){
+            fachada = new Fachada();
+        }
         return fachada;
     }
     
