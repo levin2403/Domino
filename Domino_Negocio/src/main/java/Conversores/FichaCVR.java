@@ -22,6 +22,7 @@ import java.util.List;
  * @author Dell
  */
 public class FichaCVR {
+    
     private LocacionCVR converLoca;
     private DireccionCVR converDirec;
 
