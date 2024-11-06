@@ -16,13 +16,20 @@ import DTOs.Acciones;
  */
 public class EventoBuscarPartida {
 
-    // Atributo que define la acción específica que se realiza en el evento de búsqueda.
+    /**
+     * Atributo que define la acción específica que se realiza en el 
+     * evento de búsqueda.
+     */
     public Acciones accion;
 
-    // Atributo booleano que indica si la búsqueda fue exitosa o no.
+    /**
+     * Atributo booleano que indica si la búsqueda fue exitosa o no.
+     */
     public boolean respuesta;
 
-    // Atributo que contiene un mensaje descriptivo de la respuesta.
+    /**
+     * Atributo que contiene un mensaje descriptivo de la respuesta.
+     */
     public String respuestaString;
 
     /**
@@ -78,4 +85,5 @@ public class EventoBuscarPartida {
     public void setRespuestaString(String respuestaString) {
         this.respuestaString = respuestaString;
     }
+    
 }
