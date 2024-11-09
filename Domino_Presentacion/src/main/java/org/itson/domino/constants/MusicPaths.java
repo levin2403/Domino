@@ -15,7 +15,8 @@ public final class MusicPaths {
 
     public static final String MAIN_THEME = "/music/main_theme.mp3";
     public static final String LOBBY_THEME = "/music/lobby_theme.mp3";
-    public static final String MATCH_THEME = "/music/match_theme_1.mp3";
+    public static final String MATCH_THEME_1 = "/music/match_theme_1.mp3";
+    public static final String MATCH_THEME_2 = "/music/match_theme_1.mp3";
     public static final String REQUEST_THEME = "/music/request_theme.mp3";
     public static final String LEADERSHIP_THEME = "/music/leadership_theme.mp3";
 }

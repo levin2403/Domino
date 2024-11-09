@@ -39,7 +39,7 @@ public class FrmMatchOngoingController {
     }
 
     private void playMatchTheme() {
-        musicModel.playMusic(MusicPaths.MATCH_THEME);
+        musicModel.playMusic(MusicPaths.MATCH_THEME_1);
     }
 
     private void setupButtonListeners() {
