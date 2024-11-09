@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Observer;
+package Observable;
 
 /**
  *
  * @author skevi
  */
-public interface ObserverEstablecerConfiguracion {
-    public void actualizarConfiguracion();
+public interface ObservableMenu {
+    public void actualizarVista();
 }
