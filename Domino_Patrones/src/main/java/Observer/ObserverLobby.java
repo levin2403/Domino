@@ -8,6 +8,6 @@ package Observer;
  *
  * @author skevi
  */
-public interface ObserverEstablecerConfiguracion {
-    public void actualizarConfiguracion(Object objecto);
+public interface ObserverLobby {
+    public void actualizar(Object objecto);
 }
