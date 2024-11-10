@@ -2,26 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.filtrojson;
+package filtro;
 
-import com.google.gson.Gson;
-import com.mycompany.filterdomino.FilterDomino;
+import Eventos.EventoEstablecerConfiguracion;
+import filter.FilterDomino;
 import interfaz.IPipeDomino;
 
 /**
  *
  * @author Dell
  */
-public class FiltroJson<T> extends FilterDomino<T>{
+public class FiltroConfiguracion<T> extends FilterDomino<T>{
 
-    private IPipeDomino pipaSiguiente; 
+    private IPipeDomino pipaSiguiente;  
     
     @Override
     public void procesar(T mensaje) {
-        Gson gson = new Gson();
-       this.mensajeProcesado = (T) gson.toJson(mensaje);
+        if (mensaje instanceof EventoEstablecerConfiguracion) {
+            ((EventoEstablecerConfiguracion)mensaje).getConfiguracion();
+        }
+        this.mensajeProcesado= mensaje;
         if (pipaSiguiente != null) {
-            pipaSiguiente.enviar(mensajeProcesado); // Envía el JSON al siguiente pipe si existe
+            pipaSiguiente.enviar(mensajeProcesado); 
         }
        
     }

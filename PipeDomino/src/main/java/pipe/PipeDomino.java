@@ -4,7 +4,7 @@
 
 package pipe;
 
-import com.mycompany.filterdomino.FilterDomino;
+import filter.FilterDomino;
 import interfaz.IPipeDomino;
 
 /**

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.filtroeventos;
+package filtro;
 
 import Eventos.EventoBuscarPartida;
 import Eventos.EventoEstablecerConfiguracion;
@@ -11,7 +11,7 @@ import Eventos.EventoRegistrarJugador;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.mycompany.filterdomino.FilterDomino;
+import filter.FilterDomino;
 import interfaz.IPipeDomino;
 /**
  *

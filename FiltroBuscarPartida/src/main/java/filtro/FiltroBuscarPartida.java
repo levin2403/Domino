@@ -1,29 +1,31 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package filtro;
 
-package com.mycompany.filtroconfiguracion;
-
-import Eventos.EventoEstablecerConfiguracion;
-import com.mycompany.filterdomino.FilterDomino;
+import DTOs.Acciones;
+import Eventos.EventoBuscarPartida;
+import filter.FilterDomino;
 import interfaz.IPipeDomino;
-
 /**
  *
  * @author Dell
+ * @param <T>
  */
-public class FiltroConfiguracion<T> extends FilterDomino<T>{
+public class FiltroBuscarPartida<T> extends FilterDomino<T>{
 
-    private IPipeDomino pipaSiguiente;  
+    private IPipeDomino pipaSiguiente;   
     
     @Override
     public void procesar(T mensaje) {
-        if (mensaje instanceof EventoEstablecerConfiguracion) {
-            ((EventoEstablecerConfiguracion)mensaje).getConfiguracion();
+        if (mensaje instanceof EventoBuscarPartida) {
+            
+            ((EventoBuscarPartida)mensaje).setAccion(Acciones.BUSCARPARTIDA);          
         }
         this.mensajeProcesado= mensaje;
         if (pipaSiguiente != null) {
-            pipaSiguiente.enviar(mensajeProcesado); 
+            pipaSiguiente.enviar(mensajeProcesado);
         }
        
     }

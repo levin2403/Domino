@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.filtroregistrarjugador;
+package filtro;
 
 import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
 import Eventos.EventoRegistrarJugador;
-import com.mycompany.filterdomino.FilterDomino;
+import filter.FilterDomino;
 import interfaz.IPipeDomino;
 
 /**

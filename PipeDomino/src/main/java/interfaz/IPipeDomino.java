@@ -4,7 +4,7 @@
  */
 package interfaz;
 
-import com.mycompany.filterdomino.FilterDomino;
+import filter.FilterDomino;
 
 /**
  *
