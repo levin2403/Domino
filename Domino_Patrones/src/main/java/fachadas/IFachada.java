@@ -4,6 +4,9 @@
  */
 package fachadas;
 
+import Observer.ObserverEstablecerConfiguracion;
+import Observer.ObserverLobby;
+import Observer.ObserverMenuLogica;
 import Observer.ObserverRegistrarJugador;
 
 /**
@@ -11,16 +14,16 @@ import Observer.ObserverRegistrarJugador;
  * @author Dell
  */
 public interface IFachada {
-    public void showFrmWelcome();
-    
-    public void showFrmMatchSettings();
-    
+    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica);
+
+    public ObserverEstablecerConfiguracion showFrmMatchSettings(ObserverEstablecerConfiguracion o);
+
     //Le asignas un observer a este metodo y le pides que te regrese el modelo que se creara dentro (esto para que logica le pueda asignar el observer)
-    public void showFrmPlayerSettings(ObserverRegistrarJugador observer);
-    
-    public void showFrmLobby();
-    
+    public ObserverRegistrarJugador showFrmPlayerSettings(ObserverRegistrarJugador observer);
+
+    public ObserverLobby showFrmLobby(ObserverLobby o);
+
     public void showFrmMatchOngoing();
-    
+
     public void showFrmMatchEndingRequest();
 }

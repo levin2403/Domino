@@ -1,5 +1,6 @@
 package org.itson.domino.welcome.mvc;
 
+import DTOs.Acciones;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import org.itson.domino.constants.IconPaths;
@@ -9,7 +10,7 @@ import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmWelcomeView extends javax.swing.JFrame {
+public class FrmWelcomeView extends javax.swing.JFrame implements Observer.Vista.ObserverFrmWelcomeView{
 
     private FrmWelcomeModel model;
     
@@ -63,6 +64,10 @@ public class FrmWelcomeView extends javax.swing.JFrame {
     public void addNextFormButtonListener(ActionListener listener) {
         btnNextForm.addActionListener(listener);
     }
+    
+    public void addBuscarFormBotonListener(ActionListener listener) {
+        btnBuscarPartida.addActionListener(listener);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,6 +80,7 @@ public class FrmWelcomeView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblDomino = new javax.swing.JLabel();
+        btnBuscarPartida = new javax.swing.JButton();
         btnNextForm = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         btnMinimize = new javax.swing.JButton();
@@ -90,9 +96,13 @@ public class FrmWelcomeView extends javax.swing.JFrame {
         lblDomino.setText("Domino - Vice City Edition");
         jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
 
+        btnBuscarPartida.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
+        btnBuscarPartida.setText("Buscar partida");
+        jPanel1.add(btnBuscarPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 320, 70));
+
         btnNextForm.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         btnNextForm.setText("iniciar");
-        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 190, 70));
+        jPanel1.add(btnNextForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 190, 70));
 
         btnClose.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 20, 50, 50));
@@ -134,6 +144,7 @@ public class FrmWelcomeView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarPartida;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnMinimize;
     private javax.swing.JButton btnNextForm;
@@ -141,4 +152,18 @@ public class FrmWelcomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarVista(Object object) {
+      if(object instanceof Acciones){
+           if (object instanceof Acciones) {
+                Acciones accion = (Acciones) object;
+                
+                if (accion== accion.CERRARVENTANA) {
+                    
+                    this.dispose();
+                }
+            }
+      }
+    }
 }

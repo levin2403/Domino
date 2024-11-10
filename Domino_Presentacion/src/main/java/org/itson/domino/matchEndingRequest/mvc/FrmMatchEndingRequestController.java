@@ -40,7 +40,7 @@ public class FrmMatchEndingRequestController {
     }
     
     private void openNextForm() {
-        navigateToForm(() -> mediator.showFrmWelcome());
+//        navigateToForm(() -> mediator.showFrmWelcome());
     }
     
     private void openPrevForm() {

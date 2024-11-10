@@ -16,7 +16,7 @@ public class Domino_Presentacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Mediador mediator = new Mediador();
-        mediator.showFrmWelcome();
+//        Mediador mediator = new Mediador();
+//        mediator.showFrmWelcome();
     }
 }

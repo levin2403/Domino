@@ -4,6 +4,7 @@
  */
 package Mediator;
 
+import Observer.ObserverMenuLogica;
 import Observer.ObserverRegistrarJugador;
 import javax.swing.JFrame;
 import org.itson.domino.lobby.mvc.FrmLobbyController;
@@ -36,11 +37,12 @@ public class Mediador {
         
     }
     
-    public void showFrmWelcome(){
+    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica) {
         FrmWelcomeModel model = new FrmWelcomeModel();
-        FrmWelcomeView view = new FrmWelcomeView(model);
-        FrmWelcomeController controller = new FrmWelcomeController(model, view);
-        view.setVisible(true);
+        model.registrarObservador(observerMenuLogica);
+        FrmWelcomeController controller = new FrmWelcomeController(model);
+        controller.mostrarPantalla();
+        return model.getObservable();
     }
     
     public void showFrmMatchSettings() {

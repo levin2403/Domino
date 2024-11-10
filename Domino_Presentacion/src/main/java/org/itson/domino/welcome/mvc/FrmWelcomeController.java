@@ -19,11 +19,13 @@ public class FrmWelcomeController {
     private MusicModelSingleton musicModel;
     private Mediador mediator;
 
-    public FrmWelcomeController(FrmWelcomeModel model ,FrmWelcomeView view) {
-        this.view = view;
+    public FrmWelcomeController(FrmWelcomeModel model) {
+
+        this.model = model;
+        this.view = new FrmWelcomeView(model);
+        this.model.registrarObservadorView(view);
         this.musicModel = MusicModelSingleton.getInstance();
         this.mediator = new Mediador();
-        
         playMainTheme();
         setupButtonListeners();
     }
@@ -32,17 +34,25 @@ public class FrmWelcomeController {
         musicModel.playMusic(MusicPaths.MAIN_THEME);
     }
 
+    public void mostrarPantalla() {
+        view.setVisible(true);
+    }
+
     private void setupButtonListeners() {
         view.addNextFormButtonListener(e -> openNextForm());
+        view.addBuscarFormBotonListener(e -> buscarPartida());
     }
-    
+
+    private void buscarPartida() {
+        model.buscarPartida();
+    }
+
     private void openNextForm() {
-        navigateToForm(() -> mediator.showFrmMatchSettings());
+        model.configurar();
     }
 
     private void navigateToForm(Runnable action) {
         view.dispose();
         action.run();
     }
-    
 }

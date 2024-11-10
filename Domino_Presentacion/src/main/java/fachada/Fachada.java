@@ -5,6 +5,9 @@
 package fachada;
 
 import Mediator.Mediador;
+import Observer.ObserverEstablecerConfiguracion;
+import Observer.ObserverLobby;
+import Observer.ObserverMenuLogica;
 import Observer.ObserverRegistrarJugador;
 import fachadas.IFachada;
 import org.itson.domino.singleton.MediadorSingleton;
@@ -24,45 +27,41 @@ public class Fachada implements IFachada{
         mediador = mS.getInstance();
     }
 
-    @Override
-        public void showFrmWelcome() {
-            mediador.showFrmWelcome();
-        }
-
-        @Override
-        public void showFrmMatchSettings() {
-            mediador.showFrmMatchSettings();
-        }
-
-        @Override
-        public void showFrmPlayerSettings(ObserverRegistrarJugador observer) {
-            mediador.showFrmPlayerSettings(observer);
-        }
-
-        @Override
-        public void showFrmLobby() {
-            mediador.showFrmLobby();
-        }
-
-        @Override
-        public void showFrmMatchOngoing() {
-            mediador.showFrmMatchOngoing();
-        }
-
-        @Override
-        public void showFrmMatchEndingRequest() {
-            mediador.showFrmMatchEndingRequest();
-        }
-
     public static IFachada getFachada() {
         if(fachada == null){
             fachada = new Fachada();
         }
         return fachada;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica) {
+        return mediador.showFrmWelcome(observerMenuLogica);
+    }
+
+    @Override
+    public ObserverEstablecerConfiguracion showFrmMatchSettings(ObserverEstablecerConfiguracion o) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ObserverRegistrarJugador showFrmPlayerSettings(ObserverRegistrarJugador observer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ObserverLobby showFrmLobby(ObserverLobby o) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void showFrmMatchOngoing() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void showFrmMatchEndingRequest() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
