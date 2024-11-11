@@ -16,7 +16,13 @@ public class FrmPlayerSettingsModel implements ObservableRegistrarJugador {
     ObserverRegistrarJugador orj;
     ObserverFrmPlayerSettingsView observerVista;
     
-    // asdasdasd
+     ObserverRegistrarJugador observable = new ObserverRegistrarJugador() {
+        @Override
+        public void actualizarRegistrarJugador(Object objeto) {
+         observerVista.actualizarVista(objeto);
+        }
+    };
+     
     private String playerName;
     private AvatarManager avatarManager;
 
@@ -45,30 +51,35 @@ public class FrmPlayerSettingsModel implements ObservableRegistrarJugador {
         return avatarManager.previousAvatar();
     }
     
-//    public void saveSettings() {
-//        System.out.println("Configuración guardada: " + playerName + " es Jugador.");
-//    }
-    
-    // observer que notifica al observador suscrito para que realice el
-    // registro de un usuario.
     @Override
     public void registrarObservadorLogica(ObserverRegistrarJugador orj) {
        this.orj = orj;
     }
 
+    public ObserverRegistrarJugador getObservable() {
+        return observable;
+    }
+
+    public void setObservable(ObserverRegistrarJugador observable) {
+        this.observable = observable;
+    }
+    
     /**
      * 
      */
+    public void registrarJugador(){
+        System.out.println("Ahi te va");
+        PlayerSettingsModelDTO p = new PlayerSettingsModelDTO(playerName, getSelectedAvatarPath());
+        orj.actualizarRegistrarJugador(p);
+    }
     @Override
     public void notificarRegistro() {
-        PlayerSettingsModelDTO modelDTO = new PlayerSettingsModelDTO(getPlayerName(),getSelectedAvatarPath());
-        orj.actualizarRegistrarJugador(modelDTO);
+        
+       
     }
 
     @Override
     public void registrarObservadorVista(ObserverFrmPlayerSettingsView o) {
         this.observerVista = o;
     }
-    
-
 }

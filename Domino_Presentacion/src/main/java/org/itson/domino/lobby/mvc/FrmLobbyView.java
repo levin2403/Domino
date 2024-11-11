@@ -1,5 +1,6 @@
 package org.itson.domino.lobby.mvc;
 
+import Observer.Vista.ObserverFrmLobbyView;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import org.itson.domino.constants.IconPaths;
@@ -9,7 +10,7 @@ import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmLobbyView extends javax.swing.JFrame {
+public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobbyView{
 
     private FrmLobbyModel model;
     
@@ -176,4 +177,9 @@ public class FrmLobbyView extends javax.swing.JFrame {
     private javax.swing.JLabel lblDomino;
     private javax.swing.JLabel lblPlayerName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarVista(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

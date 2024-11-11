@@ -21,22 +21,26 @@ public class FrmLobbyController {
     private Mediador mediator;
     private FrmLobbyModel model;
 
-    public FrmLobbyController(FrmLobbyModel model ,FrmLobbyView view) {
+    public FrmLobbyController(FrmLobbyModel model, FrmLobbyView view) {
         this.model = model;
         this.view = view;
         this.mediator = new Mediador();
         this.musicModel = MusicModelSingleton.getInstance();
-        
+
         playLobbyTheme();
 //        setupButtonListeners();
     }
-    
+
     private void playLobbyTheme() {
         musicModel.playMusic(MusicPaths.LOBBY_THEME);
     }
-    
+
     private void playMainTheme() {
         musicModel.playMusic(MusicPaths.MAIN_THEME);
+    }
+
+    public void mostrarPantalla() {
+        view.setVisible(true);
     }
 
 //    private void setupButtonListeners(ObserverRegistrarJugador observer) {
@@ -59,5 +63,4 @@ public class FrmLobbyController {
 //        view.dispose();
 //        action.run();
 //    }
-    
 }

@@ -86,7 +86,7 @@ public class LogicaRegistrarJugador {
 //        LogicaRegistrarJugador rJ= new LogicaRegistrarJugador();
 //        Observer.ObserverRegistrarJugador observer= rJ.getObserverRegistrarJugador();
         //EL metodo del mediador regresa un modelo para poderlo asignar al evento que le corresponde
-        fachada.showFrmLobby(); //pides al mediador que abra el frame y guardas el modelo de ese frame
+//        fachada.showFrmLobby(); //pides al mediador que abra el frame y guardas el modelo de ese frame
     }
     
     

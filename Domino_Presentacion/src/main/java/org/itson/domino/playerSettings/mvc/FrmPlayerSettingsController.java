@@ -26,7 +26,7 @@ public class FrmPlayerSettingsController {
 
     private void setupButtonListeners() {
         view.addContinuarButtonListener(e -> openNextForm());
-        view.addPrevFormButtonListener(e -> openPrevForm());
+       // view.addPrevFormButtonListener(e -> openPrevForm());
     }
 
     private void setupAvatarCarousel() {
@@ -52,13 +52,11 @@ public class FrmPlayerSettingsController {
     private void openNextForm() {
         savePlayerSettings();
         musicModel.stopCurrentMusic();
-        model.notificarRegistro();
+        model.registrarJugador();
     }
 
-    private void openPrevForm() {
-        savePlayerSettings();
-//        model.saveSettings();
-        navigateToForm(mediator::showFrmMatchSettings);
+     public void mostrarPantalla(){
+        view.setVisible(true);
     }
 
     private void navigateToForm(Runnable action) {

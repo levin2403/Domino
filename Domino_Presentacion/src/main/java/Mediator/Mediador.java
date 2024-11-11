@@ -5,12 +5,12 @@
 package Mediator;
 
 import Observer.ObserverEstablecerConfiguracion;
+import Observer.ObserverLobby;
 import Observer.ObserverMenuLogica;
 import Observer.ObserverRegistrarJugador;
 import org.itson.domino.lobby.mvc.FrmLobbyController;
 import org.itson.domino.lobby.mvc.FrmLobbyModel;
 import org.itson.domino.lobby.mvc.FrmLobbyView;
-import org.itson.domino.managers.AvatarManager;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestController;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestModel;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestView;
@@ -55,21 +55,24 @@ public class Mediador {
     }
     
     //Le asignas un observer a este metodo y le pides que te regrese el modelo que se creara dentro (esto para que logica le pueda asignar el observer)
-    public void showFrmPlayerSettings(ObserverRegistrarJugador observer) {
+    public ObserverRegistrarJugador showFrmPlayerSettings(ObserverRegistrarJugador observer) {
         FrmPlayerSettingsView view = new FrmPlayerSettingsView();
-        AvatarManager avatarManager = new AvatarManager();
         FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
         model.registrarObservadorVista(view);//Asignas el observador vista en caso de necesitarlo
         model.registrarObservadorLogica(observer);//le asignas el observador de logica
         FrmPlayerSettingsController controller = new FrmPlayerSettingsController(model ,view);
-        view.setVisible(true);
+        controller.mostrarPantalla();
+        return model.getObservable();
     }
     
-    public void showFrmLobby() {
-        FrmLobbyModel model = new FrmLobbyModel(); 
+    public ObserverLobby showFrmLobby(ObserverLobby o) {
+        FrmLobbyModel model = new FrmLobbyModel();
         FrmLobbyView view = new FrmLobbyView(model);
-        FrmLobbyController controller = new FrmLobbyController(model ,view);
-        view.setVisible(true);
+        model.setObserverView(view);
+        model.setObservable(o);
+        FrmLobbyController controller = new FrmLobbyController(model, view);
+        controller.mostrarPantalla();
+        return model.getObservable();
     }
     
     public void showFrmMatchOngoing() {
