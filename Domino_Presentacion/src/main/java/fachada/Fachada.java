@@ -46,22 +46,21 @@ public class Fachada implements IFachada{
 
     @Override
     public ObserverRegistrarJugador showFrmPlayerSettings(ObserverRegistrarJugador observer) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return mediador.showFrmPlayerSettings(observer);
     }
 
     @Override
-    public ObserverLobby showFrmLobby(ObserverLobby o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ObserverLobby showFrmLobby(ObserverLobby l   ) {
+        return mediador.showFrmLobby(l);
     }
 
     @Override
     public void showFrmMatchOngoing() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        mediador.showFrmMatchOngoing();
     }
 
     @Override
     public void showFrmMatchEndingRequest() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        mediador.showFrmMatchEndingRequest();
     }
-
 }
