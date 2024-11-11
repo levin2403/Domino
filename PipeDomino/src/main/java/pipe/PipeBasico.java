@@ -12,10 +12,10 @@ import interfaz.IPipeDomino;
  * @author Dell
  * @param <T>
  */
-public class PipeDomino<T> implements IPipeDomino<T>{
+public class PipeBasico<T> implements IPipeDomino<T>{
     private FilterDomino filtro;
 
-    public PipeDomino() {
+    public PipeBasico() {
         
     }
     

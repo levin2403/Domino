@@ -6,3 +6,8 @@
 /Domino_Server/target/
 /FilterDomino/target/
 /PipeDomino/target/
+/FiltroConfiguracion/target/
+/FiltroRegistrarJugador/target/
+/FiltroJson/target/
+/FiltroEventos/target/
+/FiltroBuscarPartida/target/

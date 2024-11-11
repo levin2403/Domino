@@ -17,7 +17,7 @@ import interfaz.IPipeDomino;
  *
  * @author Dell
  */
-public class FiltroEventos<T> extends FilterDomino<T> {
+public class FiltroEvento<T> extends FilterDomino<T> {
 
    
     private IPipeDomino pipaSiguiente;
