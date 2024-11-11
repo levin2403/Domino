@@ -16,23 +16,22 @@ public class FrmMatchSettingsController {
     private FrmMatchSettingsView view;
     private FrmMatchSettingsModel model;
     private Mediador mediator;
-    
-    
-    public FrmMatchSettingsController(FrmMatchSettingsModel model ,FrmMatchSettingsView view) {
+
+    public FrmMatchSettingsController(FrmMatchSettingsModel model, FrmMatchSettingsView view) {
         this.view = view;
         this.model = model;
         this.mediator = new Mediador();
 
-//        setupListeners();
+        setupListeners();
     }
 
-//    private void setupListeners() {
-//        view.addNextFormButtonListener(e -> openNextForm());
-//        view.addPrevFormButtonListener(e -> openPrevForm());
-//        view.addPlayersComboBoxListener(e -> updatePlayers());
-//        view.addTilesComboBoxListener(e -> updateTiles());
-//    }
-    
+    private void setupListeners() {
+        view.addNextFormButtonListener(e -> openNextForm());
+        view.addPrevFormButtonListener(e -> openPrevForm());
+        view.addPlayersComboBoxListener(e -> updatePlayers());
+        view.addTilesComboBoxListener(e -> updateTiles());
+    }
+
     private void updatePlayers() {
         try {
             int players = view.getSelectedPlayers();
@@ -50,7 +49,27 @@ public class FrmMatchSettingsController {
             view.showErrorMessage("Error al establecer el número de fichas: " + ex.getMessage());
         }
     }
+
+    public void mostrarPantalla() {
+        view.setVisible(true);
+    }
+
+    private void openNextForm() {
+        model.crearPartida();
+    }
+//
+
+    private void openPrevForm() {
+        model.menu();
+    }
     
+    
+//    private void setupListeners() {
+//        view.addNextFormButtonListener(e -> openNextForm());
+//        view.addPrevFormButtonListener(e -> openPrevForm());
+//        view.addPlayersComboBoxListener(e -> updatePlayers());
+//        view.addTilesComboBoxListener(e -> updateTiles());
+//    }
 //    private void openNextForm() {
 //        if (model.validateSettings()) {
 //            model.saveSettings();

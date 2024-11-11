@@ -41,7 +41,7 @@ public class Fachada implements IFachada{
 
     @Override
     public ObserverEstablecerConfiguracion showFrmMatchSettings(ObserverEstablecerConfiguracion o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return mediador.showFrmMatchSettings(o);
     }
 
     @Override

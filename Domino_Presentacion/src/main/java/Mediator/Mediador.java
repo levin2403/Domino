@@ -4,9 +4,9 @@
  */
 package Mediator;
 
+import Observer.ObserverEstablecerConfiguracion;
 import Observer.ObserverMenuLogica;
 import Observer.ObserverRegistrarJugador;
-import javax.swing.JFrame;
 import org.itson.domino.lobby.mvc.FrmLobbyController;
 import org.itson.domino.lobby.mvc.FrmLobbyModel;
 import org.itson.domino.lobby.mvc.FrmLobbyView;
@@ -25,7 +25,6 @@ import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsView;
 import org.itson.domino.welcome.mvc.FrmWelcomeController;
 import org.itson.domino.welcome.mvc.FrmWelcomeModel;
-import org.itson.domino.welcome.mvc.FrmWelcomeView;
 
 /**
  *
@@ -45,11 +44,14 @@ public class Mediador {
         return model.getObservable();
     }
     
-    public void showFrmMatchSettings() {
+    public ObserverEstablecerConfiguracion showFrmMatchSettings(ObserverEstablecerConfiguracion o) {
         FrmMatchSettingsModel model = new FrmMatchSettingsModel();
         FrmMatchSettingsView view = new FrmMatchSettingsView(model);
+        model.registrarObservador(o);
+        model.setObserverView(view); 
         FrmMatchSettingsController controller = new FrmMatchSettingsController(model ,view);
-        view.setVisible(true);
+        controller.mostrarPantalla();
+        return model.getObservable();
     }
     
     //Le asignas un observer a este metodo y le pides que te regrese el modelo que se creara dentro (esto para que logica le pueda asignar el observer)
