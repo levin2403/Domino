@@ -13,14 +13,6 @@ import java.net.Socket;
  * establecida a través de la clase `Conexion` y permite el envío de mensajes en formato JSON 
  * al servidor, además de registrar observadores para escuchar eventos específicos.
  * 
- * Métodos principales:
- * - `getInstance`: Devuelve la instancia única de `Cliente` (implementación Singleton).
- * - `registrarObserver`: Permite registrar un observador para escuchar eventos.
- * - `enviarJSON`: Envia un mensaje en formato JSON a través de la conexión.
- * 
- * Atributos:
- * - `instance`: Referencia estática y única de la clase `Cliente`.
- * - `cone`: Objeto de tipo `Conexion` que maneja la conexión al servidor.
  * 
  * @author Ruzzky
  */
