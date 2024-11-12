@@ -5,6 +5,7 @@
 package Eventos;
 
 import DTOs.Acciones;
+import DTOs.ConfiguracionDTO;
 
 /**
  * Clase EventoBuscarPartida
@@ -84,6 +85,10 @@ public class EventoBuscarPartida {
      */
     public void setRespuestaString(String respuestaString) {
         this.respuestaString = respuestaString;
+    }
+
+    public void setConfiguracion(ConfiguracionDTO c) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

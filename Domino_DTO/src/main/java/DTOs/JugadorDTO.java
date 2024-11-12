@@ -5,6 +5,7 @@
 package DTOs;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class JugadorDTO implements Serializable {
      * Constructor vacio
      */
     public JugadorDTO() {
+        fichasDTO = new ArrayList<>();
     }
     
     /**
@@ -34,6 +36,7 @@ public class JugadorDTO implements Serializable {
     public JugadorDTO(String nickName, AvatarDTO avatar) {
         this.nickName = nickName;
         this.avatar = avatar;
+        fichasDTO = new ArrayList<>(); 
     }
 
     /**
