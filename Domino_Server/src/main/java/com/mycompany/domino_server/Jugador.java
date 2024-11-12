@@ -1,5 +1,3 @@
-
-
 package com.mycompany.domino_server;
 
 import DTOs.Acciones;
@@ -76,11 +74,11 @@ public class Jugador extends Thread {
                     if (evento instanceof EventoBuscarPartida) {
                         procesarEventoBuscarPartida((EventoBuscarPartida) evento);
                     } else if (evento instanceof EventoEstablecerConfiguracion) {
-                       ;
+                        procesarEventoEstablecerConfiguracion((EventoEstablecerConfiguracion) evento);
                     } else if (evento instanceof EventoRealizarJugada) {
                         procesarEventoRealizarJugada((EventoRealizarJugada) evento);
                     } else if (evento instanceof EventoRegistrarJugador) {
-                        ;
+                        procesarEventoRegistrarJugador((EventoRegistrarJugador) evento);
                     } else {
                         System.out.println("No se pudo identificar el tipo de evento.");
                     }
@@ -144,9 +142,37 @@ public class Jugador extends Thread {
         }
     }
 
+    private void procesarEventoEstablecerConfiguracion(EventoEstablecerConfiguracion evento) throws IOException {
+
+        
+        //ocupo ayuda en q me chequen algo 
+        if (evento.getAccion() == Acciones.BUSCARPARTIDA) {
+            if (server.getC() == null) {
+                evento.setRespuesta(false);
+                enviarRespuesta(evento);
+            } else {
+                evento.setRespuesta(true);
+                evento.setConfiguracion(server.getC());
+                enviarRespuesta(evento);
+            }
+
+        }
     
 
+    }
 
+    private void procesarEventoRegistrarJugador(EventoRegistrarJugador e) throws IOException {
+  
+      //ocupo ayuda en q me chequen algo 
+        ConfiguracionDTO c = evento.getConfiguracion();
+        server.setC(c);
+        System.out.println("Configuracion :"+c.getNumJugadores()+" Fichas:"+ c.getFichasARepartir());
+        EventoRegistrarJugador r = new EventoRegistrarJugador();
+        r.setC(c);
+        r.setHost(true);
+        enviarRespuesta(evento);
+
+    }
 
     public boolean comprobarCupo() {
         if (server.getC().getNumJugadores() >= server.getNumeroJugadores()) {

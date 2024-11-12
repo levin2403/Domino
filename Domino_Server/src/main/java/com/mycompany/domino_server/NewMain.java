@@ -13,7 +13,7 @@ import com.google.gson.JsonParser;
 
 /**
  *
- * @author Ruzzky
+ * @author Ruzzky alias elpaputriste :,v
  */
 public class NewMain {
 
