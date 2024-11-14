@@ -13,11 +13,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>FiltroEventos</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>Domino_Patrones</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -39,6 +34,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>FilterDomino</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>FiltroEventos</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

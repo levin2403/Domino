@@ -11,6 +11,7 @@ import DTOs.ConfiguracionDTO;
  * @author skevi
  */
 public class EventoEstablecerConfiguracion {
+    
     public String TIPO_EVENTO = "eventoEstablecerConfiguracion"; 
      public ConfiguracionDTO confi;
     

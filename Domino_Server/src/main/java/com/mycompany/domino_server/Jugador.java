@@ -20,7 +20,6 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.google.gson.JsonSyntaxException;
 import java.util.Arrays;
 import java.util.List;
@@ -161,14 +160,14 @@ public class Jugador extends Thread {
 
     }
 
-    private void procesarEventoRegistrarJugador(EventoRegistrarJugador e) throws IOException {
+    private void procesarEventoRegistrarJugador(EventoRegistrarJugador evento) throws IOException {
   
       //ocupo ayuda en q me chequen algo 
         ConfiguracionDTO c = evento.getConfiguracion();
         server.setC(c);
         System.out.println("Configuracion :"+c.getNumJugadores()+" Fichas:"+ c.getFichasARepartir());
         EventoRegistrarJugador r = new EventoRegistrarJugador();
-        r.setC(c);
+        r.setConfiguracion(c);
         r.setHost(true);
         enviarRespuesta(evento);
 

@@ -3,7 +3,6 @@
 package Socket;
 
 import Observer.ObserverSocket;
-import filtro.FiltroEvento;
 import interfaz.IPipeDomino;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,6 +20,7 @@ import pipe.PipeBasico;
  *
  * @author Ruzzky
  */
+import filtros.FiltroEvento;
 public class Conexion extends Thread {
 
     private Socket socket;

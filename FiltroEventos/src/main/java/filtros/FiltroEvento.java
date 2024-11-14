@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package filtro;
+package filtros;
 
 import Eventos.EventoBuscarPartida;
 import Eventos.EventoEstablecerConfiguracion;
