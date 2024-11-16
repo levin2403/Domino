@@ -10,4 +10,5 @@ package Eventos;
  */
 public class EventoRealizarJugada {
     
+    public  String TIPO_EVENTO = "eventoRealizarJugada"; 
 }

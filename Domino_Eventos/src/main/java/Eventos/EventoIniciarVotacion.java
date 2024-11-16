@@ -9,5 +9,5 @@ package Eventos;
  * @author skevi
  */
 public class EventoIniciarVotacion {
-    
+
 }
