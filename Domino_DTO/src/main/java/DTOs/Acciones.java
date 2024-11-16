@@ -12,5 +12,7 @@ import java.io.Serializable;
  * @author skevi
  */
 public enum Acciones implements Serializable {
-    BUSCARPARTIDA,CERRARVENTANA,CONFIGURAR,MENU,CREARPARTIDA;
+    BUSCARPARTIDA,CERRARVENTANA,CONFIGURAR,MENU,CREARPARTIDA,DENEGADO,
+    JUGADORCREADO,INICIARPARTIDA;
+    //fueron agregadas otras cosas que se ocuparan
 }
