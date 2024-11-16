@@ -7,6 +7,7 @@ package DTOs;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -130,6 +131,34 @@ public class JugadorDTO implements Serializable {
     public String toString() {
         return "JugadorDTO{" + "nickName=" + nickName + ", puntos=" + puntos + 
                 ", fichasDTO=" + fichasDTO + ", avatar=" + avatar + '}';
+    }
+    
+    
+    // lo mismo del otro del avatar :D
+     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.nickName);
+        hash = 89 * hash + Objects.hashCode(this.avatar);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final JugadorDTO other = (JugadorDTO) obj;
+        if (!Objects.equals(this.nickName, other.nickName)) {
+            return false;
+        }
+        return Objects.equals(this.avatar, other.avatar);
     }
     
 }
