@@ -61,6 +61,26 @@ public class FichaDTO implements Serializable {
         return valorSuperior;
     }
 
+    public void setValorSuperior(int valorSuperior) {
+        this.valorSuperior = valorSuperior;
+    }
+
+    public void setValorInferior(int valorInferior) {
+        this.valorInferior = valorInferior;
+    }
+
+    public void setCenterLocacion(LocacionDTO centerLocacion) {
+        this.centerLocacion = centerLocacion;
+    }
+
+    public void setDireccionLado(DireccionDTO direccionLado) {
+        this.direccionLado = direccionLado;
+    }
+
+    public void setDireccionPosicion(DireccionDTO direccionPosicion) {
+        this.direccionPosicion = direccionPosicion;
+    }
+    
     public int getValorInferior() {
         return valorInferior;
     }

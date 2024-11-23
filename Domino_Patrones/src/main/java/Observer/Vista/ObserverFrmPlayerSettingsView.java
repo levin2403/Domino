@@ -11,6 +11,6 @@ import Observable.ObservableRegistrarJugador;
  * @author skevi
  */
 public interface ObserverFrmPlayerSettingsView {
-    public void actualizarVista(ObservableRegistrarJugador observable);
+    public void actualizarVista(Object object);
     
 }

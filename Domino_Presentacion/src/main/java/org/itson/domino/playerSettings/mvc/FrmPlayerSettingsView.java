@@ -1,5 +1,6 @@
 package org.itson.domino.playerSettings.mvc;
 
+import DTOs.Acciones;
 import Observable.ObservableRegistrarJugador;
 import java.awt.Image;
 import java.awt.event.ActionListener;
@@ -240,7 +241,18 @@ public class FrmPlayerSettingsView extends javax.swing.JFrame implements Observe
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void actualizarVista(ObservableRegistrarJugador observable) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void actualizarVista(Object object) {
+        if (object instanceof Acciones) {
+            if (object instanceof Acciones) {
+                Acciones accion = (Acciones) object;
+
+                if (accion == accion.CERRARVENTANA) {
+
+                    this.dispose();
+                }
+            }
+        }
+        
+    
     }
 }

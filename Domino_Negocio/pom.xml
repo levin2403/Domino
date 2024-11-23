@@ -13,11 +13,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Domino_DTO</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>Domino_Patrones</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -59,6 +54,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Domino_Comunicacion</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Domino_DTO</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

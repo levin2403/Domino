@@ -12,6 +12,6 @@ import DTOs.PlayerSettingsModelDTO;
  */
 public interface ObserverRegistrarJugador {
     
-    public void actualizarRegistrarJugador(PlayerSettingsModelDTO dto);
+    public void actualizarRegistrarJugador(Object objecto);
    
 }
