@@ -69,6 +69,8 @@ public class LogicaRegistrarJugador {
      * realiza la accion de registrar a un nuevo jugador.
      * 
      */
+    
+    //KEVIN ARREGLA TU ERROR PAPU >:v
      ObserverRegistrarJugador observerRegistrarJugador = new ObserverRegistrarJugador(){
         @Override
         public void actualizarRegistrarJugador(PlayerSettingsModelDTO dto) {
