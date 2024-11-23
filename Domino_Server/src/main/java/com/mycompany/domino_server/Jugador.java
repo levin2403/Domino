@@ -5,6 +5,7 @@ import DTOs.ConfiguracionDTO;
 import DTOs.JugadorDTO;
 import Eventos.EventoBuscarPartida;
 import Eventos.EventoEstablecerConfiguracion;
+import Eventos.EventoIniciarPartida;
 import Eventos.EventoRealizarJugada;
 import Eventos.EventoRegistrarJugador;
 import com.google.gson.Gson;
@@ -78,14 +79,25 @@ public class Jugador extends Thread {
                         procesarEventoRealizarJugada((EventoRealizarJugada) evento);
                     } else if (evento instanceof EventoRegistrarJugador) {
                         procesarEventoRegistrarJugador((EventoRegistrarJugador) evento);
-                    } else {
+                    } else if(evento instanceof EventoIniciarPartida){
+                        procesarEventoIniciarPartida((EventoIniciarPartida) evento);
+                    }
+                    else {
                         System.out.println("No se pudo identificar el tipo de evento.");
                     }
 
                 }
             }
         } catch (IOException e) {
-            Logger.getLogger(Jugador.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Jugador desconectado: " + clientSocket);
+        } finally {
+            try {
+                
+                server.removerJugador(this);  // Eliminamos el jugador del servidor
+                clientSocket.close();
+            } catch (IOException e) {
+                Logger.getLogger(Jugador.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
     }
 
@@ -143,33 +155,62 @@ public class Jugador extends Thread {
 
     private void procesarEventoEstablecerConfiguracion(EventoEstablecerConfiguracion evento) throws IOException {
 
+        ConfiguracionDTO c = evento.getConfiguracion();
+        server.setC(c);
+        System.out.println("Configuracion :" + c.getNumJugadores() + " Fichas:" + c.getFichasARepartir());
+//        EventoRegistrarJugador r = new EventoRegistrarJugador();
+//        r.setC(c);
+//        r.setHost(true);
+        enviarRespuesta(evento);
+   
+        
         
         //ocupo ayuda en q me chequen algo 
-        if (evento.getAccion() == Acciones.BUSCARPARTIDA) {
-            if (server.getC() == null) {
-                evento.setRespuesta(false);
-                enviarRespuesta(evento);
-            } else {
-                evento.setRespuesta(true);
-                evento.setConfiguracion(server.getC());
-                enviarRespuesta(evento);
-            }
-
-        }
+//        if (evento.getAccion() == Acciones.BUSCARPARTIDA) {
+//            if (server.getC() == null) {
+//                evento.setRespuesta(false);
+//                enviarRespuesta(evento);
+//            } else {
+//                evento.setRespuesta(true);
+//                evento.setConfiguracion(server.getC());
+//                enviarRespuesta(evento);
+//            }
+//
+//        }
     
 
     }
+    
+    
+     private void procesarEventoIniciarPartida(EventoIniciarPartida evento) throws IOException {
+     server.enviarATodos(evento);
+        
 
-    private void procesarEventoRegistrarJugador(EventoRegistrarJugador evento) throws IOException {
+    }  
+
+    private void procesarEventoRegistrarJugador(EventoRegistrarJugador e) throws IOException {
   
-      //ocupo ayuda en q me chequen algo 
-        ConfiguracionDTO c = evento.getConfiguracion();
-        server.setC(c);
-        System.out.println("Configuracion :"+c.getNumJugadores()+" Fichas:"+ c.getFichasARepartir());
-        EventoRegistrarJugador r = new EventoRegistrarJugador();
-        r.setConfiguracion(c);
-        r.setHost(true);
-        enviarRespuesta(evento);
+        
+        if (comprobarCupo()) {
+            jugador = e.getJugador();
+            e.setC(server.getC());
+            e.setJugadores(server.getJugadoresDTO());
+            server.enviarATodos(e);
+            server.setNumeroJugadores(server.getNumeroJugadores() + 1);
+        } else {
+            enviarRespuesta(Acciones.DENEGADO);
+        }
+        
+        
+      
+        
+//        ConfiguracionDTO c = evento.getConfiguracion();
+//        server.setC(c);
+//        System.out.println("Configuracion :"+c.getNumJugadores()+" Fichas:"+ c.getFichasARepartir());
+//        EventoRegistrarJugador r = new EventoRegistrarJugador();
+//        r.setConfiguracion(c);
+//        r.setHost(true);
+//        enviarRespuesta(evento);
 
     }
 
@@ -181,8 +222,13 @@ public class Jugador extends Thread {
     }
 
     private void procesarEventoRealizarJugada(EventoRealizarJugada evento) {
-        // Procesar EventoRealizarJugada aquí
-    }
+
+      server.enviarATodos(evento);
+      server.setPartidaIniciada(true);
+        
+        
+         
+}
 
     public void enviarRespuesta(Object evento) {
         try {

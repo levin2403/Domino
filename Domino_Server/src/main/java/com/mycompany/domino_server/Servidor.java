@@ -35,6 +35,8 @@ public class Servidor {
     // Variable de control para verificar si la configuración está activa
      private volatile boolean configuracionActiva = false;
      
+     private volatile boolean partidaIniciada = false;
+     
     /**
      * Agrega un jugador a la lista de jugadores conectados.
      * 
@@ -53,6 +55,14 @@ public class Servidor {
         return c;
     }
     
+    public boolean isPartidaIniciada() {
+        return partidaIniciada;
+    }
+
+    public void setPartidaIniciada(boolean partidaIniciada) {
+        this.partidaIniciada = partidaIniciada;
+    }
+    
     /**
      * Convierte y devuelve la lista de jugadores conectados en una lista de objetos JugadorDTO.
      * Esto facilita la transferencia de datos de los jugadores en un formato estándar.
@@ -62,6 +72,7 @@ public class Servidor {
     public List<JugadorDTO> getJugadoresDTO(){
         List<JugadorDTO> jugadores = new ArrayList<>();
         for (Jugador clienteJugadore : clienteJugadores) {
+            jugadores.add(clienteJugadore.getJugador());
             
         }
         return jugadores;
@@ -127,19 +138,19 @@ public class Servidor {
      * 
      * @return true si la configuración está activa; false en caso contrario.
      */
-    public boolean isConfiguracionActiva() {
-        return configuracionActiva;
-    }
+//    public boolean isConfiguracionActiva() {
+//        return configuracionActiva;
+//    }
 
     /**
      * Establece el estado de activación de la configuración.
      * 
      * @param configuracionActiva true para activar la configuración; false para desactivarla.
-     */
-    public void setConfiguracionActiva(boolean configuracionActiva) {
-        this.configuracionActiva = configuracionActiva;
-    }
-    
+//     */
+//    public void setConfiguracionActiva(boolean configuracionActiva) {
+//        this.configuracionActiva = configuracionActiva;
+//    }
+//    
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket(1234);
 
@@ -157,4 +168,15 @@ public class Servidor {
             client.start();
         }
     }
+    
+     public synchronized void removerJugador(Jugador jugador) {
+    clienteJugadores.remove(jugador);
+    numeroJugadores--;
+    if (clienteJugadores.isEmpty()) {
+        c = null;  // Restablecemos la configuración cuando todos se desconectan
+        System.out.println("Todos los jugadores se han desconectado. Configuración restablecida a null.");
+    }
+ }
+    
+    
 }
