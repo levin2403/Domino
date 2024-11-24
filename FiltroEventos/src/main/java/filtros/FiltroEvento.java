@@ -1,11 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package filtros;
 
 import Eventos.EventoBuscarPartida;
 import Eventos.EventoEstablecerConfiguracion;
+import Eventos.EventoIniciarPartida;
 import Eventos.EventoRealizarJugada;
 import Eventos.EventoRegistrarJugador;
 import com.google.gson.Gson;
@@ -13,20 +13,20 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import filter.FilterDomino;
 import interfaz.IPipeDomino;
+
 /**
  *
  * @author Dell
  */
 public class FiltroEvento<T> extends FilterDomino<T> {
 
-   
     private IPipeDomino pipaSiguiente;
 
     @Override
     public void procesar(T mensaje) {
         // Deserializa el JSON de manera genérica
         this.mensajeProcesado = deserializarEvento((String) mensaje);
-        
+
         // Enviar el objeto procesado al siguiente pipe
         if (pipaSiguiente != null) {
             pipaSiguiente.enviar(mensajeProcesado);
@@ -51,12 +51,14 @@ public class FiltroEvento<T> extends FilterDomino<T> {
                 return (T) gson.fromJson(mensaje, EventoRealizarJugada.class);
             case "eventoRegistrarJugador":
                 return (T) gson.fromJson(mensaje, EventoRegistrarJugador.class);
+            case "eventoIniciarPartida":
+                return (T) gson.fromJson(mensaje, EventoIniciarPartida.class);
+
             // Puedes agregar más casos si tienes más tipos de eventos
             default:
                 return null;  // Si no coincide con ningún tipo conocido, retornamos null
         }
     }
-
 
     public IPipeDomino getPipe() {
         return pipaSiguiente;
