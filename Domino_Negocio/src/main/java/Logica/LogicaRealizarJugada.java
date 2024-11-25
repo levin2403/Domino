@@ -9,10 +9,8 @@ import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
 import DTOs.PlayerSettingsModelDTO;
 import Eventos.EventoRegistrarJugador;
-import Mediator.Mediador;
 import ObjetosNegocio.ManejadorTurnosBO;
-import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
-import Observer.ObserverRegistrarJugador;
+import Observer.ObserverRealizarJugada;
 import Observer.ObserverSocket;
 import Socket.Cliente;
 import fachada.Fachada;
@@ -20,24 +18,24 @@ import fachadas.IFachada;
 import filtro.FiltroJson;
 import filtro.FiltroRegistrarJugador;
 import interfaz.IPipe;
-import javax.swing.JFrame;
 import pipe.PipeBasico;
 
 /**
- * 
+ *
  * @author skevi
  */
-public class LogicaRegistrarJugador implements ObserverSocket {
-
+public class LogicaRealizarJugada implements ObserverSocket{
+    
     //intancia del manejador de turnos 
     ManejadorTurnosBO manejadorTurnos;
     JugadorDTO jugador = null;
     IFachada fachada;
-    private volatile static LogicaRegistrarJugador instance;
+    ObserverRealizarJugada observerRegistrarModel;
+    private volatile static LogicaRealizarJugada instance;
 
-    public static synchronized LogicaRegistrarJugador getInstance() {
+    public static synchronized LogicaRealizarJugada getInstance() {
         if (instance == null) {
-            instance = new LogicaRegistrarJugador();
+            instance = new LogicaRealizarJugada();
         }
         return instance;
     }
@@ -45,16 +43,16 @@ public class LogicaRegistrarJugador implements ObserverSocket {
     /**
      * Constructor que inicializa la clase
      */
-    public LogicaRegistrarJugador() {
+    public LogicaRealizarJugada() {
         this.fachada = Fachada.getFachada();
         manejadorTurnos = new ManejadorTurnosBO();
         Cliente cliente = Cliente.getInstance();
         cliente.registrarObserver(EventoRegistrarJugador.class, this);
     }
 
-    ObserverRegistrarJugador observerRegistrarJugador = new ObserverRegistrarJugador() {
+    ObserverRealizarJugada observerRealizarJugada = new ObserverRealizarJugada() {
         @Override
-        public void actualizarRegistrarJugador(Object objecto) {
+        public void actualizar(Object objecto) {
             if (objecto instanceof PlayerSettingsModelDTO) {
 
                 avisar(CERRARVENTANA);
@@ -64,26 +62,25 @@ public class LogicaRegistrarJugador implements ObserverSocket {
     };
 
     public void avisar(Object objecto) {
-        observerRegistrarModel.actualizarRegistrarJugador(objecto);
+        observerRegistrarModel.actualizar(objecto);
 
     }
 
-    public ObserverRegistrarJugador getObserverRegistrarJugador() {
-        return observerRegistrarJugador;
+    public ObserverRealizarJugada getObserverRealizarJugada() {
+        return observerRealizarJugada;
     }
-    ObserverRegistrarJugador observerRegistrarModel;
+   
 
-    public ObserverRegistrarJugador getObserverRegistrarModel() {
+    public ObserverRealizarJugada getObserverJugadaModel() {
         return observerRegistrarModel;
     }
 
     public void mostrarPantalla() {
-        System.out.println("mOSTRAR PANTALLA");
-        this.observerRegistrarModel = fachada.showFrmPlayerSettings(observerRegistrarJugador);
+//        this.observerRegistrarModel = fachada.showFrmMatchOngoing(observerRealizarJugada);
     }
 
-    public void setObserverRegistrarModel(ObserverRegistrarJugador observerRegistrarModel) {
-        this.observerRegistrarModel = observerRegistrarModel;
+    public void setObserverRealizarModel(ObserverRealizarJugada observerRealizar) {
+        this.observerRegistrarModel = observerRealizar;
     }
 
     public void registrarJugador(PlayerSettingsModelDTO p) {
@@ -122,6 +119,7 @@ public class LogicaRegistrarJugador implements ObserverSocket {
 
             }
         }
+
     }
 
 }

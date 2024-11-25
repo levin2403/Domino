@@ -42,19 +42,4 @@ public class FabricaFichas {
         return fichas;
     }
     
-//    public List<Ficha> crearFichas2() {
-//        List<Ficha> fichas = new ArrayList<>();
-//
-//        // Generar todas las combinaciones de fichas (28 fichas en total)
-//        for (int i = 0; i <= 6; i++) {
-//            for (int j = i; j <= 6; j++) {
-//                Ficha ficha = new Ficha(i, j);
-//                if(!fichas.contains(ficha)){
-//                 fichas.add(ficha);   
-//                }
-//            }
-//        }
-//
-//        return fichas;
-//    }
 }

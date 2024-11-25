@@ -22,7 +22,6 @@ import java.util.List;
  * @author Dell
  */
 public class FichaCVR {
-    
     private LocacionCVR converLoca;
     private DireccionCVR converDirec;
 
@@ -46,8 +45,9 @@ public class FichaCVR {
         Locacion centerLocacion = converLoca.locacionConvertirDTOAEntidad(fichaDTO.getCenterLocacion());
         Direccion direccionLado = converDirec.direccionConvertirDTOAEntidad(fichaDTO.getDireccionLado());
         Direccion direccionPosicion = converDirec.direccionConvertirDTOAEntidad(fichaDTO.getDireccionPosicion());
-
+        
         Ficha ficha = new Ficha(valorSuperior, valorinferior, centerLocacion, direccionLado, direccionPosicion);
+        ficha.setIcon(fichaDTO.getIcon());
         return ficha;
     }
 
@@ -65,6 +65,7 @@ public class FichaCVR {
         DireccionDTO direccionPosicion = converDirec.direccionConvertirEntidadADTO(ficha.getDireccionPosicion());
 
         FichaDTO fichaDTO = new FichaDTO(valorSuperior, valorinferior, centerLocacion, direccionLado, direccionPosicion);
+        fichaDTO.setIcon(ficha.getIcon());
         return fichaDTO;
     }
 

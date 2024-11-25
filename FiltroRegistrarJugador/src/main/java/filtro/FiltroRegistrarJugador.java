@@ -8,7 +8,7 @@ import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
 import Eventos.EventoRegistrarJugador;
 import filter.FilterDomino;
-import interfaz.IPipeDomino;
+import interfaz.IPipe;
 
 /**
  *
@@ -16,7 +16,7 @@ import interfaz.IPipeDomino;
  */
 public class FiltroRegistrarJugador<T> extends FilterDomino<T>{
 
-    private IPipeDomino pipaSiguiente;
+    private IPipe pipaSiguiente;
     
     @Override
     public void procesar(T mensaje) {
@@ -33,11 +33,11 @@ public class FiltroRegistrarJugador<T> extends FilterDomino<T>{
        
     }
 
-    public IPipeDomino getPipe() {
+    public IPipe getPipe() {
         return pipaSiguiente;
     }
 
-    public void setPipe(IPipeDomino pipaSiguiente) {
+    public void setPipe(IPipe pipaSiguiente) {
         this.pipaSiguiente = pipaSiguiente;
     }
 

@@ -5,8 +5,11 @@
 package ObjetosNegocio;
 
 import Conversores.JugadorCVR;
+import Conversores.ManejadorTurnosCVR;
 import DTOs.JugadorDTO;
+import DTOs.ManejadorTurnosDTO;
 import Entidades.Jugador;
+import Entidades.ManejadorTurnos;
 import Entidades.Partida;
 import singleton.PartidaST;
 
@@ -20,10 +23,6 @@ import singleton.PartidaST;
 public class ManejadorTurnosBO {
     
     //instancia del singletone de partida.
-    PartidaST partidaST;
-    
-    //instancia de partida.
-    private Partida partida;
     
     //convertidor para jugador.
     private JugadorCVR jugadorCVR;
@@ -32,8 +31,6 @@ public class ManejadorTurnosBO {
      * Contructor de la clase.
      */
     public ManejadorTurnosBO() {
-        partidaST = new PartidaST();
-        this.partida = partidaST.getInstance();
         this.jugadorCVR = new JugadorCVR();
     }
     
@@ -44,7 +41,8 @@ public class ManejadorTurnosBO {
     * Igualmente asignara a un jugador en turno al momento de ejecutarse.
     */
     public void determinarTurnos() {
-        partida.getManejadorTurnos().determinarTurnos();
+         Partida partida = PartidaST.getInstance();
+         partida.getManejadorTurnos().asignarTurnos();
     }
     
     /**
@@ -54,21 +52,31 @@ public class ManejadorTurnosBO {
         //Convertimos el jugador recibido en el parametro
         Jugador jugadorEntidad = jugadorCVR.
                 jugadorConvertirDTOAEntidad(jugador);
-        
+        Partida partida = PartidaST.getInstance();
         // pasamos el jugador a dominio
         partida.getManejadorTurnos().añadirJugador(jugadorEntidad);
     }
-    
+    public void cambiarManejadorTurnos(ManejadorTurnosDTO m){
+        ManejadorTurnosCVR manejadorCVR = new ManejadorTurnosCVR();
+        ManejadorTurnos manejador = manejadorCVR.toEntity(m);
+        Partida partida = PartidaST.getInstance();
+        // pasamos el jugador a dominio
+        partida.setManejadorTurnos(manejador);
+    }
     /**
      * Metodo que elimina a un jugador de la lista actual de jugadores en 
      * caso de abandono de la partida.
      * 
      */
+    public void asignarFichas(){
+        Partida partida = PartidaST.getInstance();
+        partida.getManejadorTurnos().asignarFichas(partida.getConfiguracion().getFichasPorJugador());
+    }
     public void eliminarJugador(JugadorDTO jugador) {
         //Convertimos el jugador recibido en el parametro
         Jugador jugadorEntidad = jugadorCVR.
                 jugadorConvertirDTOAEntidad(jugador);
-        
+         Partida partida = PartidaST.getInstance();
         partida.getManejadorTurnos().eliminarJugador(jugadorEntidad);
     }
     
@@ -78,12 +86,17 @@ public class ManejadorTurnosBO {
      * @return Jugador en turno.
      */
     public JugadorDTO getJugadorEnturno() {
-        
+         Partida partida = PartidaST.getInstance();
         JugadorDTO jugador = jugadorCVR.
                 jugadorConvertirEntidadADTO(partida.getManejadorTurnos().
                         getJugadorEnturno());
         
         return jugador;
+    }
+    public ManejadorTurnosDTO getManejadorDTO(){
+         ManejadorTurnosCVR manejadorCVR = new ManejadorTurnosCVR();
+         Partida partida = PartidaST.getInstance();
+         return manejadorCVR.toDTO(partida.getManejadorTurnos());
     }
     
     /**
@@ -92,6 +105,7 @@ public class ManejadorTurnosBO {
      * 
      */
     public void pasarTurno() {
+        Partida partida = PartidaST.getInstance();
         partida.getManejadorTurnos().pasarTurno();
     }
     

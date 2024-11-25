@@ -32,12 +32,12 @@ public class ManejadorTurnosCVR {
         ManejadorTurnos mt = new ManejadorTurnos();
         List<Jugador> jugadores = new LinkedList();
         
-//        for (int i = 0; i < mtDTO.getJugadores().size(); i++) {
-//            Jugador jugador = mt.
-//        }
-//        
-//        mt.setJugadores(jugadores);
-//        mt.setJugadorEnTurno(jugadorEnTurno);
+        for (JugadorDTO jugadore : mtDTO.getJugadores()) {
+            jugadores.add(jugadorCVR.jugadorConvertirDTOAEntidad(jugadore));
+        }
+        
+        mt.setJugadores(jugadores);
+        mt.setJugadorEnTurno(jugadorCVR.jugadorConvertirDTOAEntidad(mtDTO.getJugadorEnTurno()));
         
         return mt; //retornamos el nuevo objeto
     }
@@ -47,10 +47,23 @@ public class ManejadorTurnosCVR {
      * @param mt
      * @return 
      */
-    public ManejadorTurnosDTO toDTO(ManejadorTurnos mt){
+    public ManejadorTurnosDTO toDTO(ManejadorTurnos mt) {
+        // Creamos un nuevo ManejadorTurnosDTO
         ManejadorTurnosDTO mtDTO = new ManejadorTurnosDTO();
-        
-        return mtDTO; //retornamos el nuevo objeto
+
+        // Convertimos la lista de jugadores a una lista de JugadorDTO
+        List<JugadorDTO> jugadoresDTO = new LinkedList<>();
+        for (Jugador jugador : mt.getJugadores()) {
+            jugadoresDTO.add(jugadorCVR.jugadorConvertirEntidadADTO(jugador));
+        }
+
+        // Establecemos la lista de JugadorDTO en el ManejadorTurnosDTO
+        mtDTO.setJugadores(jugadoresDTO);
+
+        // Convertimos y establecemos el jugador en turno
+        mtDTO.setJugadorEnTurno(jugadorCVR.jugadorConvertirEntidadADTO(mt.getJugadorEnturno()));
+
+        return mtDTO; // Retornamos el nuevo objeto ManejadorTurnosDTO
     }
     
 }

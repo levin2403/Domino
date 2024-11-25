@@ -10,6 +10,6 @@ package Observer;
  */
 public interface ObserverRealizarJugada {
     
-    public void actualizarRealizarJugada();
+    public void actualizar(Object objecto);
     
 }

@@ -35,17 +35,6 @@ public class ManejadorTurnos {
      * ejecutara unicamente una sola vez, el iniciar la partida. Igualmente
      * asignara a un jugador en turno al momento de ejecutarse.
      */
-    public void determinarTurnos() {
-        // Mezclar aleatoriamente la lista de jugadores
-        Collections.shuffle(jugadores);
-
-        // Asignar al primer jugador como el jugador en turno
-        if (!jugadores.isEmpty()) {
-            jugadorEnTurno = jugadores.get(0);
-            contador = 0;
-        }
-    }
-
     /**
      * Metodo que añade a un jugador a la lista actual de jugadores.
      */
@@ -55,17 +44,24 @@ public class ManejadorTurnos {
         }
     }
 
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
+
     /**
      * Metodo que elimina a un jugador de la lista actual de jugadores en caso
      * de abandono de la partida.
      *
      */
     public void eliminarJugador(Jugador jugador) {
-
-        if (jugador.equals(jugadorEnTurno) && !jugadores.isEmpty()) {
-            pasarTurno();
+        // Verifica si el jugador a eliminar es el jugador en turno
+        if (jugador.equals(jugadorEnTurno)) {
+            // Si hay más de un jugador, pasar el turno al siguiente
+            if (!jugadores.isEmpty()) {
+                pasarTurno();
+            }
         }
-
+        // Elimina al jugador de la lista
         jugadores.remove(jugador);
     }
 
@@ -84,61 +80,68 @@ public class ManejadorTurnos {
      *
      */
     public void pasarTurno() {
-//        if (!jugadores.isEmpty()) {
-//            int currentIndex = jugadores.indexOf(jugadorEnTurno);
-//            int nextIndex = (currentIndex + 1) % jugadores.size();
-//            jugadorEnTurno = jugadores.get(nextIndex);
-//        }
+        if (!jugadores.isEmpty()) {
+            // Si no es el último jugador, avanzamos al siguiente
+            if (contador == jugadores.size() - 1) {
+                contador = 0;  // Reseteamos al primer jugador
+            } else {
+                contador++;  // Aumentamos el contador para pasar al siguiente jugador
+            }
 
-        if (contador == (jugadores.size() - 1)) {
-            jugadorEnTurno = jugadores.get(0);
-            contador = 0;
-        } else {
-            contador++;
+            // Establecemos al siguiente jugador como el jugador en turno
             jugadorEnTurno = jugadores.get(contador);
         }
     }
 
-    public void primeroEnJugar() {
-        Map<Jugador, Ficha> mapaJugadores = new HashMap<>();
-        for (Jugador jugadore : jugadores) {
-            mapaJugadores.put(jugadore, jugadore.mulaMasGrande());
-        }
-        Jugador jugadorMulaMasGrande = this.jugadorConMulaMasGrande(mapaJugadores);
+    public void asignarTurnos() {
+        Jugador jugadorConMula = verificarMula();  // Verifica si algún jugador tiene mula
 
-        if (jugadorMulaMasGrande != null) {
-            jugadorEnTurno = jugadorMulaMasGrande;
-            //modificar el contador a el numero en el que esta este jugador.
-            for (int i = 0; i < jugadores.size(); i++) {
-                if (jugadores.get(i).equals(jugadorEnTurno)) {
-                    contador = i;
-                    break;
-                }
-            }
-        } else {
-            for (Jugador jugadore : jugadores) {
-                jugadore.añadirFicha(pozo.obtenerFicha());
-            }
-            this.primeroEnJugar();
+        while (jugadorConMula == null) {
+            // Si no hay mula, se agregan fichas extra a cada jugador
+            agregarFichaExtraAJugadores();
+            jugadorConMula = verificarMula();  // Volver a verificar
+        }
+
+        // Poner al jugador con la mula más grande en primer lugar
+        jugadorEnTurno = jugadorConMula;
+
+        // Ordenar el resto de los jugadores aleatoriamente
+        Collections.shuffle(jugadores);
+        // Asegurarse de que el jugador con la mula más grande esté en primer lugar
+        jugadores.remove(jugadorEnTurno);
+        jugadores.add(0, jugadorEnTurno);
+    }
+
+    /**
+     * Método que asigna una cantidad inicial de fichas a cada jugador.
+     *
+     * @param cantidad Cantidad de fichas iniciales a asignar a cada jugador.
+     */
+    public void asignarFichas(int cantidad) {
+        for (Jugador jugador : jugadores) {
+            List<Ficha> fichasIniciales = pozo.obtenerFichas((byte) cantidad);
+            jugador.setFichas(fichasIniciales);
         }
     }
 
-    private Jugador jugadorConMulaMasGrande(Map<Jugador, Ficha> mapaJugadores) {
-        Jugador jugadorConMulaMayor = null;
-        Ficha mulaMayor = null;
+    public void agregarFichaExtraAJugadores() {
+        for (Jugador jugador : jugadores) {
+            jugador.añadirFicha(pozo.obtenerFicha());  // Se usa añadirFicha para agregar una ficha
+        }
+    }
 
-        for (Map.Entry<Jugador, Ficha> entrada : mapaJugadores.entrySet()) {
-            Jugador jugador = entrada.getKey();
-            Ficha mulaActual = entrada.getValue();
-
-            // Solo compara si la ficha actual no es null
-            if (mulaActual != null && (mulaMayor == null || mulaActual.getValorSuperior() > mulaMayor.getValorSuperior())) {
-                mulaMayor = mulaActual;
-                jugadorConMulaMayor = jugador;
+    public Jugador verificarMula() {
+        Jugador jugadorConMulaMasGrande = null;
+        // Recorremos a todos los jugadores para buscar el que tenga la mula más grande
+        for (Jugador jugador : jugadores) {
+            Ficha mula = jugador.mulaMasGrande();
+            if (mula != null) {
+                if (jugadorConMulaMasGrande == null || mula.getValorSuperior() > jugadorConMulaMasGrande.mulaMasGrande().getValorSuperior()) {
+                    jugadorConMulaMasGrande = jugador;  // Actualizamos el jugador con la mula más grande
+                }
             }
         }
-
-        return jugadorConMulaMayor;
+        return jugadorConMulaMasGrande;  // Retorna el jugador con la mula más grande o null si nadie tiene mula
     }
 
     /**

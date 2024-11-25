@@ -35,8 +35,7 @@ public class JugadorCVR {
         else{
             List<FichaDTO> listaFichasDTO = jugadorDTO.getFichas();
             List<Ficha> listaFichas = convertFicha.listaFichasConvertirDTOAEntidad(listaFichasDTO);
-            jugador.setFichas(listaFichas);
-            
+            jugador.setFichas(listaFichas);           
         }
         if(jugadorDTO.getPuntos() == 0){
             jugador.setPuntos(0);
@@ -45,6 +44,7 @@ public class JugadorCVR {
             int puntos = jugadorDTO.getPuntos();
             jugador.setPuntos(puntos);
         }
+        System.out.println(jugador.toString());
         return jugador;
     }
     

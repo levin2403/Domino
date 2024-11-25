@@ -6,12 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
- * @author skevi
- * @author Ruzzky
- */
-  
-/**
  * 
  *  Maneja una lista de fichas y proporciona métodos para agregar y validar 
  *  conexiones entre ellas.

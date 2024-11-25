@@ -26,10 +26,16 @@ public class Pozo {
        // instanciamos a la fabrica de fichas
         this.fabricaFichas = new FabricaFichas();
         // le agregamos al pozo las fichas fabricadas 
-//        pozo = fabricaFichas.crearFichas(); 
+         pozo = fabricaFichas.crearFichas(); 
     }
+
     
-     /**
+    
+    public List<Ficha> getPozo() {
+        return pozo;
+    }
+
+    /**
      * Obtiene un número determinado de fichas aleatorias del pozo,
      * posteriormente elimina las fichas obtenidas del pozo para mantener
      * consistencia con las fichas disponibles en el pozo.
@@ -37,10 +43,14 @@ public class Pozo {
      * @param numero Número de fichas a obtener del pozo.
      * @return Lista de fichas extraídas del pozo.
      */
+    public void setPozo(List<Ficha> pozo) {
+        this.pozo = pozo;
+    }
+
     public List<Ficha> obtenerFichas(byte numero) {
         // Lista temporal para almacenar las fichas
         List<Ficha> fichasObtenidas = new ArrayList<>();
-
+        
         // Mezclamos el pozo 
         Collections.shuffle(pozo);
 

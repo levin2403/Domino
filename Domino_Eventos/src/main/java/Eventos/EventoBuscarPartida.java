@@ -10,8 +10,8 @@ import DTOs.ConfiguracionDTO;
 /**
  * Clase EventoBuscarPartida
  * Representa un evento relacionado con la búsqueda de una partida.
- * Contiene información sobre la acción realizada, la respuesta de la búsqueda,
- * y un mensaje de respuesta en forma de texto.
+ * Contiene información sobre la acción realizada, la respuesta de la 
+ * búsqueda, y un mensaje de respuesta en forma de texto.
  * 
  * @author skevi
  */

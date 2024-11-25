@@ -18,7 +18,7 @@ public class PartidaST {
      * Obtenemos una instancia global del singletone a usar en la clase 
      * @return 
      */
-    public Partida getInstance() {
+    public static Partida getInstance() {
         if (instance == null) {
             synchronized (PartidaST.class) {
                 if (instance == null) {

@@ -3,7 +3,6 @@
 package Socket;
 
 import Observer.ObserverSocket;
-import interfaz.IPipeDomino;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -21,6 +20,7 @@ import pipe.PipeBasico;
  * @author Ruzzky
  */
 import filtros.FiltroEvento;
+import interfaz.IPipe;
 public class Conexion extends Thread {
 
     private Socket socket;
@@ -66,7 +66,7 @@ public class Conexion extends Thread {
      */
     private Object deserializarEvento(String mensaje) {
         FiltroEvento filtroJson = new FiltroEvento();
-        IPipeDomino pipe = new PipeBasico();
+        IPipe pipe = new PipeBasico();
 
         // Conectar el filtro al pipe y enviar el mensaje para procesarlo
         pipe.setFiltro(filtroJson);

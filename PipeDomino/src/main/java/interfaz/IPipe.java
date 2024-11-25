@@ -11,7 +11,7 @@ import filter.FilterDomino;
  * @author Dell
  * @param <T>
  */
-public interface IPipeDomino<T> {
+public interface IPipe<T> {
     public void enviar(T mensaje);
     public FilterDomino getFiltro();
     public void setFiltro(FilterDomino filtro);

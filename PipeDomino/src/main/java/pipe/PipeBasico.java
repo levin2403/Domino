@@ -5,14 +5,14 @@
 package pipe;
 
 import filter.FilterDomino;
-import interfaz.IPipeDomino;
+import interfaz.IPipe;
 
 /**
  *
  * @author Dell
  * @param <T>
  */
-public class PipeBasico<T> implements IPipeDomino<T>{
+public class PipeBasico<T> implements IPipe<T>{
     private FilterDomino filtro;
 
     public PipeBasico() {
