@@ -7,6 +7,7 @@ package fachadas;
 import Observer.ObserverEstablecerConfiguracion;
 import Observer.ObserverLobby;
 import Observer.ObserverMenuLogica;
+import Observer.ObserverRealizarJugada;
 import Observer.ObserverRegistrarJugador;
 
 /**
@@ -23,7 +24,7 @@ public interface IFachada {
 
     public ObserverLobby showFrmLobby(ObserverLobby o);
 
-    public void showFrmMatchOngoing();
+    public ObserverRealizarJugada showFrmMatchOngoing(ObserverRealizarJugada O);
 
     public void showFrmMatchEndingRequest();
 }

@@ -18,13 +18,13 @@ import javax.swing.ImageIcon;
  * @author gamaliel
  */
 public class FrmWelcomeModel implements ObservableMenuLogica, ObserverMenuLogica {
-
     private ObserverMenuLogica observer;
 
     ObserverMenuLogica observable = new ObserverMenuLogica() {
         @Override
         public void actualizar(Object objecto) {
-           observerView.actualizarVista(objecto);
+            System.out.println("ENVIARE ALGO LA FRMWELCOME");
+            observerView.actualizarVista(objecto);
         }
 
     };
@@ -52,12 +52,12 @@ public class FrmWelcomeModel implements ObservableMenuLogica, ObserverMenuLogica
     public void setObservable(ObserverMenuLogica observable) {
         this.observable = observable;
     }
-    
-    
+
     public void buscarPartida() {
         notificar(Acciones.BUSCARPARTIDA);
     }
-     public void configurar() {
+
+    public void configurar() {
         notificar(Acciones.CONFIGURAR);
     }
 
@@ -78,6 +78,6 @@ public class FrmWelcomeModel implements ObservableMenuLogica, ObserverMenuLogica
 
     @Override
     public void actualizar(Object objecto) {
-        
+
     }
 }

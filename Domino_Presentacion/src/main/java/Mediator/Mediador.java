@@ -7,6 +7,7 @@ package Mediator;
 import Observer.ObserverEstablecerConfiguracion;
 import Observer.ObserverLobby;
 import Observer.ObserverMenuLogica;
+import Observer.ObserverRealizarJugada;
 import Observer.ObserverRegistrarJugador;
 import org.itson.domino.lobby.mvc.FrmLobbyController;
 import org.itson.domino.lobby.mvc.FrmLobbyModel;
@@ -75,11 +76,14 @@ public class Mediador {
         return model.getObservable();
     }
     
-    public void showFrmMatchOngoing() {
+    public ObserverRealizarJugada showFrmMatchOngoing(ObserverRealizarJugada o) {
         FrmMatchOngoingModel model = new FrmMatchOngoingModel();
         FrmMatchOngoingView view = new FrmMatchOngoingView(model);
-        FrmMatchOngoingController controller = new FrmMatchOngoingController(view, model);
-        view.setVisible(true);
+        model.setObserverView(view);
+        model.setObserver(o);
+        FrmMatchOngoingController controller = new FrmMatchOngoingController(model, view);
+        controller.abrirPantalla();
+        return model.getObservable();
     }
     
     public void showFrmMatchEndingRequest() {

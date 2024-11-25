@@ -8,6 +8,7 @@ import Mediator.Mediador;
 import Observer.ObserverEstablecerConfiguracion;
 import Observer.ObserverLobby;
 import Observer.ObserverMenuLogica;
+import Observer.ObserverRealizarJugada;
 import Observer.ObserverRegistrarJugador;
 import fachadas.IFachada;
 import org.itson.domino.singleton.MediadorSingleton;
@@ -27,13 +28,6 @@ public class Fachada implements IFachada{
         mediador = mS.getInstance();
     }
 
-    public static IFachada getFachada() {
-        if(fachada == null){
-            fachada = new Fachada();
-        }
-        return fachada;
-    }
-
     @Override
     public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica) {
         return mediador.showFrmWelcome(observerMenuLogica);
@@ -50,17 +44,24 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public ObserverLobby showFrmLobby(ObserverLobby l   ) {
+    public ObserverLobby showFrmLobby(ObserverLobby l) {
         return mediador.showFrmLobby(l);
     }
 
     @Override
-    public void showFrmMatchOngoing() {
-        mediador.showFrmMatchOngoing();
+    public ObserverRealizarJugada showFrmMatchOngoing(ObserverRealizarJugada O) {
+        return mediador.showFrmMatchOngoing(O);
     }
-
+    
     @Override
     public void showFrmMatchEndingRequest() {
         mediador.showFrmMatchEndingRequest();
+    }
+
+    public static IFachada getFachada() {
+        if (fachada == null) {
+            fachada = new Fachada();
+        }
+        return fachada;
     }
 }

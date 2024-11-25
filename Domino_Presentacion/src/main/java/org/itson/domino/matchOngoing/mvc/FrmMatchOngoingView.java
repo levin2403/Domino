@@ -22,6 +22,8 @@ import org.itson.domino.singleton.LookAndFeelSingleton;
 public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverFrmMatchOngoingView {
 
     FrmMatchOngoingModel model;
+    FichasPanel fichasPanel = new FichasPanel();
+    TableroPanel tablero = new TableroPanel();
     
     public FrmMatchOngoingView(FrmMatchOngoingModel model) {
         this.model = model;
@@ -31,6 +33,15 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
         //INICIO DE COMPONENTES
         initComponents();
 
+        pnlLeftTiles.add(fichasPanel);
+        for (int i = 0; i < 28; i++) {
+            FichaDTO ficha = new FichaDTO();
+            ficha.setIcon("0-0"); // Usar rutas de íconos válidas
+        }
+        
+        tableroPanel.add(tablero);
+        System.out.println("x");
+        
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
@@ -38,11 +49,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
 
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
-        
-        FichaDTO ficha = new FichaDTO(2, 2);
-        
-//        this.pintaPrimerFicha(ficha);
-        
 
         //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
         TaskbarButtonSingleton taskbarButtonSIngleton = TaskbarButtonSingleton.getInstance();
