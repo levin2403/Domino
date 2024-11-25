@@ -45,7 +45,9 @@ public class FrmMatchOngoingController {
     private void setupButtonListeners() {
         view.addEndMatchButtonListener(e -> openNextForm());
     }
-
+    public void abrirPantalla(){
+        view.setVisible(true);
+    }
     private void openNextForm() {
         musicModel.stopCurrentMusic();
         navigateToForm(() -> mediator.showFrmMatchEndingRequest());

@@ -7,7 +7,7 @@ package org.itson.domino.matchSettings.mvc;
 import static DTOs.Acciones.MENU;
 import DTOs.ConfiguracionDTO;
 import Observer.ObserverEstablecerConfiguracion;
-import Observer.Vista.ObserverFrmSettingsView;
+import Observer.Vista.ObserverFrmMatchSettingsView;
 
 /**
  *
@@ -15,27 +15,10 @@ import Observer.Vista.ObserverFrmSettingsView;
  */
 public class FrmMatchSettingsModel {
     private ObserverEstablecerConfiguracion observer;
+    private ObserverFrmMatchSettingsView observerView;
 
-    ObserverEstablecerConfiguracion observable = new ObserverEstablecerConfiguracion() {
-
-        @Override
-        public void actualizarConfiguracion(Object objecto) {
-            observerView.actualizarVista(objecto);
-        }
-
-    };
     private int numberOfPlayers;
     private int numberOfTiles;
-
-    private ObserverFrmSettingsView observerView;
-
-    public ObserverFrmSettingsView getObserverView() {
-        return observerView;
-    }
-
-    public void setObserverView(ObserverFrmSettingsView observerView) {
-        this.observerView = observerView;
-    }
 
     // Constantes para los límites de jugadores y fichas
     private static final int MIN_PLAYERS = 2;
@@ -46,6 +29,23 @@ public class FrmMatchSettingsModel {
     public FrmMatchSettingsModel() {
         this.numberOfPlayers = MIN_PLAYERS;
         this.numberOfTiles = MIN_TILES;
+    }
+    
+    ObserverEstablecerConfiguracion observable = new ObserverEstablecerConfiguracion() {
+
+        @Override
+        public void actualizarConfiguracion(Object objecto) {
+            observerView.actualizarVista(objecto);
+        }
+
+    };
+
+    public ObserverFrmMatchSettingsView getObserverView() {
+        return observerView;
+    }
+
+    public void setObserverView(ObserverFrmMatchSettingsView observerView) {
+        this.observerView = observerView;
     }
 
     public void setNumberOfPlayers(int numberOfPlayers) {

@@ -57,37 +57,9 @@ public class FrmMatchSettingsController {
     private void openNextForm() {
         model.crearPartida();
     }
-//
 
     private void openPrevForm() {
         model.menu();
     }
-    
-    
-//    private void setupListeners() {
-//        view.addNextFormButtonListener(e -> openNextForm());
-//        view.addPrevFormButtonListener(e -> openPrevForm());
-//        view.addPlayersComboBoxListener(e -> updatePlayers());
-//        view.addTilesComboBoxListener(e -> updateTiles());
-//    }
-//    private void openNextForm() {
-//        if (model.validateSettings()) {
-//            model.saveSettings();
-//            navigateToForm(() -> mediator.showFrmPlayerSettings());
-//        } else {
-//            // Mostrar un mensaje de error al usuario
-//        }
-//    }
-//
-//    private void openPrevForm() {
-//        navigateToForm(() -> {
-//            mediator.showFrmWelcome();
-//        });
-//    }
-//
-//    private void navigateToForm(Runnable action) {
-//        view.dispose();
-//        action.run();
-//    }
-    
+
 }

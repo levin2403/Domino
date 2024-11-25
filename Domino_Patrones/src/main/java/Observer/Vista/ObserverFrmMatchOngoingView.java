@@ -6,8 +6,8 @@ package Observer.Vista;
 
 /**
  *
- * @author skevi
+ * @author gamaliel
  */
-public interface ObserverFrmSettingsView {
+public interface ObserverFrmMatchOngoingView {
     public void actualizarVista(Object object);
 }

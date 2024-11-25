@@ -45,6 +45,7 @@ public class FrmWelcomeView extends javax.swing.JFrame implements Observer.Vista
         style.applyButtonStyle(btnNextForm);
         style.applyButtonStyle(btnClose);
         style.applyButtonStyle(btnMinimize);
+        style.applyButtonStyle(btnBuscarPartida);
     }
         
     private void applyIconsAndBackground() {
@@ -135,6 +136,7 @@ public class FrmWelcomeView extends javax.swing.JFrame implements Observer.Vista
         FontSingleton customFont = FontSingleton.getInstance();
         applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
         applyFontToComponents(customFont, "Evil Empire", 30f,  btnNextForm);
+        applyFontToComponents(customFont, "Evil Empire", 30f,  btnBuscarPartida);
     }
 
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {

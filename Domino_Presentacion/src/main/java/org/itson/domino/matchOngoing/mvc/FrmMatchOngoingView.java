@@ -1,17 +1,17 @@
 package org.itson.domino.matchOngoing.mvc;
 
 import DTOs.FichaDTO;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import DTOs.JugadorDTO;
+import DTOs.ManejadorTurnosDTO;
+import Observer.Vista.ObserverFrmMatchOngoingView;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import org.itson.domino.constants.IconPaths;
 import org.itson.domino.managers.ResourceLoader;
 import org.itson.domino.singleton.ButtonStyleSingleton;
@@ -19,7 +19,7 @@ import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmMatchOngoingView extends javax.swing.JFrame {
+public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverFrmMatchOngoingView {
 
     FrmMatchOngoingModel model;
     
@@ -94,16 +94,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
             return null;
         }
     }
-    
-    
-    
-    
-    
-    
-    //de aqui en adelante esta la logica perrona
-    
-    
-    
     
 //    public void pintaPrimerFicha(FichaDTO ficha) {
 //        JLabel labelFicha = new JLabel();
@@ -356,4 +346,62 @@ public class FrmMatchOngoingView extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPlayer4;
     private javax.swing.JPanel tableroPanel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actualizarVista(Object object) {
+//        if (object instanceof JugadorDTO j) {
+//
+//            model.setJugadorDto(j);
+//
+//        } else if (object instanceof EventoIniciarPartida e) {
+//            ManejadorTurnosDTO m = e.getManejador();
+//            model.setJugadores(m.getJugadores());
+//            List<JugadorDTO> jugadores = m.getJugadores();
+//            List<FichaDTO> fichas = new ArrayList<>();
+//            int contador = 0;
+//            JLabel[] lblAvatares = {lblAvatar1, lblAvatar2, lblAvatar3, lblAvatar4};
+//            JLabel[] lblPlayers = {lblPlayer1, lblPlayer2, lblPlayer3, lblPlayer4};
+//
+//            for (int i = 0; i < jugadores.size(); i++) {
+//
+//                lblPlayers[i].setText(jugadores.get(i).getNickName());
+//                // Configurar imagen del avatar (ejemplo: obteniendo de un path o recurso)
+//                if (model.getJugadorDto().equals(jugadores.get(i))) {
+//                    System.out.println(model.getJugadorDto().getNickName());
+//                    for (FichaDTO f : jugadores.get(i).getFichas()) {
+//                        this.fichasPanel.agregarFicha(f);
+//                    }
+//
+//                }
+//                String d = "/" + jugadores.get(i).getAvatar().getImageURL();
+//                java.net.URL imgURL = getClass().getResource(d);
+//                if (imgURL != null) {
+//                    ImageIcon avatarIcon = new ImageIcon(imgURL);
+//
+//                    // Escalar la imagen al tamaño del JLabel
+//                    Image scaledImage = avatarIcon.getImage().getScaledInstance(
+//                            lblAvatares[i].getWidth(),
+//                            lblAvatares[i].getHeight(),
+//                            Image.SCALE_SMOOTH
+//                    );
+//
+//                    // Establecer el icono escalado
+//                    lblAvatares[i].setIcon(new ImageIcon(scaledImage));
+//                } else {
+//                    System.out.println("No se encontró la imagen: " + d);
+//                }
+//                contador++;
+//            }
+//            if (contador == 3) {
+//                pnlPlayer4.setVisible(false);
+//            } else if (contador == 2) {
+//                pnlPlayer3.setVisible(false);
+//                pnlPlayer4.setVisible(false);
+//            } else if (contador == 1) {
+//                pnlPlayer2.setVisible(false);
+//                pnlPlayer3.setVisible(false);
+//                pnlPlayer4.setVisible(false);
+//            }
+//        }
+    }
 }
