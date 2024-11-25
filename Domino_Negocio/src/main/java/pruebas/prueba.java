@@ -7,6 +7,7 @@ package pruebas;
 
 import Entidades.Avatar;
 import Entidades.Jugador;
+import Logica.LogicaMenu;
 //import Logica.EstablecerConfiguracion;
 
 /**
@@ -65,5 +66,9 @@ public class prueba {
         
 //        Logica.EstablecerConfiguracion con = new EstablecerConfiguracion();
 //        con.siguienteFrame();
+
+        LogicaMenu f = LogicaMenu.getInstance();
+        f.mostrarPantalla();
+
     }
 }
