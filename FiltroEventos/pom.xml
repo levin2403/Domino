@@ -16,6 +16,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>Domino_Eventos</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>Domino_DTO</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -25,6 +31,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>PipeDomino</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Domino_DTO</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

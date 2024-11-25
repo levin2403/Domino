@@ -12,15 +12,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import filter.FilterDomino;
-import interfaz.IPipeDomino;
+import interfaz.IPipe;
 
 /**
  *
  * @author Dell
  */
 public class FiltroEvento<T> extends FilterDomino<T> {
-
-    private IPipeDomino pipaSiguiente;
+//Alguien puso algo que no se debia he y ese alguien tiene apariencia de cholo
+    private IPipe pipaSiguiente;
 
     @Override
     public void procesar(T mensaje) {
@@ -60,11 +60,11 @@ public class FiltroEvento<T> extends FilterDomino<T> {
         }
     }
 
-    public IPipeDomino getPipe() {
+    public IPipe getPipe() {
         return pipaSiguiente;
     }
 
-    public void setPipe(IPipeDomino pipaSiguiente) {
+    public void setPipe(IPipe pipaSiguiente) {
         this.pipaSiguiente = pipaSiguiente;
     }
 
