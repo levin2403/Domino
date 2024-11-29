@@ -103,8 +103,10 @@ public class Conexion extends Thread {
      */
     public synchronized void enviarJSON(String jsonString) {
         try {
+            System.out.println("Enviando Coso");
             out.write(jsonString);
             out.newLine();
+            // Escribe la cadena JSON en el BufferedWriter
             out.flush();  // Envía el mensaje al servidor
         } catch (IOException e) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
@@ -124,6 +126,7 @@ public class Conexion extends Thread {
                 deserializarEvento(mensaje);
             }
         } catch (IOException e) {
+            System.out.println("Si");
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
         }
     }

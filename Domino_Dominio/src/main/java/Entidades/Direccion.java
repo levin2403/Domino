@@ -9,5 +9,6 @@ package Entidades;
  * @author skevi
  */
 public enum Direccion {
+    //direcciones a las que se supone que se debe de dirigir
     ARRIBA, ABAJO, DERECHA, IZQUIERDA
 }

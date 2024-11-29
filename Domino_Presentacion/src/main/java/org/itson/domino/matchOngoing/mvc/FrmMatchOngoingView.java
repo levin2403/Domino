@@ -3,6 +3,7 @@ package org.itson.domino.matchOngoing.mvc;
 import DTOs.FichaDTO;
 import DTOs.JugadorDTO;
 import DTOs.ManejadorTurnosDTO;
+import Eventos.EventoIniciarPartida;
 import Observer.Vista.ObserverFrmMatchOngoingView;
 import java.awt.Image;
 import java.awt.event.ActionListener;

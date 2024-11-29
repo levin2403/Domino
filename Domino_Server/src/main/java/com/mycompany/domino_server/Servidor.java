@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class Servidor {
     
-    
+    //a
     // Lista de jugadores conectados al servidor 
     //es pá q sepan tambn pq la hice 
     private List<Jugador> clienteJugadores = new ArrayList<>();
