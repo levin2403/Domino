@@ -30,6 +30,7 @@ import java.util.List;
  * @author Ruzzky
  */
 
+
 public class Jugador extends Thread {
 
     private Socket clientSocket;
@@ -106,7 +107,7 @@ public class Jugador extends Thread {
                 EventoBuscarPartida.class,
                 EventoEstablecerConfiguracion.class,
                 EventoRealizarJugada.class,
-                EventoRegistrarJugador.class
+                EventoRegistrarJugador.class, EventoIniciarPartida.class
         // Agrega más clases de eventos según sea necesario
         );
         System.out.println(mensaje);
@@ -133,6 +134,8 @@ public class Jugador extends Thread {
                 return gson.fromJson(mensaje, EventoRealizarJugada.class);
             case "eventoRegistrarJugador":
                 return gson.fromJson(mensaje, EventoRegistrarJugador.class);
+            case "eventoIniciarPartida":
+                return gson.fromJson(mensaje, EventoIniciarPartida.class);
             // Puedes agregar más casos si tienes más tipos de eventos
             default:
                 return null;  // Retorna null si no coincide con ningún tipo conocido
@@ -143,13 +146,14 @@ public class Jugador extends Thread {
         if (evento.getAccion() == Acciones.BUSCARPARTIDA) {
             if (server.getC() == null) {
                 evento.setRespuesta(false);
-                enviarRespuesta(evento);
+                
             } else {
                 evento.setRespuesta(true);
                 evento.setConfiguracion(server.getC());
-                enviarRespuesta(evento);
+                
             }
-
+            System.out.println(evento.isRespuesta());
+            enviarRespuesta(evento);
         }
     }
 
@@ -162,35 +166,14 @@ public class Jugador extends Thread {
 //        r.setC(c);
 //        r.setHost(true);
         enviarRespuesta(evento);
-   
-        
-        
-        //ocupo ayuda en q me chequen algo 
-//        if (evento.getAccion() == Acciones.BUSCARPARTIDA) {
-//            if (server.getC() == null) {
-//                evento.setRespuesta(false);
-//                enviarRespuesta(evento);
-//            } else {
-//                evento.setRespuesta(true);
-//                evento.setConfiguracion(server.getC());
-//                enviarRespuesta(evento);
-//            }
-//
-//        }
-    
 
     }
-    
-    
      private void procesarEventoIniciarPartida(EventoIniciarPartida evento) throws IOException {
      server.enviarATodos(evento);
         
 
-    }  
-
+    }
     private void procesarEventoRegistrarJugador(EventoRegistrarJugador e) throws IOException {
-  
-        
         if (comprobarCupo()) {
             jugador = e.getJugador();
             e.setC(server.getC());
@@ -200,17 +183,6 @@ public class Jugador extends Thread {
         } else {
             enviarRespuesta(Acciones.DENEGADO);
         }
-        
-        
-      
-        
-//        ConfiguracionDTO c = evento.getConfiguracion();
-//        server.setC(c);
-//        System.out.println("Configuracion :"+c.getNumJugadores()+" Fichas:"+ c.getFichasARepartir());
-//        EventoRegistrarJugador r = new EventoRegistrarJugador();
-//        r.setConfiguracion(c);
-//        r.setHost(true);
-//        enviarRespuesta(evento);
 
     }
 
@@ -222,13 +194,9 @@ public class Jugador extends Thread {
     }
 
     private void procesarEventoRealizarJugada(EventoRealizarJugada evento) {
-
       server.enviarATodos(evento);
       server.setPartidaIniciada(true);
-        
-        
-         
-}
+    }
 
     public void enviarRespuesta(Object evento) {
         try {

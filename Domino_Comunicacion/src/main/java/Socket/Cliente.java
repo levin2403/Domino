@@ -18,13 +18,14 @@ import java.net.Socket;
  */
 public class Cliente {
 
-    // Instancia única y compartida de Cliente
-    private volatile static Cliente instance;
-    // Objeto de conexión al servidor
-    private Conexion cone;
+    
+    private volatile static Cliente instance;// Instancia única y compartida de Cliente
+    
+    private Conexion cone;// Objeto de conexión al servidor
 
-    // Constructor privado para prevenir instanciación directa
-    private Cliente() {}
+    
+    private Cliente() // Constructor privado para prevenir instanciación directa
+    {}
 
     /**
      * Obtiene la instancia única de Cliente.
@@ -38,7 +39,7 @@ public class Cliente {
             Socket socket;
             try {
                 System.out.println("Estableciendo conexión...");
-                socket = new Socket("localhost", 1234);
+                socket = new Socket("localhost", 1234); 
                 instance = new Cliente(socket);
             } catch (IOException ex) {
                 System.out.println("No se pudo establecer la conexión.");

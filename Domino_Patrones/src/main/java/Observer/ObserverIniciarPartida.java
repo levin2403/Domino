@@ -10,6 +10,8 @@ package Observer;
  */
 public interface ObserverIniciarPartida {
     
-    public void actualizarInicio();
+   // public void actualizarInicio();
+    
+    public void actualizarInicio(Object objecto);
     
 }

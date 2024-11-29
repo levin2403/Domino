@@ -44,6 +44,7 @@ public class PozoBO {
      * @return Lista de fichas extraídas del pozo.
      */
     public List<FichaDTO> obtenerFichas(byte numero) {
+         Partida partida = PartidaST.getInstance();
         List<Ficha> fichas = partida.getPozo().obtenerFichas(numero);
         List<FichaDTO> fichasDTO = new ArrayList<>();
         
@@ -61,6 +62,7 @@ public class PozoBO {
      * @return La ficha extraída del pozo o null si no hay fichas disponibles.
      */
     public FichaDTO obtenerFicha() {
+         Partida partida = PartidaST.getInstance();
         FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getPozo().
                 obtenerFicha());
         
@@ -73,6 +75,7 @@ public class PozoBO {
      * @return Numero de fichas restantes en el pozo.
      */
     public int fichasDisponibles(){
+         Partida partida = PartidaST.getInstance();
         return partida.getPozo().fichasDisponibles();
     }
     

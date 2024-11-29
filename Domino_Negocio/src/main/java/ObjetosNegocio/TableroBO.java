@@ -40,6 +40,7 @@ public class TableroBO {
      */
     public void addFirst(FichaDTO fichaDTO) {
         Ficha ficha = fichaCVR.fichaConvertirDTOAEntidad(fichaDTO);
+        Partida partida = PartidaST.getInstance();
         partida.getTablero().addFirst(ficha);
     }
 
@@ -50,6 +51,7 @@ public class TableroBO {
      */
     public void addLast(FichaDTO fichaDTO) {
         Ficha ficha = fichaCVR.fichaConvertirDTOAEntidad(fichaDTO);
+        Partida partida = PartidaST.getInstance();
         partida.getTablero().addLast(ficha);    
     }
     
@@ -59,6 +61,7 @@ public class TableroBO {
      * @return Retorna la primera ficha en la lista.
      */
     public FichaDTO getFirst(){
+        Partida partida = PartidaST.getInstance();
         FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getTablero().getFirst());
         return ficha;
     }
@@ -69,6 +72,7 @@ public class TableroBO {
      * @return Retorna la ultima ficha en la lista.
      */
     public FichaDTO getLast(){
+        Partida partida = PartidaST.getInstance();
         FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getTablero().getLast());
         return ficha;
     }    /**
@@ -83,6 +87,7 @@ public class TableroBO {
      * otra ficha en el tablero, false si ya esta ocupada.
      */
     public boolean validarPosicion(FichaDTO fichaDTO) {
+        Partida partida = PartidaST.getInstance();
         Ficha ficha = fichaCVR.fichaConvertirDTOAEntidad(fichaDTO);
         boolean validar = partida.getTablero().validarPosicion(ficha);
         

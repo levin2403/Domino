@@ -4,21 +4,71 @@
  */
 package Conversores;
 
+import DTOs.FichaDTO;
 import DTOs.PozoDTO;
+import Entidades.Ficha;
 import Entidades.Pozo;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author skevi
+ * @author RUZZKY
+ * alias el q quiereayudarentodoalafuerzapqnolegustaqueparezcaquenohacenada
  */
 public class PozoCVR {
     
-    public Pozo toEntity(PozoDTO pozoDTO){
-        return null;
+//    public Pozo toEntity(PozoDTO pozoDTO){
+//        return null;
+//    }
+//    
+//    public PozoDTO toDTO(Pozo pozo){
+//        return null;
+//    } quesesoiga 
+    
+ 
+       
+    private FichaCVR fichaCVR; // Instanciamos el conversor de Ficha
+
+    public PozoCVR() {
+        fichaCVR = new FichaCVR(); // Inicializamos el conversor de Ficha
     }
     
-    public PozoDTO toDTO(Pozo pozo){
-        return null;
+    // Convertir PozoDTO a Pozo
+    public Pozo toEntity(PozoDTO pozoDTO) {
+        // Creamos un Pozo vacío
+        Pozo pozo = new Pozo();
+
+        // Si el PozoDTO contiene fichas, las convertimos a fichas de la entidad Pozo
+        if (pozoDTO.getFichasPozo() != null) {
+            List<Ficha> fichas = new ArrayList<>();
+            for (FichaDTO fichaDTO : pozoDTO.getFichasPozo()) {
+                Ficha ficha = fichaCVR.fichaConvertirDTOAEntidad(fichaDTO); // Convertimos FichaDTO a Ficha
+                fichas.add(ficha);
+            }
+            // Ahora las fichas están en el pozo
+            pozo.setPozo(fichas);
+        }
+
+        return pozo;
     }
-    
+
+    // Convertir Pozo a PozoDTO
+    public PozoDTO toDTO(Pozo pozo) {
+        // Creamos un PozoDTO vacío
+        PozoDTO pozoDTO = new PozoDTO();
+
+        // Obtenemos las fichas del pozo
+        List<FichaDTO> fichasDTO = new ArrayList<>();
+        for (Ficha ficha : pozo.getPozo()) {
+            FichaDTO fichaDTO = fichaCVR.fichaConvertirEntidadADTO(ficha); // Convertimos Ficha a FichaDTO
+            fichasDTO.add(fichaDTO);
+        }
+
+        // Establecemos las fichas en el PozoDTO
+        pozoDTO.setFichasPozo(fichasDTO);
+
+        return pozoDTO;
+    }
 }

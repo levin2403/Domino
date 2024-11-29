@@ -14,13 +14,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pipe.PipeBasico;
+import filtros.FiltroEvento;
+import interfaz.IPipe;
 
 /**
  *
  * @author Ruzzky
+ * triipalosky, tripatripalosky
+ * 
  */
-import filtros.FiltroEvento;
-import interfaz.IPipe;
+
 public class Conexion extends Thread {
 
     private Socket socket;
@@ -130,5 +133,6 @@ public class Conexion extends Thread {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+    
 
 }

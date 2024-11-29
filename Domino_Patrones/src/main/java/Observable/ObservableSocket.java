@@ -4,10 +4,17 @@
  */
 package Observable;
 
+import Observer.ObserverSocket;
+
 /**
  *
  * @author skevi
  */
 public interface ObservableSocket {
-    public void update(Object evento);
+   // public void update(Object evento);
+    
+    //misokets 
+    public void registrarObserver(Class<?> tipoEvento, ObserverSocket observer);
+     public void notificarObserver(String  Json);
+
 }
