@@ -24,6 +24,22 @@ public class ManejadorTurnos {
     private int contador = 0;
     private Pozo pozo;
 
+    public Pozo getPozo() {
+        return pozo;
+    }
+
+    public void setPozo(Pozo pozo) {
+        this.pozo = pozo;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
     public ManejadorTurnos() {
         this.jugadores = new LinkedList();
         PozoST ps = new PozoST();
@@ -87,8 +103,8 @@ public class ManejadorTurnos {
             } else {
                 contador++;  // Aumentamos el contador para pasar al siguiente jugador
             }
-
             // Establecemos al siguiente jugador como el jugador en turno
+          
             jugadorEnTurno = jugadores.get(contador);
         }
     }
@@ -161,5 +177,4 @@ public class ManejadorTurnos {
     public void setJugadorEnTurno(Jugador jugadorEnTurno) {
         this.jugadorEnTurno = jugadorEnTurno;
     }
-
 }

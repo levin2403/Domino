@@ -17,20 +17,18 @@ import java.util.List;
  * @author skevi
  */
 public class Pozo {
-    
+
     // Atributo que tendra todas las fichas dadas por el jugador 
     private List<Ficha> pozo;
     private FabricaFichas fabricaFichas;
 
     public Pozo() {
-       // instanciamos a la fabrica de fichas
+        // instanciamos a la fabrica de fichas
         this.fabricaFichas = new FabricaFichas();
         // le agregamos al pozo las fichas fabricadas 
-         pozo = fabricaFichas.crearFichas(); 
+        pozo = fabricaFichas.crearFichas();
     }
 
-    
-    
     public List<Ficha> getPozo() {
         return pozo;
     }
@@ -47,25 +45,34 @@ public class Pozo {
         this.pozo = pozo;
     }
 
+    public boolean quitarFicha(Ficha ficha) {
+        // Verificamos si la ficha está en el pozo
+        if (pozo.contains(ficha)) {
+            pozo.remove(ficha); // Eliminar la ficha del pozo
+            return true; // Indicar que la eliminación fue exitosa
+        }
+        return false; // Si la ficha no está en el pozo, retornamos false
+    }
+
     public List<Ficha> obtenerFichas(byte numero) {
         // Lista temporal para almacenar las fichas
         List<Ficha> fichasObtenidas = new ArrayList<>();
-        
+
         // Mezclamos el pozo 
         Collections.shuffle(pozo);
 
         for (int i = 0; i < numero; i++) {
-            Ficha ficha = pozo.remove(0); 
+            Ficha ficha = pozo.remove(0);
             fichasObtenidas.add(ficha);
         }
 
         return fichasObtenidas;
     }
-    
+
     /**
      * Método que devuelve una ficha aleatoria del pozo y la elimina para
      * mantener la consistencia con la existencia de las fichas.
-     * 
+     *
      * @return La ficha extraída del pozo o null si no hay fichas disponibles.
      */
     public Ficha obtenerFicha() {
@@ -78,30 +85,30 @@ public class Pozo {
         Collections.shuffle(pozo);
 
         // Eliminamos y retornamos la primera ficha
-        return pozo.remove(0); 
+        return pozo.remove(0);
     }
-    
+
     /**
      * Metodo para obtener el numero de fichas restantes en el pozo.
-     * 
+     *
      * @return Numero de fichas restantes en el pozo.
      */
-    public int fichasDisponibles(){
-        if(pozo == null){
+    public int fichasDisponibles() {
+        if (pozo == null) {
             return 0;
         }
         return pozo.size();
     }
-    
+
     /**
-     * Metodo que devuelve las fichas restantes de un jugador en caso 
-     * de que haya abandonado la partida.
-     * 
-     * @param fichas 
+     * Metodo que devuelve las fichas restantes de un jugador en caso de que
+     * haya abandonado la partida.
+     *
+     * @param fichas
      */
     public void devolverFichas(List<Ficha> fichas) {
-            // Agregamos las fichas devueltas al pozo
-            pozo.addAll(fichas);
+        // Agregamos las fichas devueltas al pozo
+        pozo.addAll(fichas);
     }
-    
+
 }

@@ -69,6 +69,44 @@ public class Ficha {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+    
+   /**
+     * Compara esta ficha con otro objeto para determinar su igualdad.
+     * 
+     * Este método sobrescribe el método para definir
+     * la igualdad basada en los valores valorSuperior y valorInferior.
+
+     * @return code true si code obj es una instancia de code Ficha y
+     *         ambos valores superiores e inferiores son iguales; 
+     * code false  en caso contrario.
+     */ 
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + this.valorSuperior;
+        hash = 89 * hash + this.valorInferior;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ficha other = (Ficha) obj;
+        if (this.valorSuperior != other.valorSuperior) {
+            return false;
+        }
+        return this.valorInferior == other.valorInferior;
+    }
+
 
     @Override
     public String toString() {
