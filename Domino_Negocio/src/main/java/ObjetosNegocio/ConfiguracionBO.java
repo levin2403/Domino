@@ -16,7 +16,7 @@ import singleton.PartidaST;
  */
 public class ConfiguracionBO {
     
-   
+   //siempreno
 
     public ConfiguracionBO() {
         

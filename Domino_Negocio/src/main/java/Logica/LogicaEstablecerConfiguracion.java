@@ -98,6 +98,7 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
         pipa.enviar(e);
 
         Cliente cliente = Cliente.getInstance();
+        System.out.println(filtroJson.getMensaje() + "mensaje");
         cliente.enviarJSON((String) filtroJson.getMensaje());
     }
 
@@ -140,14 +141,17 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
     public void update(Object evento) {
 //        
         if (evento instanceof EventoEstablecerConfiguracion) {
+            System.out.println("qp estoy");
             EventoEstablecerConfiguracion r = (EventoEstablecerConfiguracion) evento;
 
             avisar(CERRARVENTANA);
             ConfiguracionBO c = new ConfiguracionBO();
+            System.out.println("abriendo");
             c.setFichasPorJugador((byte) r.getConfiguracion().getFichasARepartir());
             c.setNumJugadores((byte) r.getConfiguracion().getNumJugadores());
             
             LogicaRegistrarJugador l = LogicaRegistrarJugador.getInstance();
+            System.out.println("abrir pantalla");
             l.mostrarPantalla();
             
         }
