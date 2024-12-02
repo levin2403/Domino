@@ -4,7 +4,11 @@ import DTOs.FichaDTO;
 import DTOs.JugadorDTO;
 import DTOs.ManejadorTurnosDTO;
 import Eventos.EventoIniciarPartida;
+import Eventos.EventoRegistrarJugador;
 import Observer.Vista.ObserverFrmMatchOngoingView;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -12,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import org.itson.domino.constants.IconPaths;
 import org.itson.domino.managers.ResourceLoader;
 import org.itson.domino.singleton.ButtonStyleSingleton;
@@ -25,7 +31,7 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
     FrmMatchOngoingModel model;
     FichasPanel fichasPanel = new FichasPanel();
     TableroPanel tablero = new TableroPanel();
-    
+
     public FrmMatchOngoingView(FrmMatchOngoingModel model) {
         this.model = model;
         //ESTABLECER LIBRERÍA DE GUI'S
@@ -34,15 +40,16 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
         //INICIO DE COMPONENTES
         initComponents();
 
-        pnlLeftTiles.add(fichasPanel);
+        pnlFichas.add(fichasPanel);
         for (int i = 0; i < 28; i++) {
             FichaDTO ficha = new FichaDTO();
             ficha.setIcon("0-0"); // Usar rutas de íconos válidas
+           // fichasPanel.agregarFicha(ficha);
+
+            // Simular un retraso (solo para ilustración)
         }
-        
         tableroPanel.add(tablero);
         System.out.println("x");
-        
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
@@ -51,15 +58,16 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
 
+//        this.pintaPrimerFicha(ficha);
         //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
         TaskbarButtonSingleton taskbarButtonSIngleton = TaskbarButtonSingleton.getInstance();
         taskbarButtonSIngleton.addCloseButton(btnClose, this);
     }
-    
+
     public void addEndMatchButtonListener(ActionListener listener) {
         btnEndMatch.addActionListener(listener);
     }
-    
+
     private void applyIconsAndBackground() {
         try {
             // Aplicar fondo
@@ -68,7 +76,7 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
             e.printStackTrace();
         }
     }
-    
+
     private void applyCustomFonts() {
         FontSingleton customFont = FontSingleton.getInstance();
 //        applyFontToComponents(customFont, "Evil Empire", 80f, lblDomino);
@@ -77,20 +85,20 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
                 lblAvatar1, lblAvatar2, lblAvatar3, lblAvatar4,
                 lblPlayer1, lblPlayer2, lblPlayer3, lblPlayer4);
     }
-    
+
     private void applyFontToComponents(FontSingleton fontSingleton, String fontName, float size, JComponent... components) {
         for (JComponent component : components) {
             component.setFont(fontSingleton.getFont(fontName, size));
         }
     }
-    
+
     private void applyButtonStyles() {
         ButtonStyleSingleton style = ButtonStyleSingleton.getInstance();
-        
+
         style.applyButtonStyle(btnEndMatch);
         style.applyButtonStyle(btnClose);
     }
-    
+
     public ImageIcon loadResource(String resourcePath, int x, int y) {
         URL imgURL = FrmMatchOngoingView.class.getResource("/tiles/" + resourcePath);
         if (imgURL != null) {
@@ -101,7 +109,8 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
             return null;
         }
     }
-    
+
+    //de aqui en adelante esta la logica perrona
 //    public void pintaPrimerFicha(FichaDTO ficha) {
 //        JLabel labelFicha = new JLabel();
 //        ImageIcon imagen = this.loadResource(ficha.getIcon(), 45, 25);
@@ -125,7 +134,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
 //
 ////        return labelFicha;
 //    }
-    
     public static void main(String args[]) {
         FrmMatchOngoingModel m = new FrmMatchOngoingModel();
         /* Set the Nimbus look and feel */
@@ -149,6 +157,9 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmMatchOngoingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -186,12 +197,13 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
         pnlPlayer4 = new javax.swing.JPanel();
         lblAvatar4 = new javax.swing.JLabel();
         lblPlayer4 = new javax.swing.JLabel();
-        pnlLeftTiles = new javax.swing.JPanel();
+        pnlFichas = new javax.swing.JPanel();
         tableroPanel = new javax.swing.JPanel();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setFocusable(false);
+        setFocusableWindowState(false);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -203,6 +215,8 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
         btnEndMatch.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnEndMatch.setText("Terminar partida");
         jPanel1.add(btnEndMatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 300, -1));
+
+        pnlPlayer1.setBackground(new java.awt.Color(212, 138, 138));
 
         lblPlayer1.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         lblPlayer1.setText("Player x");
@@ -256,6 +270,8 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
 
         jPanel1.add(pnlPlayer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 420, 140));
 
+        lblAvatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatars/cactus.jpg"))); // NOI18N
+
         lblPlayer3.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         lblPlayer3.setText("Player x");
 
@@ -308,15 +324,16 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
 
         jPanel1.add(pnlPlayer4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 540, 420, 140));
 
-        pnlLeftTiles.setLayout(new java.awt.GridLayout(1, 0));
-        jPanel1.add(pnlLeftTiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 290, 500));
+        pnlFichas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlFichas.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel1.add(pnlFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 290, 500));
 
         tableroPanel.setBackground(new java.awt.Color(0, 153, 51));
         tableroPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableroPanel.setLayout(null);
+        tableroPanel.setLayout(new java.awt.GridLayout(1, 0));
         jPanel1.add(tableroPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 720, 380));
 
-        lblBackground.setText("jLabel2");
+        lblBackground.setText("||");
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,7 +363,7 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
     private javax.swing.JLabel lblPlayer2;
     private javax.swing.JLabel lblPlayer3;
     private javax.swing.JLabel lblPlayer4;
-    private javax.swing.JPanel pnlLeftTiles;
+    private javax.swing.JPanel pnlFichas;
     private javax.swing.JPanel pnlPlayer1;
     private javax.swing.JPanel pnlPlayer2;
     private javax.swing.JPanel pnlPlayer3;
@@ -411,5 +428,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
                 pnlPlayer4.setVisible(false);
             }
         }
+
     }
 }

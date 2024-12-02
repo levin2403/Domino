@@ -40,6 +40,7 @@ public class MusicModelSingleton {
                     throw new IOException("File not found: " + filePath);
                 }
                 player = new AdvancedPlayer(inputStream);
+                    
                 player.play();
             } catch (JavaLayerException e) {
                 System.err.println("JavaLayer error: " + e.getMessage());
