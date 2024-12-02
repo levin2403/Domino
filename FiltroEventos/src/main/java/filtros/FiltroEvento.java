@@ -6,6 +6,7 @@ package filtros;
 import Eventos.EventoBuscarPartida;
 import Eventos.EventoEstablecerConfiguracion;
 import Eventos.EventoIniciarPartida;
+import Eventos.EventoObtenerFichaPozo;
 import Eventos.EventoRealizarJugada;
 import Eventos.EventoRegistrarJugador;
 import com.google.gson.Gson;
@@ -20,6 +21,7 @@ import interfaz.IPipe;
  */
 public class FiltroEvento<T> extends FilterDomino<T> {
 //Alguien puso algo que no se debia he y ese alguien tiene apariencia de cholo
+
     private IPipe pipaSiguiente;
 
     @Override
@@ -53,6 +55,8 @@ public class FiltroEvento<T> extends FilterDomino<T> {
                 return (T) gson.fromJson(mensaje, EventoRegistrarJugador.class);
             case "eventoIniciarPartida":
                 return (T) gson.fromJson(mensaje, EventoIniciarPartida.class);
+            case "eventoObtenerFichaPozo":
+                return (T) gson.fromJson(mensaje, EventoObtenerFichaPozo.class);
 
             // Puedes agregar más casos si tienes más tipos de eventos
             default:
