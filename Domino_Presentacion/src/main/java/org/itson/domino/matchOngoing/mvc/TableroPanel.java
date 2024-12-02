@@ -17,6 +17,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ *
+ * @author diego
+ */
 public class TableroPanel extends JPanel {
 
     private List<FichaDTO> fichasIzquierda = new ArrayList<>();

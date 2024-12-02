@@ -1,6 +1,11 @@
 package org.itson.domino.lobby.mvc;
 
+import DTOs.Acciones;
+import static DTOs.Acciones.CERRARVENTANA;
+import DTOs.JugadorDTO;
+import Eventos.EventoRegistrarJugador;
 import Observer.Vista.ObserverFrmLobbyView;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import org.itson.domino.constants.IconPaths;
@@ -10,33 +15,37 @@ import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobbyView{
+public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobbyView {
 
     private FrmLobbyModel model;
-    
+
     public FrmLobbyView(FrmLobbyModel model) {
         //establecemos el modelo dentro de la clase
         this.model = model;
-        
+
         //ESTABLECER LIBRERÍA DE GUI'S
         LookAndFeelSingleton.getInstance();
-        
+
         //INICIO DE COMPONENTES
         initComponents();
-        
+
         //APLICACIÓN DE ESTILOS
         applyCustomFonts();
         applyButtonStyles();
         applyIconsAndBackground();
-        
+
         //UBICACIÓN DE LA VENTANA
         setLocationRelativeTo(null);
-        
+
         //FUNCIONES DE LOS BOTONES DE LA BARRA DE TAREAS
         TaskbarButtonSingleton taskbarButtonSIngleton = TaskbarButtonSingleton.getInstance();
         taskbarButtonSIngleton.addCloseButton(btnClose, this);
         taskbarButtonSIngleton.addMinimizeButton(btnMinimize, this);
+        lblJugaadores.setEditable(false);  // Hacer que no sea editable
+        lblJugaadores.setOpaque(false);    // Hacerlo transparente
+        lblJugaadores.setBackground(new Color(0, 0, 0, 0));
     }
+
     /**
      * Creates new form FrmBienvenida
      */
@@ -49,15 +58,15 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
         style.applyButtonStyle(btnClose);
         style.applyButtonStyle(btnMinimize);
     }
-    
+
     public void addNextFormButtonListener(ActionListener listener) {
         btnNextForm.addActionListener(listener);
     }
-    
-    public void addPrevFormButtonListener(ActionListener listener){
+
+    public void addPrevFormButtonListener(ActionListener listener) {
         btnPrevForm.addActionListener(listener);
     }
-    
+
     private void applyIconsAndBackground() {
         try {
             // Aplicar íconos
@@ -82,6 +91,7 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
             component.setFont(fontSingleton.getFont(fontName, size));
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +102,10 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lblJugaadores = new javax.swing.JTextArea();
         lblDomino = new javax.swing.JLabel();
+        lblJugadores = new javax.swing.JLabel();
         lblPlayerName = new javax.swing.JLabel();
         btnNextForm = new javax.swing.JButton();
         btnPrevForm = new javax.swing.JButton();
@@ -106,13 +119,28 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblJugaadores.setEditable(false);
+        lblJugaadores.setColumns(20);
+        lblJugaadores.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblJugaadores.setRows(5);
+        lblJugaadores.setText("dw\ndad\nadad\nad");
+        lblJugaadores.setFocusable(false);
+        jScrollPane1.setViewportView(lblJugaadores);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, -1, -1));
+
         lblDomino.setFont(new java.awt.Font("Roboto", 0, 80)); // NOI18N
         lblDomino.setText("Esperando al resto de jugadores");
         jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
 
+        lblJugadores.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblJugadores.setForeground(new java.awt.Color(255, 255, 255));
+        lblJugadores.setText("1/2");
+        jPanel1.add(lblJugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 230, 120));
+
         lblPlayerName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         lblPlayerName.setText("Disfruta la música que escuchas en esta sala de espera");
-        jPanel1.add(lblPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, -1, -1));
+        jPanel1.add(lblPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
 
         btnNextForm.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         btnNextForm.setText("Comenzar la partida");
@@ -137,6 +165,8 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
             }
         });
         jPanel1.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
+
+        lblBackground.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel1.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,8 +194,6 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
     /**
      * @param args the command line arguments
      */
-    
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
@@ -173,13 +201,35 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
     private javax.swing.JButton btnNextForm;
     private javax.swing.JButton btnPrevForm;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
+    private javax.swing.JTextArea lblJugaadores;
+    private javax.swing.JLabel lblJugadores;
     private javax.swing.JLabel lblPlayerName;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void actualizarVista(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (object instanceof Acciones) {
+            if (object instanceof Acciones) {
+                Acciones accion = (Acciones) object;
+
+                if (accion == accion.CERRARVENTANA) {
+                    this.dispose();
+                }
+            }
+        }
+        if (object instanceof EventoRegistrarJugador r) {
+            lblJugadores.setText(r.getJugadores().size() + "/" + r.getC().getNumJugadores());
+            lblJugaadores.setText("");
+            model.setJugadores(r.getJugadores());
+            for (JugadorDTO jugadore : r.getJugadores()) {
+                if (jugadore != null) {
+                    lblJugaadores.append(jugadore.getNickName() + "\n");
+                }
+
+            }
+        }
     }
 }
