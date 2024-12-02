@@ -85,7 +85,6 @@ public class LogicaLobby implements ObserverSocket {
         cliente.registrarObserver(EventoRegistrarJugador.class, this);
         cliente.registrarObserver(EventoIniciarPartida.class, this);
     }
-    
     public void iniciarPartida(List<JugadorDTO> jugadores){
         ManejadorTurnosBO m = new ManejadorTurnosBO();
         for (JugadorDTO jugadore : jugadores) {
@@ -95,7 +94,6 @@ public class LogicaLobby implements ObserverSocket {
         m.determinarTurnos();
         enviarPartida();
     }
-    
     public void enviarPartida(){
         ManejadorTurnosBO m = new ManejadorTurnosBO();
         ManejadorTurnosDTO mt = m.getManejadorDTO();
@@ -114,11 +112,9 @@ public class LogicaLobby implements ObserverSocket {
         pipa.enviar(e);
         Cliente c = Cliente.getInstance();
         c.enviarJSON((String) filtroJson.getMensaje());
-        System.out.println("enviando a server");
     }
     public void avisar(Object objecto) {
       
-        System.out.println(observerLobbyModel);
         observerLobbyModel.actualizar(objecto);
 
     }
@@ -131,12 +127,17 @@ public class LogicaLobby implements ObserverSocket {
             avisar(e);
             ManejadorTurnosBO m = new ManejadorTurnosBO();
             m.cambiarManejadorTurnos(e.getManejador());
-            ManejadorTurnosDTO mt = m.getManejadorDTO();
+             m.inicialFicha();
+            m.pasarTurno();
+          
             avisar(CERRARVENTANA);
             LogicaRealizarJugada l = new LogicaRealizarJugada();
             l.mostrarPantalla();
+            l.avisar(jugador);
             l.avisar(e);
+            l.avisar(m.getManejadorDTO());
         }
         
     }
+    
 }

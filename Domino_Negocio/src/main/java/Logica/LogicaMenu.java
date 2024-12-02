@@ -112,7 +112,6 @@ public class LogicaMenu implements ObserverSocket {
 
     @Override
     public void update(Object evento) {
-        System.out.println("observer me aviso");
         if (evento instanceof EventoBuscarPartida) {
             EventoBuscarPartida e = (EventoBuscarPartida) evento;
             if (((EventoBuscarPartida) evento).isRespuesta()) {

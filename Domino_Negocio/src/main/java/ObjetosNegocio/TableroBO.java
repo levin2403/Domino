@@ -18,8 +18,8 @@ import singleton.PartidaST;
  * @author skevi
  */
 public class TableroBO {
-     
-  //adio a lo otro
+   
+  
 
     //Convertidor de ficha
     FichaCVR fichaCVR;
