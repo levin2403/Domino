@@ -16,6 +16,16 @@ public class ManejadorTurnosDTO {
     private List<JugadorDTO> jugadores; // Lista de los jugadores de la partida
     private JugadorDTO jugadorEnTurno; // Jugador que se encuentra en turno
     private PozoDTO pozo;
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
     public List<JugadorDTO> getJugadores() {
         return jugadores;
     }

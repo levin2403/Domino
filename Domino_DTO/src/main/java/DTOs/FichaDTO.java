@@ -18,11 +18,20 @@ public class FichaDTO implements Serializable {
     private DireccionDTO direccionLado; // Locacion de la segunda parte
     private DireccionDTO direccionPosicion; // Direccion de la ficha(Orientacion)
     private String icon;
+    private int conectado;
 
     /**
      * Construcor por defecto
      */
     public FichaDTO() {
+    }
+    
+    public int getConectado() {
+        return conectado;
+    }
+
+    public void setConectado(int conectado) {
+        this.conectado = conectado;
     }
 
     /**
@@ -107,6 +116,32 @@ public class FichaDTO implements Serializable {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+    
+     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.valorSuperior;
+        hash = 37 * hash + this.valorInferior;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FichaDTO other = (FichaDTO) obj;
+        if (this.valorSuperior != other.valorSuperior) {
+            return false;
+        }
+        return this.valorInferior == other.valorInferior;
     }
 
     @Override

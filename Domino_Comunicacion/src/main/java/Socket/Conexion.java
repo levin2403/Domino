@@ -83,7 +83,8 @@ public class Conexion extends Thread {
             notificarObserver(mensajeProcesado);
         }
 
-        return null;
+        return null;// Devuelve null si no se puede deserializar correctamente
+    
     }
 
     /**

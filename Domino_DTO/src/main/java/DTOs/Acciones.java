@@ -19,6 +19,7 @@ public enum Acciones implements Serializable {
     CREARPARTIDA,
     DENEGADO,
     JUGADORCREADO,
-    INICIARPARTIDA;
+    INICIARPARTIDA,
+    POZOVACIO;
     //fueron agregadas otras cosas que se ocuparan
 }

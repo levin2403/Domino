@@ -95,7 +95,7 @@ public class Cliente {
      */
     public void enviarJSON(String json) {
         if (cone != null) {
-           
+           cone.enviarJSON(json);  // Utiliza el método enviarJSON de Conexion
         } else {
             System.out.println("Conexión no establecida.");
         }
