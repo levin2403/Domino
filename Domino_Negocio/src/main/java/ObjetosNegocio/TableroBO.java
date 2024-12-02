@@ -18,18 +18,13 @@ import singleton.PartidaST;
  * @author skevi
  */
 public class TableroBO {
-    
-    //Instancia del singletone de partida
-    private PartidaST partidaST;
-    
-    //Instancia de partida
-    private Partida partida;
+     
+  //adio a lo otro
 
     //Convertidor de ficha
     FichaCVR fichaCVR;
     
     public TableroBO() {
-        this.partida = partidaST.getInstance();
         this.fichaCVR = new FichaCVR();
     }
     

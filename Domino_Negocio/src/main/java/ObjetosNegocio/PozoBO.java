@@ -21,17 +21,13 @@ import singleton.PartidaST;
  */
 public class PozoBO {
     
-    //instancia del singletone de partida
-    private PartidaST partidaST;
+    //instancia del singletone de partida adioss
     
-    //instancia de partida
-    private Partida partida;
     
     //convertidor de ficha
     FichaCVR fichaCVR;
 
     public PozoBO() {
-        this.partida = partidaST.getInstance();
         this.fichaCVR = new FichaCVR();
     }
     
@@ -45,7 +41,7 @@ public class PozoBO {
      */
     public List<FichaDTO> obtenerFichas(byte numero) {
          Partida partida = PartidaST.getInstance();
-        List<Ficha> fichas = partida.getPozo().obtenerFichas(numero);
+        List<Ficha> fichas = partida.getManejadorTurnos().getPozo().obtenerFichas(numero);
         List<FichaDTO> fichasDTO = new ArrayList<>();
         
         for (int i = 0; i < fichas.size(); i++) {
@@ -63,7 +59,7 @@ public class PozoBO {
      */
     public FichaDTO obtenerFicha() {
          Partida partida = PartidaST.getInstance();
-        FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getPozo().
+        FichaDTO ficha = fichaCVR.fichaConvertirEntidadADTO(partida.getManejadorTurnos().getPozo().
                 obtenerFicha());
         
         return ficha;
@@ -76,7 +72,7 @@ public class PozoBO {
      */
     public int fichasDisponibles(){
          Partida partida = PartidaST.getInstance();
-        return partida.getPozo().fichasDisponibles();
+        return partida.getManejadorTurnos().getPozo().fichasDisponibles();
     }
     
 }

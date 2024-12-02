@@ -16,14 +16,10 @@ import singleton.PartidaST;
  */
 public class ConfiguracionBO {
     
-    //instancia del singletone de partida
-    private PartidaST partidaST;
-    
-    //instancia de partida
-    private Partida partida;
+   //siempreno
 
     public ConfiguracionBO() {
-        this.partida = partidaST.getInstance();
+        
     }
     
     /**
@@ -31,6 +27,7 @@ public class ConfiguracionBO {
      * @return 
      */
     public byte getNumJugadores(){
+         Partida partida = PartidaST.getInstance();
         return partida.getConfiguracion().getNumJugadores();
     }
     
@@ -39,6 +36,7 @@ public class ConfiguracionBO {
      * @return Numero de de fichas por jugador.
      */
     public byte getFichasPorJugador(){
+         Partida partida = PartidaST.getInstance();
         return partida.getConfiguracion().getFichasPorJugador();
     }
     
@@ -48,6 +46,7 @@ public class ConfiguracionBO {
      * @param numJugadores Numero de jugadores.
      */
     public void setNumJugadores(byte numJugadores) {
+         Partida partida = PartidaST.getInstance();
         partida.getConfiguracion().setNumJugadores(numJugadores);
     }
 
@@ -57,6 +56,7 @@ public class ConfiguracionBO {
      * @param FichasPorJugador Fichas por jugador.
      */
     public void setFichasPorJugador(byte FichasPorJugador) {
+         Partida partida = PartidaST.getInstance();
         partida.getConfiguracion().setFichasPorJugador(FichasPorJugador);
     }
 }
