@@ -119,23 +119,15 @@ public class PipeLines {
     public <T> IPipe<T> crearPipeLineTerminar() {
         IPipe<T> pipa = new PipeBasico<>();
         IPipe<T> pipa2 = new PipeBasico<>();
-        IPipe<T> pipa3 = new PipeBasico<>();
-        IPipe<T> pipa4 = new PipeBasico<>();
         
         // Filtros para el pipeline de terminar
         FiltroTerminarPartida filtroTerminar = new FiltroTerminarPartida();
-        FiltroVotacion filtroVotacion = new FiltroVotacion();
-        FiltroSalirPartida filtroSalirPartida = new FiltroSalirPartida();
         FiltroJson filtroJson = new FiltroJson();
 
         // Configuración de los filtros y pipes
-        pipa.setFiltro(filtroSalirPartida);
-        filtroSalirPartida.setPipe(pipa2);
-        pipa2.setFiltro(filtroVotacion);
-        filtroVotacion.setPipe(pipa3);
-        pipa3.setFiltro(filtroTerminar);
-        filtroTerminar.setPipe(pipa4);
-        pipa4.setFiltro(filtroJson);
+        pipa.setFiltro(filtroTerminar);
+        filtroTerminar.setPipe(pipa2);
+        pipa2.setFiltro(filtroJson);
 
         return pipa;
     }
