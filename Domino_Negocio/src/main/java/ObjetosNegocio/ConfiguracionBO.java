@@ -15,9 +15,6 @@ import singleton.PartidaST;
  * @author skevi
  */
 public class ConfiguracionBO {
-    
-   
-
     public ConfiguracionBO() {
         
     }

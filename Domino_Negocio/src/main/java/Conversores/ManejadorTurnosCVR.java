@@ -18,8 +18,10 @@ import java.util.List;
 public class ManejadorTurnosCVR {
     
     JugadorCVR jugadorCVR; //Convertidor de jugador
+    PozoCVR pozo ;
 
     public ManejadorTurnosCVR() {
+        this.pozo=new PozoCVR();
         this.jugadorCVR = new JugadorCVR();
     }
     
@@ -35,7 +37,8 @@ public class ManejadorTurnosCVR {
         for (JugadorDTO jugadore : mtDTO.getJugadores()) {
             jugadores.add(jugadorCVR.jugadorConvertirDTOAEntidad(jugadore));
         }
-        
+        mt.setPozo(pozo.toEntity(mtDTO.getPozo()));
+        mt.setContador(mtDTO.getContador());
         mt.setJugadores(jugadores);
         mt.setJugadorEnTurno(jugadorCVR.jugadorConvertirDTOAEntidad(mtDTO.getJugadorEnTurno()));
         
@@ -56,7 +59,8 @@ public class ManejadorTurnosCVR {
         for (Jugador jugador : mt.getJugadores()) {
             jugadoresDTO.add(jugadorCVR.jugadorConvertirEntidadADTO(jugador));
         }
-
+        mtDTO.setContador(mt.getContador());
+        mtDTO.setPozo(pozo.toDTO(mt.getPozo()));
         // Establecemos la lista de JugadorDTO en el ManejadorTurnosDTO
         mtDTO.setJugadores(jugadoresDTO);
 

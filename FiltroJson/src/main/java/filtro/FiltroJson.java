@@ -4,6 +4,7 @@
 
 package filtro;
 
+import Socket.Cliente;
 import com.google.gson.Gson;
 import filter.FilterDomino;
 import interfaz.IPipe;
@@ -22,6 +23,9 @@ public class FiltroJson<T> extends FilterDomino<T>{
        this.mensajeProcesado = (T) gson.toJson(mensaje);
         if (pipaSiguiente != null) {
             pipaSiguiente.enviar(mensajeProcesado); // Envía el JSON al siguiente pipe si existe
+        }else{
+              Cliente cliente = Cliente.getInstance();
+              cliente.enviarJSON((String) this.mensajeProcesado);
         }
        
     }

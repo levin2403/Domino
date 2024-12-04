@@ -50,7 +50,6 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
 
     }
     ObserverEstablecerConfiguracion observerConfigModel;
-    // Observer para actualizar la configuración cuando reciba eventos
     ObserverEstablecerConfiguracion observerConfig = new ObserverEstablecerConfiguracion() {
 
         @Override
@@ -59,9 +58,9 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
                 Acciones accion = (Acciones) objecto;
 
                 if (accion == accion.MENU) {
-                    avisar(CERRARVENTANA);// Cierra la ventana actual
+                    avisar(CERRARVENTANA);
                     LogicaMenu m = LogicaMenu.getInstance();
-                    m.mostrarPantalla(); // Muestra el menú
+                    m.mostrarPantalla();
                 }
 
             } else if (objecto instanceof ConfiguracionDTO) {
@@ -86,24 +85,34 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
     }
 
     public void crearPartida(ConfiguracionDTO c) {
-        IPipe<EventoEstablecerConfiguracion> pipa = new PipeBasico();
-        IPipe<EventoEstablecerConfiguracion> pipa2 = new PipeBasico();
 
-        FiltroConfiguracion filtroConfiguracion = new FiltroConfiguracion();
-        FiltroJson filtroJson = new FiltroJson();
-        pipa.setFiltro(filtroConfiguracion);
-        filtroConfiguracion.setPipe(pipa2);
-        pipa2.setFiltro(filtroJson);
         EventoEstablecerConfiguracion e = new EventoEstablecerConfiguracion();
         e.setConfiguracion(c);
-        pipa.enviar(e);
-
-        Cliente cliente = Cliente.getInstance();
-        System.out.println(filtroJson.getMensaje() + "mensaje");
-        cliente.enviarJSON((String) filtroJson.getMensaje());
+        
+        PipeLines p = PipeLines.getInstance();
+        p.crearYGuardarPipelinePartida(EventoEstablecerConfiguracion.class);
+        p.enviarDatoPipeLinePartida(e);
     }
 
-
+    /**
+     * Establecemos la configuracion al singletone para su uso en otras clases.
+     */
+//    public void establecerConfiguracionInicial(){
+//        int numfichas = settingsModel.getNumberOfTiles(); // numero de fichas
+//        int numJugadores = settingsModel.getNumberOfPlayers(); //numero de jugadores
+//        
+//        //instanciamos una nueva configuracion con los datos del modelo
+//        ConfiguracionDTO configuracion = 
+//                new ConfiguracionDTO(numfichas, numJugadores);
+//        
+//        //establecemos la nueva configuracion a la instancia global 
+//        configuracion.setFichasARepartir(numfichas);
+//        configuracion.setNumJugadores(numJugadores);
+//        
+//        //pasamos la configuracion a su primera pipe
+//        //para que se vaya al servidor.
+//        
+//    }
     public void avisar(Object objecto) {
 
         observerConfigModel.actualizarConfiguracion(objecto);
@@ -122,21 +131,18 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
     //Aqui estara el observer 
     @Override
     public void update(Object evento) {
-        
+//        
         if (evento instanceof EventoEstablecerConfiguracion) {
-            System.out.println("qp estoy");
             EventoEstablecerConfiguracion r = (EventoEstablecerConfiguracion) evento;
 
             avisar(CERRARVENTANA);
             ConfiguracionBO c = new ConfiguracionBO();
-            System.out.println("abriendo");
             c.setFichasPorJugador((byte) r.getConfiguracion().getFichasARepartir());
             c.setNumJugadores((byte) r.getConfiguracion().getNumJugadores());
-            
+
             LogicaRegistrarJugador l = LogicaRegistrarJugador.getInstance();
-            System.out.println("abrir pantalla");
             l.mostrarPantalla();
-            
+
         }
     }
 

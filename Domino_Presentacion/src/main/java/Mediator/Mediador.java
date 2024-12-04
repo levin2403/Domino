@@ -97,6 +97,7 @@ public class Mediador {
         model.setObserverView(view);
         model.setObserver(o);
         FrmLobbyController controller = new FrmLobbyController(model ,view);
+        System.out.println("Aqui estoooooyyyyyyy");
         controller.mostrarPantalla();
         return model.getObservable();
     }

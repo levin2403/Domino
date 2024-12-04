@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class PozoCVR {
        
-    private FichaCVR fichaCVR; // Instanciamos el conversor de Ficha
+   private FichaCVR fichaCVR; // Instanciamos el conversor de Ficha
 
     public PozoCVR() {
         fichaCVR = new FichaCVR(); // Inicializamos el conversor de Ficha
