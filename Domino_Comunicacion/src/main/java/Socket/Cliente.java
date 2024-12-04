@@ -17,53 +17,55 @@ import java.net.Socket;
  *
  * @author Ruzzky
  */
-public class Cliente {
+public class Cliente {  
+    // Clase singleton que gestiona la conexión del cliente con el servidor
 
-    private volatile static Cliente instance;
-    private Conexion cone;
+    private volatile static Cliente instance; // Instancia única de Cliente
+    private Conexion cone; // Objeto para gestionar la conexión
 
-    private Cliente() {
+    private Cliente() {  
+        // Constructor privado para evitar instanciación externa
     }
 
-    public static synchronized Cliente getInstance() {
-
+    public static synchronized Cliente getInstance() {  
+        // Devuelve la instancia única de Cliente, creando una nueva si no existe
         if (instance == null) {
             Socket socket;
             try {
-                socket = new Socket("localhost", 1234);
-                instance = new Cliente(socket);
+                socket = new Socket("localhost", 1234); // Conecta al servidor en localhost y puerto 1234
+                instance = new Cliente(socket); // Crea una nueva instancia de Cliente
             } catch (IOException ex) {
-
-                return null;
+                return null; // Devuelve null si ocurre un error al conectar
             }
-
         }
         return instance;
     }
 
-    public Cliente(Socket socket) {
-
+    public Cliente(Socket socket) {  
+        // Constructor que inicializa la conexión y la arranca
         cone = new Conexion(socket);
         cone.start();
     }
 
-    public Conexion getCone() {
-        return cone;
+    public Conexion getCone() {  
+        return cone; // Obtiene la conexión actual
     }
 
-    public void registrarObserver(Class<?> tipoEvento, ObserverSocket observer) {
+    public void registrarObserver(Class<?> tipoEvento, ObserverSocket observer) {  
+        // Registra un observer para eventos específicos en la conexión
         cone.registrarObserver(tipoEvento, observer);
     }
 
-    public void setCone(Conexion cone) {
-        this.cone = cone;
+    public void setCone(Conexion cone) {  
+        this.cone = cone; // Establece una nueva conexión
     }
 
-    public void enviarJSON(String json) {
+    public void enviarJSON(String json) {  
+        // Envía un mensaje JSON al servidor a través de la conexión
         if (cone != null) {
-            cone.enviarJSON(json);  // Utiliza el método enviarJSON de Conexion
+            cone.enviarJSON(json); // Llama al método enviarJSON de Conexion
         } else {
-            System.out.println("Conexión no establecida.");
+            System.out.println("Conexión no establecida."); // Mensaje si no hay conexión
         }
     }
 }

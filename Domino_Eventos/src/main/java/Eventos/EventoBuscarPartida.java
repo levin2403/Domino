@@ -15,51 +15,48 @@ import DTOs.ConfiguracionDTO;
  * 
  * @author skevi
  */
-public class EventoBuscarPartida {
-    /**
-     * Atributo que define la acción específica que se realiza en el 
-     * evento de búsqueda.
-     */
-    public  String TIPO_EVENTO = "eventoBuscarPartida";  
-    private Acciones accion;
-    private boolean respuesta;
-    private String respuestaString;
-    private ConfiguracionDTO configuracion;
-  
-    public EventoBuscarPartida() {
+public class EventoBuscarPartida {  
+    // Clase que representa un evento para buscar una partida en el juego
+
+    public String TIPO_EVENTO = "eventoBuscarPartida";  // Tipo de evento que se está manejando
+    private Acciones accion;  // Acción relacionada con el evento
+    private boolean respuesta;  // Resultado de la búsqueda (éxito o fallo)
+    private String respuestaString;  // Respuesta en formato de texto sobre el estado de la búsqueda
+    private ConfiguracionDTO configuracion;  // Configuración asociada a la partida buscada
+
+    public EventoBuscarPartida() {  
+        // Constructor vacío
     }
 
-    public ConfiguracionDTO getConfiguracion() {
-        return configuracion;
+    public ConfiguracionDTO getConfiguracion() {  
+        return configuracion; // Devuelve la configuración asociada al evento
     }
 
-    public void setConfiguracion(ConfiguracionDTO configuracion) {
-        this.configuracion = configuracion;
+    public void setConfiguracion(ConfiguracionDTO configuracion) {  
+        this.configuracion = configuracion; // Establece la configuración del evento
     }
 
-    public Acciones getAccion() {
-        return accion;
-    }
-    
-    public void setAccion(Acciones accion) {
-        this.accion = accion;
+    public Acciones getAccion() {  
+        return accion; // Devuelve la acción asociada al evento
     }
 
-    public boolean isRespuesta() {
-        return respuesta;
+    public void setAccion(Acciones accion) {  
+        this.accion = accion; // Establece la acción del evento
     }
 
-    public void setRespuesta(boolean respuesta) {
-        this.respuesta = respuesta;
+    public boolean isRespuesta() {  
+        return respuesta; // Devuelve si la búsqueda fue exitosa o no
     }
 
-    public String getRespuestaString() {
-        return respuestaString;
+    public void setRespuesta(boolean respuesta) {  
+        this.respuesta = respuesta; // Establece la respuesta del evento
     }
 
-    public void setRespuestaString(String respuestaString) {
-        this.respuestaString = respuestaString;
+    public String getRespuestaString() {  
+        return respuestaString; // Devuelve la respuesta en formato de texto
     }
-    
-    //es mas sencilla ya cosa oiga, tampoco se complique la vida 
+
+    public void setRespuestaString(String respuestaString) {  
+        this.respuestaString = respuestaString; // Establece la respuesta como texto
+    }
 }

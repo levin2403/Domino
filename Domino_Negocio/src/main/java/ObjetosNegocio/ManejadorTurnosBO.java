@@ -4,8 +4,10 @@
  */
 package ObjetosNegocio;
 
+import Conversores.FichaCVR;
 import Conversores.JugadorCVR;
 import Conversores.ManejadorTurnosCVR;
+import DTOs.FichaDTO;
 import DTOs.JugadorDTO;
 import DTOs.ManejadorTurnosDTO;
 import Entidades.Jugador;
@@ -27,10 +29,13 @@ public class ManejadorTurnosBO {
     //convertidor para jugador.
     private JugadorCVR jugadorCVR;
     
+    private FichaCVR fichaCVR;
+    
     /**
      * Contructor de la clase.
      */
     public ManejadorTurnosBO() {
+        this.fichaCVR = new FichaCVR();
         this.jugadorCVR = new JugadorCVR();
     }
     
@@ -68,10 +73,19 @@ public class ManejadorTurnosBO {
      * caso de abandono de la partida.
      * 
      */
+    public int cantidaFichas(){
+        Partida partida = PartidaST.getInstance();
+        return partida.getManejadorTurnos().getPozo().fichasDisponibles();
+    }
     public void asignarFichas(){
+        
         Partida partida = PartidaST.getInstance();
         partida.getManejadorTurnos().asignarFichas(partida.getConfiguracion().getFichasPorJugador());
     }
+    public void eliminarFicha(FichaDTO f){
+        Partida partida = PartidaST.getInstance();       
+        partida.getManejadorTurnos().getPozo().quitarFicha(fichaCVR.fichaConvertirDTOAEntidad(f));
+    }    
     public void eliminarJugador(JugadorDTO jugador) {
         //Convertimos el jugador recibido en el parametro
         Jugador jugadorEntidad = jugadorCVR.
@@ -98,6 +112,48 @@ public class ManejadorTurnosBO {
          Partida partida = PartidaST.getInstance();
          return manejadorCVR.toDTO(partida.getManejadorTurnos());
     }
+    public void inicialFicha(){
+         ManejadorTurnosCVR manejadorCVR = new ManejadorTurnosCVR();
+         Partida partida = PartidaST.getInstance();
+          ManejadorTurnosDTO m= manejadorCVR.toDTO(partida.getManejadorTurnos());
+         JugadorDTO jugador= m.getJugadores().get(0);
+          FichaDTO mulaMasGrande = null;
+
+            for (FichaDTO ficha : jugador.getFichas()) {
+                if (ficha.isMula(ficha)) {
+                    int valorTotal = ficha.getValorSuperior() + ficha.getValorInferior(); // O la lógica que decidas
+                    // Si es la primera mula o es más grande, la asignamos
+                    if (mulaMasGrande == null || valorTotal > (mulaMasGrande.getValorSuperior() + mulaMasGrande.getValorInferior())) {
+                        mulaMasGrande = ficha;
+                    }
+                }
+            }
+          this.quitarFicha(jugador, mulaMasGrande);
+    }
+    public void quitarFicha(JugadorDTO j, FichaDTO f){
+         ManejadorTurnosCVR manejadorCVR = new ManejadorTurnosCVR();
+         Partida partida = PartidaST.getInstance();
+        ManejadorTurnosDTO m= manejadorCVR.toDTO(partida.getManejadorTurnos());
+        for (int i = 0; i < m.getJugadores().size(); i++) {
+            if (m.getJugadores().get(i).equals(j)) {
+                m.getJugadores().get(i).eliminarFicha(f);                
+            }
+        }
+        this.cambiarManejadorTurnos(m);
+    }
+    public void agregarFicha(JugadorDTO j, FichaDTO f){
+         ManejadorTurnosCVR manejadorCVR = new ManejadorTurnosCVR();
+         Partida partida = PartidaST.getInstance();
+        ManejadorTurnosDTO m= manejadorCVR.toDTO(partida.getManejadorTurnos());
+        for (int i = 0; i < m.getJugadores().size(); i++) {
+            if (m.getJugadores().get(i).equals(j)) {
+                System.out.println("fichas"+m.getJugadores().get(i).cantidadFichas());
+                m.getJugadores().get(i).añadirFicha(f);   
+                 System.out.println("fichas"+m.getJugadores().get(i).cantidadFichas());
+            }
+        }
+        this.cambiarManejadorTurnos(m);
+    }
     
     /**
      * Metodo para pasar de turno en caso de que el jugador que se 
@@ -105,7 +161,8 @@ public class ManejadorTurnosBO {
      * 
      */
     public void pasarTurno() {
-        Partida partida = PartidaST.getInstance();
+         Partida partida = PartidaST.getInstance();
+         
         partida.getManejadorTurnos().pasarTurno();
     }
     

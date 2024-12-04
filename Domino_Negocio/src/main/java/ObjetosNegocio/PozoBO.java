@@ -21,7 +21,6 @@ import singleton.PartidaST;
  */
 public class PozoBO {
     
-    //instancia del singletone de partida adioss
     
     
     //convertidor de ficha
@@ -76,3 +75,4 @@ public class PozoBO {
     }
     
 }
+

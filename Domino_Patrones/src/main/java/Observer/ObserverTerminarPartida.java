@@ -9,7 +9,5 @@ package Observer;
  * @author skevi
  */
 public interface ObserverTerminarPartida {
-    
-    public void actualizarTerminarPartida();
-    
+     public void actualizarTerminarPartida(Object objecto);
 }

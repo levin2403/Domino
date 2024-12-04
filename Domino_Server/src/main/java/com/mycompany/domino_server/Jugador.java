@@ -6,6 +6,8 @@ import DTOs.JugadorDTO;
 import Eventos.EventoBuscarPartida;
 import Eventos.EventoEstablecerConfiguracion;
 import Eventos.EventoIniciarPartida;
+import Eventos.EventoObtenerFichaPozo;
+import Eventos.EventoPartidaTerminada;
 import Eventos.EventoRealizarJugada;
 import Eventos.EventoRegistrarJugador;
 import com.google.gson.Gson;
@@ -82,6 +84,10 @@ public class Jugador extends Thread {
                         procesarEventoRegistrarJugador((EventoRegistrarJugador) evento);
                     } else if(evento instanceof EventoIniciarPartida){
                         procesarEventoIniciarPartida((EventoIniciarPartida) evento);
+                    }else if(evento instanceof EventoObtenerFichaPozo){
+                        procesarEventoObtenerFichaPozo((EventoObtenerFichaPozo) evento);
+                    }else if(evento instanceof EventoPartidaTerminada){
+                        procesarEventoTerminarPartida((EventoPartidaTerminada) evento);
                     }
                     else {
                         System.out.println("No se pudo identificar el tipo de evento.");
@@ -136,6 +142,10 @@ public class Jugador extends Thread {
                 return gson.fromJson(mensaje, EventoRegistrarJugador.class);
             case "eventoIniciarPartida":
                 return gson.fromJson(mensaje, EventoIniciarPartida.class);
+            case "eventoObtenerFichaPozo":
+                return gson.fromJson(mensaje, EventoObtenerFichaPozo.class);
+            case "eventoPartidaTerminada":
+                return gson.fromJson(mensaje, EventoPartidaTerminada.class);
             // Puedes agregar más casos si tienes más tipos de eventos
             default:
                 return null;  // Retorna null si no coincide con ningún tipo conocido
@@ -149,8 +159,7 @@ public class Jugador extends Thread {
                 
             } else {
                 evento.setRespuesta(true);
-                evento.setConfiguracion(server.getC());
-                
+                evento.setConfiguracion(server.getC());                
             }
             System.out.println(evento.isRespuesta());
             enviarRespuesta(evento);
@@ -162,16 +171,20 @@ public class Jugador extends Thread {
         ConfiguracionDTO c = evento.getConfiguracion();
         server.setC(c);
         System.out.println("Configuracion :" + c.getNumJugadores() + " Fichas:" + c.getFichasARepartir());
-//        EventoRegistrarJugador r = new EventoRegistrarJugador();
-//        r.setC(c);
-//        r.setHost(true);
         enviarRespuesta(evento);
 
     }
      private void procesarEventoIniciarPartida(EventoIniciarPartida evento) throws IOException {
      server.enviarATodos(evento);
         
+    }
+      private void procesarEventoTerminarPartida(EventoPartidaTerminada evento) throws IOException {
+     server.enviarATodos(evento);
+        
 
+    }
+     private void procesarEventoObtenerFichaPozo(EventoObtenerFichaPozo evento) throws IOException {
+     server.enviarATodos(evento);
     }
     private void procesarEventoRegistrarJugador(EventoRegistrarJugador e) throws IOException {
         if (comprobarCupo()) {

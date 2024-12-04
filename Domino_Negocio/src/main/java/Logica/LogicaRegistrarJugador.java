@@ -29,12 +29,13 @@ import pipe.PipeBasico;
  */
 public class LogicaRegistrarJugador implements ObserverSocket {
 
-    //intancia del manejador de turnos 
+    // Instancia del manejador de turnos
     ManejadorTurnosBO manejadorTurnos;
     JugadorDTO jugador = null;
     IFachada fachada;
     private volatile static LogicaRegistrarJugador instance;
 
+    // Método para obtener la instancia única de LogicaRegistrarJugador (Singleton)
     public static synchronized LogicaRegistrarJugador getInstance() {
         if (instance == null) {
             instance = new LogicaRegistrarJugador();
@@ -43,85 +44,87 @@ public class LogicaRegistrarJugador implements ObserverSocket {
     }
 
     /**
-     * Constructor que inicializa la clase
+     * Constructor que inicializa la clase.
+     * Registra el observer para el evento de registro de jugador.
      */
     public LogicaRegistrarJugador() {
-        this.fachada = Fachada.getFachada();
-        manejadorTurnos = new ManejadorTurnosBO();
-        Cliente cliente = Cliente.getInstance();
-        cliente.registrarObserver(EventoRegistrarJugador.class, this);
+        this.fachada = Fachada.getFachada();  // Inicializa la fachada
+        manejadorTurnos = new ManejadorTurnosBO();  // Inicializa el manejador de turnos
+        Cliente cliente = Cliente.getInstance();  // Obtiene la instancia del cliente
+        cliente.registrarObserver(EventoRegistrarJugador.class, this);  // Registra el observer para registrar jugador
     }
 
+    // Observer para registrar jugadores
     ObserverRegistrarJugador observerRegistrarJugador = new ObserverRegistrarJugador() {
         @Override
         public void actualizarRegistrarJugador(Object objecto) {
+            // Si el objeto es PlayerSettingsModelDTO, registra al jugador
             if (objecto instanceof PlayerSettingsModelDTO) {
 
-                avisar(CERRARVENTANA);
-                registrarJugador((PlayerSettingsModelDTO) objecto);
+                avisar(CERRARVENTANA);  // Cierra la ventana actual
+                registrarJugador((PlayerSettingsModelDTO) objecto);  // Registra al jugador
             }
         }
     };
 
+    // Método para avisar al observer de una actualización
     public void avisar(Object objecto) {
-        observerRegistrarModel.actualizarRegistrarJugador(objecto);
-
+        observerRegistrarModel.actualizarRegistrarJugador(objecto);  // Notifica al observer con el objeto proporcionado
     }
 
+    // Getter para obtener el observer de registrar jugador
     public ObserverRegistrarJugador getObserverRegistrarJugador() {
         return observerRegistrarJugador;
     }
+
     ObserverRegistrarJugador observerRegistrarModel;
 
+    // Getter para obtener el modelo de observer de registro de jugador
     public ObserverRegistrarJugador getObserverRegistrarModel() {
         return observerRegistrarModel;
     }
 
+    // Método para mostrar la pantalla de configuración del jugador
     public void mostrarPantalla() {
-        System.out.println("mOSTRAR PANTALLA");
-        this.observerRegistrarModel = fachada.showFrmPlayerSettings(observerRegistrarJugador);
+        this.observerRegistrarModel = fachada.showFrmPlayerSettings(observerRegistrarJugador);  // Muestra la pantalla de configuración
     }
 
+    // Setter para establecer el observer de registro de jugador
     public void setObserverRegistrarModel(ObserverRegistrarJugador observerRegistrarModel) {
         this.observerRegistrarModel = observerRegistrarModel;
     }
 
+    // Método para registrar a un jugador
     public void registrarJugador(PlayerSettingsModelDTO p) {
-        EventoRegistrarJugador e = new EventoRegistrarJugador();
-        jugador = new JugadorDTO(p.getPlayerName(), new AvatarDTO(p.getImagen()));
-        e.setPlayer(p);
-        e.setHost(false);
-        IPipe<EventoRegistrarJugador> pipa = new PipeBasico();
-        IPipe<EventoRegistrarJugador> pipa2 = new PipeBasico();
-
-        FiltroRegistrarJugador filtroRegistrarJugador = new FiltroRegistrarJugador();
-        FiltroJson filtroJson = new FiltroJson();
-        pipa.setFiltro(filtroRegistrarJugador);
-        filtroRegistrarJugador.setPipe(pipa2);
-        pipa2.setFiltro(filtroJson);
-
-        pipa.enviar(e);
-        Cliente c = Cliente.getInstance();
-        c.enviarJSON((String) filtroJson.getMensaje());
+        EventoRegistrarJugador e = new EventoRegistrarJugador();  // Crea el evento de registrar jugador
+        jugador = new JugadorDTO(p.getPlayerName(), new AvatarDTO(p.getImagen()));  // Crea el jugador con nombre y avatar
+        e.setPlayer(p);  // Establece el player en el evento
+        e.setHost(false);  // Marca que el jugador no es el host
+        
+        PipeLines pipe = PipeLines.getInstance();  // Obtiene la instancia de PipeLines
+        pipe.crearYGuardarPipelinePartida(EventoRegistrarJugador.class);  // Crea y guarda el pipeline para registrar jugador
+        pipe.enviarDatoPipeLinePartida(e);  // Envía el evento de registrar jugador al pipeline
     }
 
+    // Método que maneja los eventos de actualización
     @Override
     public void update(Object evento) {
+        // Si el evento es de registrar jugador
         if (evento instanceof EventoRegistrarJugador) {
 
             EventoRegistrarJugador r = (EventoRegistrarJugador) evento;
             if (!r.isHost()) {
+                // Si no es el host, verifica si el jugador es el mismo que el actual
+                System.out.println(r.getPlayer().getPlayerName() + "qpss");
                 if (r.getJugador().equals(jugador)) {
-                    System.out.println("sono el mismo");
-                    avisar(CERRARVENTANA);
-                    LogicaLobby l = LogicaLobby.getInstance();
-                    l.setJugador(jugador);
-                    l.mostrarPantalla();
-                    l.avisar(evento);
+                    avisar(CERRARVENTANA);  // Cierra la ventana
+                    LogicaLobby l = LogicaLobby.getInstance();  // Obtiene la instancia de LogicaLobby
+                    l.setJugador(jugador);  // Establece el jugador en el lobby
+                    l.mostrarPantalla();  // Muestra la pantalla del lobby
+                    l.avisar(evento);  // Envía el evento al lobby
                 }
-
             }
         }
     }
-
 }
+

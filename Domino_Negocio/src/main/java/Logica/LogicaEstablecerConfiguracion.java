@@ -50,6 +50,7 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
 
     }
     ObserverEstablecerConfiguracion observerConfigModel;
+    // Observer para actualizar la configuración cuando reciba eventos
     ObserverEstablecerConfiguracion observerConfig = new ObserverEstablecerConfiguracion() {
 
         @Override
@@ -58,9 +59,9 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
                 Acciones accion = (Acciones) objecto;
 
                 if (accion == accion.MENU) {
-                    avisar(CERRARVENTANA);
+                    avisar(CERRARVENTANA);// Cierra la ventana actual
                     LogicaMenu m = LogicaMenu.getInstance();
-                    m.mostrarPantalla();
+                    m.mostrarPantalla(); // Muestra el menú
                 }
 
             } else if (objecto instanceof ConfiguracionDTO) {

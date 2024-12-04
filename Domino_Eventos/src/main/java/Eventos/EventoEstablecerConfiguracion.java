@@ -10,17 +10,17 @@ import DTOs.ConfiguracionDTO;
  *
  * @author skevi
  */
-public class EventoEstablecerConfiguracion {
-    
-    public String TIPO_EVENTO = "eventoEstablecerConfiguracion"; 
-     public ConfiguracionDTO confi;
-    
+public class EventoEstablecerConfiguracion {  
+    // Clase que representa un evento para establecer la configuración de una partida
 
-    public ConfiguracionDTO getConfiguracion() {
-        return confi;
+    public String TIPO_EVENTO = "eventoEstablecerConfiguracion";  // Tipo de evento que se está manejando
+    public ConfiguracionDTO confi;  // Configuración que se va a establecer
+
+    public ConfiguracionDTO getConfiguracion() {  
+        return confi; // Devuelve la configuración asociada al evento
     }
 
-    public void setConfiguracion(ConfiguracionDTO confi) {
-        this.confi = confi;
+    public void setConfiguracion(ConfiguracionDTO confi) {  
+        this.confi = confi; // Establece la configuración del evento
     }
 }

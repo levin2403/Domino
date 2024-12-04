@@ -11,5 +11,6 @@ import java.io.Serializable;
  * @author Dell
  */
 public enum DireccionDTO implements Serializable {
+    //son las direcciones 
     ARRIBA, ABAJO, DERECHA, IZQUIERDA;
 }
