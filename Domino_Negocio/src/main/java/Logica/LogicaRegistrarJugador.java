@@ -9,19 +9,12 @@ import DTOs.AvatarDTO;
 import DTOs.JugadorDTO;
 import DTOs.PlayerSettingsModelDTO;
 import Eventos.EventoRegistrarJugador;
-import Mediator.Mediador;
 import ObjetosNegocio.ManejadorTurnosBO;
-import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import Observer.ObserverRegistrarJugador;
 import Observer.ObserverSocket;
 import Socket.Cliente;
 import fachada.Fachada;
 import fachadas.IFachada;
-import filtro.FiltroJson;
-import filtro.FiltroRegistrarJugador;
-import interfaz.IPipe;
-import javax.swing.JFrame;
-import pipe.PipeBasico;
 
 /**
  * 

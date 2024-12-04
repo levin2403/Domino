@@ -103,25 +103,7 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
         cliente.enviarJSON((String) filtroJson.getMensaje());
     }
 
-    /**
-     * Establecemos la configuracion al singletone para su uso en otras clases.
-     */
-//    public void establecerConfiguracionInicial(){
-//        int numfichas = settingsModel.getNumberOfTiles(); // numero de fichas
-//        int numJugadores = settingsModel.getNumberOfPlayers(); //numero de jugadores
-//        
-//        //instanciamos una nueva configuracion con los datos del modelo
-//        ConfiguracionDTO configuracion = 
-//                new ConfiguracionDTO(numfichas, numJugadores);
-//        
-//        //establecemos la nueva configuracion a la instancia global 
-//        configuracion.setFichasARepartir(numfichas);
-//        configuracion.setNumJugadores(numJugadores);
-//        
-//        //pasamos la configuracion a su primera pipe
-//        //para que se vaya al servidor.
-//        
-//    }
+
     public void avisar(Object objecto) {
 
         observerConfigModel.actualizarConfiguracion(objecto);
@@ -140,7 +122,7 @@ public class LogicaEstablecerConfiguracion implements ObserverSocket {
     //Aqui estara el observer 
     @Override
     public void update(Object evento) {
-//        
+        
         if (evento instanceof EventoEstablecerConfiguracion) {
             System.out.println("qp estoy");
             EventoEstablecerConfiguracion r = (EventoEstablecerConfiguracion) evento;

@@ -11,7 +11,6 @@ import DTOs.FichaDTO;
 import DTOs.JugadaDTO;
 import DTOs.JugadorDTO;
 import DTOs.PlayerSettingsModelDTO;
-import Eventos.EventoEstablecerConfiguracion;
 import Eventos.EventoObtenerFichaPozo;
 import Eventos.EventoPartidaTerminada;
 import Eventos.EventoRealizarJugada;
