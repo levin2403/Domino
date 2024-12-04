@@ -19,9 +19,9 @@ import static Entidades.Direccion.IZQUIERDA;
 public class DireccionCVR {  
     // Clase que maneja la conversión entre objetos DireccionDTO y Direccion
 
-    public DireccionCVR() {  
+  public DireccionCVR() {
     }
-
+    
     /**
      * Convierte un objeto DireccionDTO a un objeto Direccion.
      *
@@ -29,28 +29,31 @@ public class DireccionCVR {
      * @return el objeto Direccion correspondiente, o null si direccionDTO es
      * null
      */
-    public Direccion direccionConvertirDTOAEntidad(DireccionDTO direccionDTO) {  
-        if (direccionDTO == null) {  
-            return null; // Si el objeto DireccionDTO es nulo, retorna nulo
-        } else {  
+    public Direccion direccionConvertirDTOAEntidad(DireccionDTO direccionDTO) {
+        if (direccionDTO == null) {
+            return null;
+        } else {
             Direccion direccion = null;
 
-            switch (direccionDTO) {  // Realiza la conversión según el valor de direccionDTO
+            switch (direccionDTO) {
                 case ABAJO:
                     direccion = Direccion.ABAJO;
                     break;
                 case ARRIBA:
                     direccion = Direccion.ARRIBA;
                     break;
+
                 case DERECHA:
                     direccion = Direccion.DERECHA;
                     break;
+
                 case IZQUIERDA:
                     direccion = Direccion.IZQUIERDA;
                     break;
             }
-            return direccion;  // Devuelve el objeto Direccion correspondiente
+            return direccion;
         }
+
     }
 
     /**
@@ -60,27 +63,30 @@ public class DireccionCVR {
      * @return el objeto DireccionDTO correspondiente, o null si direccion es
      * null
      */
-    public DireccionDTO direccionConvertirEntidadADTO(Direccion direccion) {  
-        if (direccion == null) {  
-            return null; // Si el objeto Direccion es nulo, retorna nulo
-        } else {  
+    public DireccionDTO direccionConvertirEntidadADTO(Direccion direccion) {
+        if (direccion == null) {
+            return null;
+        } else {
             DireccionDTO direccionDTO = null;
 
-            switch (direccion) {  // Realiza la conversión según el valor de direccion
+            switch (direccion) {
                 case ABAJO:
                     direccionDTO = DireccionDTO.ABAJO;
                     break;
                 case ARRIBA:
                     direccionDTO = DireccionDTO.ARRIBA;
                     break;
+
                 case DERECHA:
                     direccionDTO = DireccionDTO.DERECHA;
                     break;
+
                 case IZQUIERDA:
                     direccionDTO = DireccionDTO.IZQUIERDA;
                     break;
             }
-            return direccionDTO;  // Devuelve el objeto DireccionDTO correspondiente
+            return direccionDTO;
         }
+
     }
 }

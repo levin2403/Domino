@@ -18,16 +18,6 @@ import java.util.List;
  * alias el q quiereayudarentodoalafuerzapqnolegustaqueparezcaquenohacenada
  */
 public class PozoCVR {
-    
-//    public Pozo toEntity(PozoDTO pozoDTO){
-//        return null;
-//    }
-//    
-//    public PozoDTO toDTO(Pozo pozo){
-//        return null;
-//    } quesesoiga 
-    
- 
        
     private FichaCVR fichaCVR; // Instanciamos el conversor de Ficha
 

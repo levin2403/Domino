@@ -40,6 +40,9 @@ public class FichaCVR {
      * @return el objeto Ficha correspondiente
      */
     public Ficha fichaConvertirDTOAEntidad(FichaDTO fichaDTO) {
+        if(fichaDTO == null){
+            return null;
+        }
         int valorSuperior = fichaDTO.getValorSuperior();
         int valorinferior = fichaDTO.getValorInferior();
         Locacion centerLocacion = converLoca.locacionConvertirDTOAEntidad(fichaDTO.getCenterLocacion());
@@ -58,6 +61,9 @@ public class FichaCVR {
      * @return el objeto FichaDTO correspondiente
      */
     public FichaDTO fichaConvertirEntidadADTO(Ficha ficha) {
+        if(ficha == null){
+            return null;
+        }
         int valorSuperior = ficha.getValorSuperior();
         int valorinferior = ficha.getValorInferior();
         LocacionDTO centerLocacion = converLoca.locacionConvertirEntidadADTO(ficha.getCenterLocacion());
