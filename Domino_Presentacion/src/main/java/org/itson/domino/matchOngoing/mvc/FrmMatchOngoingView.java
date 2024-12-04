@@ -7,7 +7,7 @@ import DTOs.ManejadorTurnosDTO;
 import Eventos.EventoIniciarPartida;
 import Eventos.EventoRealizarJugada;
 import Eventos.EventoRegistrarJugador;
-import Observer.Vista.ObserverFrmMatchOngoingView;
+import Observer.Vista.ObserverFrmJuegoView;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -33,7 +33,7 @@ import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
 
-public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverFrmMatchOngoingView {
+public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverFrmJuegoView {
 
     FrmMatchOngoingModel model;
     FichasPanel fichasPanel = new FichasPanel();
@@ -184,8 +184,6 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmMatchOngoingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -574,8 +572,10 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
     public void actualizarVista(Object object) {
         if (object instanceof Acciones) {
                 Acciones accion = (Acciones) object;
-
-                if (accion == accion.POZOVACIO) {
+                if (accion== accion.CERRARVENTANA) {
+                    this.dispose();
+                }
+                else if (accion == accion.POZOVACIO) {
                     JOptionPane.showMessageDialog(this, "Pozo vacio");
                 }
             }
@@ -661,13 +661,14 @@ public class FrmMatchOngoingView extends javax.swing.JFrame implements ObserverF
                 }
             }
         } else if (object instanceof ManejadorTurnosDTO m) {
-            
+            //cambio
             
             JLabel[] lblfichas = {lblFichas1, lblFichas2, lblFichas3, lblFichas4};
             model.setJugadorTurno(m.getJugadorEnTurno());
             JLabel[] lblPlayers = {lblPlayer1, lblPlayer2, lblPlayer3, lblPlayer4};
             for (int i = 0; i < m.getJugadores().size(); i++) {
                 if (m.getJugadores().get(i).equals(model.getJugadorDto())) {
+                    model.setJugadorDto(m.getJugadores().get(i));
                     this.fichasPanel.agregarFicha(m.getJugadores().get(i).getFichas());
                 }
                 for (int j = 0; j < lblPlayers.length; j++) {

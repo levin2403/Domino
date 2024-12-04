@@ -40,11 +40,14 @@ public class FrmMatchEndingRequestController {
     }
     
     private void openNextForm() {
-//        navigateToForm(() -> mediator.showFrmWelcome());
+    System.exit(0);
     }
-    
+    public void abrirPantalla(){
+        System.out.println("estrueos");
+        view.setVisible(true);
+    }
     private void openPrevForm() {
-//        navigateToForm(() -> mediator.showFrmMatchOngoing());
+      //  navigateToForm(() -> mediator.showFrmMatchOngoing());
     }
  
     private void navigateToForm(Runnable action) {

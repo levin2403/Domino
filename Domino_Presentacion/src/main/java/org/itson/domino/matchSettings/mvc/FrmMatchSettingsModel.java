@@ -7,19 +7,40 @@ package org.itson.domino.matchSettings.mvc;
 import static DTOs.Acciones.MENU;
 import DTOs.ConfiguracionDTO;
 import Observer.ObserverEstablecerConfiguracion;
-import Observer.Vista.ObserverFrmMatchSettingsView;
+import Observer.Vista.ObserverFrmSettingsView;
+import Observer.Vista.ObserverFrmWelcomeView;
 
 /**
  *
  * @author gamaliel
  */
 public class FrmMatchSettingsModel {
+    
     private ObserverEstablecerConfiguracion observer;
-    private ObserverFrmMatchSettingsView observerView;
 
+    ObserverEstablecerConfiguracion observable = new ObserverEstablecerConfiguracion() {
+        
+        @Override
+        public void actualizarConfiguracion(Object objecto) {
+            observerView.actualizarVista(objecto);
+          }
+
+    };
     private int numberOfPlayers;
     private int numberOfTiles;
 
+    
+    private ObserverFrmSettingsView observerView;
+
+    public ObserverFrmSettingsView getObserverView() {
+        return observerView;
+    }
+
+    public void setObserverView(ObserverFrmSettingsView observerView) {
+        this.observerView = observerView;
+    }
+    
+    
     // Constantes para los límites de jugadores y fichas
     private static final int MIN_PLAYERS = 2;
     private static final int MAX_PLAYERS = 4;
@@ -29,23 +50,6 @@ public class FrmMatchSettingsModel {
     public FrmMatchSettingsModel() {
         this.numberOfPlayers = MIN_PLAYERS;
         this.numberOfTiles = MIN_TILES;
-    }
-    
-    ObserverEstablecerConfiguracion observable = new ObserverEstablecerConfiguracion() {
-
-        @Override
-        public void actualizarConfiguracion(Object objecto) {
-            observerView.actualizarVista(objecto);
-        }
-
-    };
-
-    public ObserverFrmMatchSettingsView getObserverView() {
-        return observerView;
-    }
-
-    public void setObserverView(ObserverFrmMatchSettingsView observerView) {
-        this.observerView = observerView;
     }
 
     public void setNumberOfPlayers(int numberOfPlayers) {
@@ -59,16 +63,13 @@ public class FrmMatchSettingsModel {
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
-
-    public void menu() {
+    public void menu(){
         observer.actualizarConfiguracion(MENU);
     }
-
-    public void crearPartida() {
-        ConfiguracionDTO c = new ConfiguracionDTO(numberOfPlayers, numberOfTiles);
+    public void crearPartida(){
+        ConfiguracionDTO c = new ConfiguracionDTO(numberOfTiles, numberOfPlayers);
         observer.actualizarConfiguracion(c);
     }
-
     public void setNumberOfTiles(int numberOfTiles) {
         if (numberOfTiles >= MIN_TILES && numberOfTiles <= MAX_TILES) {
             this.numberOfTiles = numberOfTiles;
@@ -80,11 +81,9 @@ public class FrmMatchSettingsModel {
     public int getNumberOfTiles() {
         return numberOfTiles;
     }
-
     public void registrarObservador(ObserverEstablecerConfiguracion o) {
         this.observer = o;
     }
-
     public void notificar(Object objecto) {
         observer.actualizarConfiguracion(objecto);
     }

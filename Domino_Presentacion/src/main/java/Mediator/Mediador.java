@@ -4,14 +4,18 @@
  */
 package Mediator;
 
+import Observable.ObservableMenuLogica;
 import Observer.ObserverEstablecerConfiguracion;
 import Observer.ObserverLobby;
 import Observer.ObserverMenuLogica;
 import Observer.ObserverRealizarJugada;
 import Observer.ObserverRegistrarJugador;
+import Observer.ObserverTerminarPartida;
+import javax.swing.JFrame;
 import org.itson.domino.lobby.mvc.FrmLobbyController;
 import org.itson.domino.lobby.mvc.FrmLobbyModel;
 import org.itson.domino.lobby.mvc.FrmLobbyView;
+import org.itson.domino.managers.AvatarManager;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestController;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestModel;
 import org.itson.domino.matchEndingRequest.mvc.FrmMatchEndingRequestView;
@@ -26,6 +30,7 @@ import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsModel;
 import org.itson.domino.playerSettings.mvc.FrmPlayerSettingsView;
 import org.itson.domino.welcome.mvc.FrmWelcomeController;
 import org.itson.domino.welcome.mvc.FrmWelcomeModel;
+import org.itson.domino.welcome.mvc.FrmWelcomeView;
 
 /**
  *
@@ -37,8 +42,8 @@ public class Mediador {
         
     }
     
-    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica) {
-        FrmWelcomeModel model = new FrmWelcomeModel();
+    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica){
+        FrmWelcomeModel model = new FrmWelcomeModel(); 
         model.registrarObservador(observerMenuLogica);
         FrmWelcomeController controller = new FrmWelcomeController(model);
         controller.mostrarPantalla();
@@ -67,10 +72,11 @@ public class Mediador {
     }
     
     public ObserverLobby showFrmLobby(ObserverLobby o) {
-        FrmLobbyModel model = new FrmLobbyModel();
+        FrmLobbyModel model = new FrmLobbyModel(); 
         FrmLobbyView view = new FrmLobbyView(model);
         model.setObserverView(view);
-        FrmLobbyController controller = new FrmLobbyController(model, view);
+        model.setObserver(o);
+        FrmLobbyController controller = new FrmLobbyController(model ,view);
         controller.mostrarPantalla();
         return model.getObservable();
     }
@@ -80,16 +86,19 @@ public class Mediador {
         FrmMatchOngoingView view = new FrmMatchOngoingView(model);
         model.setObserverView(view);
         model.setObserver(o);
-        FrmMatchOngoingController controller = new FrmMatchOngoingController(model, view);
+        FrmMatchOngoingController controller = new FrmMatchOngoingController(model,view);
         controller.abrirPantalla();
         return model.getObservable();
     }
     
-    public void showFrmMatchEndingRequest() {
+    public ObserverTerminarPartida showFrmMatchEndingRequest(ObserverTerminarPartida o) {
         FrmMatchEndingRequestModel model = new FrmMatchEndingRequestModel();
         FrmMatchEndingRequestView view = new FrmMatchEndingRequestView(model);
+        model.setObserverView(view);
+        model.setObserverTerminarPartidaModel(o);
         FrmMatchEndingRequestController controller = new FrmMatchEndingRequestController(model ,view);
-        view.setVisible(true);
+        controller.abrirPantalla();
+        return model.getObserverTerminarPartida();
     }
     
 }

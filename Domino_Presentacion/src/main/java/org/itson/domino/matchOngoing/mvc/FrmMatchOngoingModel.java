@@ -12,7 +12,7 @@ import Observable.ObservableObtenerFichaPozo;
 import Observer.ObserverLobby;
 import Observer.ObserverObtenerFichaPozo;
 import Observer.ObserverRealizarJugada;
-import Observer.Vista.ObserverFrmMatchOngoingView;
+import Observer.Vista.ObserverFrmJuegoView;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ public class FrmMatchOngoingModel {
     private JugadorDTO jugadorDto;
     private JugadorDTO jugadorTurno;
     private List<JugadorDTO> jugadores;
-    private ObserverFrmMatchOngoingView observerView;
+    private ObserverFrmJuegoView observerView;
     ObserverRealizarJugada observable = new ObserverRealizarJugada() {
         @Override
         public void actualizar(Object objecto) {
@@ -47,15 +47,11 @@ public class FrmMatchOngoingModel {
         return observable;
     }
 
-    public void setObservable(ObserverRealizarJugada observable) {
-        this.observable = observable;
-    }
-
-    public ObserverFrmMatchOngoingView getObserverView() {
+    public ObserverFrmJuegoView getObserverView() {
         return observerView;
     }
 
-    public void setObserverView(ObserverFrmMatchOngoingView observerView) {
+    public void setObserverView(ObserverFrmJuegoView observerView) {
         this.observerView = observerView;
     }
 
@@ -66,27 +62,35 @@ public class FrmMatchOngoingModel {
     public void setObserver(ObserverRealizarJugada observer) {
         this.observer = observer;
     }
-    public boolean tuTurno(){
+
+    public boolean tuTurno() {
         return jugadorDto.equals(jugadorTurno);
     }
+
     public void colocarIzquierda(FichaDTO j) {
-        JugadaDTO jugada = new JugadaDTO(jugadorDto, j, true);
+         System.out.println(jugadorDto.getFichas().size()+" ficha");
         jugadorDto.eliminarFicha(j);
+        System.out.println(jugadorDto.getFichas().size()+" ficha");
+        JugadaDTO jugada = new JugadaDTO(jugadorDto, j, true);
         observer.actualizar(jugada);
     }
 
     public void colocarDerecha(FichaDTO j) {
-        JugadaDTO jugada = new JugadaDTO(jugadorDto, j, false);
+         System.out.println(jugadorDto.getFichas().size()+" ficha");
         jugadorDto.eliminarFicha(j);
+        System.out.println(jugadorDto.getFichas().size()+" ficha");
+        JugadaDTO jugada = new JugadaDTO(jugadorDto, j, false);  
         observer.actualizar(jugada);
     }
 
     public JugadorDTO getJugadorDto() {
         return jugadorDto;
     }
-    public void robarFicha(){
+
+    public void robarFicha() {
         observer.actualizar(jugadorDto);
     }
+
     public void setJugadorDto(JugadorDTO jugadorDto) {
         this.jugadorDto = jugadorDto;
     }

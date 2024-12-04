@@ -42,7 +42,7 @@ public class FichasPanel extends JPanel {
     }
 
 private void detectarFichaClickeada(int mouseX, int mouseY) {
-    double escala = 0.188; // Escala usada para dibujar las fichas
+    double escala = 0.188; // Escala usada para dibujar las fichas1
     int x = espacioEntreFichas; // Coordenada inicial X
     int y = espacioEntreFichas; // Coordenada inicial Y
     int panelWidth = getWidth(); // Ancho del panel
@@ -51,7 +51,7 @@ private void detectarFichaClickeada(int mouseX, int mouseY) {
 
     for (FichaDTO ficha : fichas) {
         if (ficha.getIcon() != null) {
-            // Cargar el ícono y calcular el tamaño escalado
+            // Cargar el ícono y calcular el tamaño escalado  5-5
             ImageIcon icon = new ImageIcon(getClass().getResource("/tiles/" + ficha.getIcon() + ".png"));
             int anchoFichaEscalado = (int) (icon.getIconWidth() * escala);
             int altoFichaEscalado = (int) (icon.getIconHeight() * escala);

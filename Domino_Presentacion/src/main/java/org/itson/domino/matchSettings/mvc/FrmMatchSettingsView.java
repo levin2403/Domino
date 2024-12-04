@@ -1,6 +1,7 @@
 package org.itson.domino.matchSettings.mvc;
 
 import DTOs.Acciones;
+import Observer.Vista.ObserverFrmSettingsView;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -10,9 +11,8 @@ import org.itson.domino.singleton.ButtonStyleSingleton;
 import org.itson.domino.singleton.TaskbarButtonSingleton;
 import org.itson.domino.singleton.FontSingleton;
 import org.itson.domino.singleton.LookAndFeelSingleton;
-import Observer.Vista.ObserverFrmMatchSettingsView;
 
-public class FrmMatchSettingsView extends javax.swing.JFrame implements ObserverFrmMatchSettingsView {
+public class FrmMatchSettingsView extends javax.swing.JFrame implements ObserverFrmSettingsView {
 
     private FrmMatchSettingsModel model;
     
@@ -203,15 +203,14 @@ public class FrmMatchSettingsView extends javax.swing.JFrame implements Observer
 
     @Override
     public void actualizarVista(Object object) {
-        if (object instanceof Acciones) {
-            if (object instanceof Acciones) {
+      if(object instanceof Acciones){
+           if (object instanceof Acciones) {
                 Acciones accion = (Acciones) object;
-
-                if (accion == accion.CERRARVENTANA) {
-                    System.out.println("se cerro");
+                
+                if (accion== accion.CERRARVENTANA) {
                     this.dispose();
                 }
             }
-        }
+      }
     }
 }

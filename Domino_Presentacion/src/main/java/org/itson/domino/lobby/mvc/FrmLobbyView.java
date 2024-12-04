@@ -105,7 +105,6 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
         jScrollPane1 = new javax.swing.JScrollPane();
         lblJugaadores = new javax.swing.JTextArea();
         lblDomino = new javax.swing.JLabel();
-        lblJugadores = new javax.swing.JLabel();
         lblPlayerName = new javax.swing.JLabel();
         btnNextForm = new javax.swing.JButton();
         btnPrevForm = new javax.swing.JButton();
@@ -132,11 +131,6 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
         lblDomino.setFont(new java.awt.Font("Roboto", 0, 80)); // NOI18N
         lblDomino.setText("Esperando al resto de jugadores");
         jPanel1.add(lblDomino, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
-
-        lblJugadores.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        lblJugadores.setForeground(new java.awt.Color(255, 255, 255));
-        lblJugadores.setText("1/2");
-        jPanel1.add(lblJugadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 230, 120));
 
         lblPlayerName.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         lblPlayerName.setText("Disfruta la música que escuchas en esta sala de espera");
@@ -205,7 +199,6 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDomino;
     private javax.swing.JTextArea lblJugaadores;
-    private javax.swing.JLabel lblJugadores;
     private javax.swing.JLabel lblPlayerName;
     // End of variables declaration//GEN-END:variables
 
@@ -221,7 +214,6 @@ public class FrmLobbyView extends javax.swing.JFrame implements ObserverFrmLobby
             }
         }
         if (object instanceof EventoRegistrarJugador r) {
-            lblJugadores.setText(r.getJugadores().size() + "/" + r.getC().getNumJugadores());
             lblJugaadores.setText("");
             model.setJugadores(r.getJugadores());
             for (JugadorDTO jugadore : r.getJugadores()) {

@@ -26,14 +26,8 @@ public class AvatarManager {
         for (String path : avatarPaths) {
             try {
                 URL imageUrl = getClass().getClassLoader().getResource(path);
-                if (imageUrl != null) {
-
-                    System.out.println("Cargado: " + path);
-                } else {
-                    System.err.println("Error: No se pudo encontrar la imagen en la ruta: " + path);
-                }
+                
             } catch (Exception e) {
-                System.err.println("Error al cargar la imagen: " + e.getMessage());
             }
         }
     }

@@ -10,6 +10,7 @@ import Observer.ObserverLobby;
 import Observer.ObserverMenuLogica;
 import Observer.ObserverRealizarJugada;
 import Observer.ObserverRegistrarJugador;
+import Observer.ObserverTerminarPartida;
 import fachadas.IFachada;
 import org.itson.domino.singleton.MediadorSingleton;
 
@@ -29,39 +30,44 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica) {
-        return mediador.showFrmWelcome(observerMenuLogica);
-    }
+        public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica) {
+            return mediador.showFrmWelcome(observerMenuLogica);
+        }
 
-    @Override
-    public ObserverEstablecerConfiguracion showFrmMatchSettings(ObserverEstablecerConfiguracion o) {
-        return mediador.showFrmMatchSettings(o);
-    }
+        @Override
+        public ObserverEstablecerConfiguracion showFrmMatchSettings(ObserverEstablecerConfiguracion o) {
+           return mediador.showFrmMatchSettings(o);
+        }
 
-    @Override
-    public ObserverRegistrarJugador showFrmPlayerSettings(ObserverRegistrarJugador observer) {
-        return mediador.showFrmPlayerSettings(observer);
-    }
+        @Override
+        public ObserverRegistrarJugador showFrmPlayerSettings(ObserverRegistrarJugador observer) {
+            return mediador.showFrmPlayerSettings(observer);
+        }
 
-    @Override
-    public ObserverLobby showFrmLobby(ObserverLobby l) {
-        return mediador.showFrmLobby(l);
-    }
+        @Override
+        public ObserverLobby showFrmLobby(ObserverLobby l) {
+            return mediador.showFrmLobby(l);
+        }
 
-    @Override
-    public ObserverRealizarJugada showFrmMatchOngoing(ObserverRealizarJugada O) {
-        return mediador.showFrmMatchOngoing(O);
-    }
-    
-    @Override
-    public void showFrmMatchEndingRequest() {
-        mediador.showFrmMatchEndingRequest();
-    }
+        @Override
+        public ObserverRealizarJugada showFrmMatchOngoing(ObserverRealizarJugada O) {
+            return mediador.showFrmMatchOngoing(O);
+        }
+
+        @Override
+        public ObserverTerminarPartida showFrmMatchEndingRequest(ObserverTerminarPartida o) {
+           return mediador.showFrmMatchEndingRequest(o);
+        }
 
     public static IFachada getFachada() {
-        if (fachada == null) {
+        if(fachada == null){
             fachada = new Fachada();
         }
         return fachada;
     }
+    
+    
+    
+    
+    
 }

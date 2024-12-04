@@ -38,7 +38,6 @@ public class FrmMatchOngoingController {
     }
 
     private void setupButtonListeners() {
-        view.addEndMatchButtonListener(e -> openNextForm());
         view.addAccionIzquierdaButtonListener(e -> colocarFichaIzquierda());
         view.addAccionDerechaButtonListener(e -> colocarFichaDerecha());
         view.addRoboButtonListener(e -> robarFicha());
@@ -84,10 +83,7 @@ public class FrmMatchOngoingController {
     public void abrirPantalla(){
         view.setVisible(true);
     }
-    private void openNextForm() {
-        musicModel.stopCurrentMusic();
-        navigateToForm(() -> mediator.showFrmMatchEndingRequest());
-    }
+    
 
     private void navigateToForm(Runnable action) {
         view.dispose();
