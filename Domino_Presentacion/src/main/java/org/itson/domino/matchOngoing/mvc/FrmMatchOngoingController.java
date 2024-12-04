@@ -21,70 +21,78 @@ public class FrmMatchOngoingController {
     private MusicModelSingleton musicModel;
     private Mediador mediator;
 
+    // Constructor que inicializa el modelo, vista, mediador y música.
     public FrmMatchOngoingController(FrmMatchOngoingModel model ,FrmMatchOngoingView view) {
         this.model = model;
         this.view = view;
         this.mediator = new Mediador();
         this.musicModel = MusicModelSingleton.getInstance();
 
-        //playMatchTheme();
+        //playMatchTheme();  // Reproducir la música de la partida (comentado temporalmente).
         
-        setupButtonListeners();
+        setupButtonListeners(); // Configura los escuchadores de los botones.
     }
 
-
+    // Método para reproducir la música del tema de la partida.
     private void playMatchTheme() {
         musicModel.playMusic(MusicPaths.MATCH_THEME_1);
     }
 
+    // Configura los escuchadores de eventos de los botones.
     private void setupButtonListeners() {
         view.addAccionIzquierdaButtonListener(e -> colocarFichaIzquierda());
         view.addAccionDerechaButtonListener(e -> colocarFichaDerecha());
         view.addRoboButtonListener(e -> robarFicha());
     }
-    private void colocarFichaDerecha(){
+
+    // Lógica para colocar una ficha a la derecha si es el turno del jugador.
+    private void colocarFichaDerecha() {
         if (!model.tuTurno()) {
-             System.out.println("no es tu turno");
-             return;
-         }
-        FichaDTO ficha =view.getFichaSeleccionada();
-        if(ficha==null){
-            JOptionPane.showMessageDialog(view, "Selecciona una ficha");
+            System.out.println("no es tu turno");
+            return;
         }
-        if ( view.colocarFichaDerecha(ficha)) {
+        FichaDTO ficha = view.getFichaSeleccionada();
+        if(ficha == null) {
+            JOptionPane.showMessageDialog(view, "Selecciona una ficha");
+        } else if (view.colocarFichaDerecha(ficha)) {
             model.colocarDerecha(ficha);
         }
-              
     }
-     private void colocarFichaIzquierda(){
-         if (!model.tuTurno()) {
-             JOptionPane.showConfirmDialog(view, "No es tu Turno");
-             return;
-         }
-        FichaDTO ficha =view.getFichaSeleccionada();
-        if(ficha==null){
-            JOptionPane.showMessageDialog(view, "Selecciona una ficha");
-        }
-        else if ( view.colocarFichaIzquierda(ficha)) {
-            model.colocarIzquierda(ficha);
-        }
-              
-    }
-    private void robarFicha(){
+
+    // Lógica para colocar una ficha a la izquierda si es el turno del jugador.
+    private void colocarFichaIzquierda() {
         if (!model.tuTurno()) {
             JOptionPane.showConfirmDialog(view, "No es tu Turno");
-             return;
-         }
+            return;
+        }
+        FichaDTO ficha = view.getFichaSeleccionada();
+        if(ficha == null) {
+            JOptionPane.showMessageDialog(view, "Selecciona una ficha");
+        } else if (view.colocarFichaIzquierda(ficha)) {
+            model.colocarIzquierda(ficha);
+        }
+    }
+
+    // Lógica para robar una ficha si es el turno del jugador.
+    private void robarFicha() {
+        if (!model.tuTurno()) {
+            JOptionPane.showConfirmDialog(view, "No es tu Turno");
+            return;
+        }
         model.robarFicha();
     }
-    public void mensajePozo(){
-         JOptionPane.showMessageDialog(view, "Selecciona una ficha");
+
+    // Muestra un mensaje cuando se debe seleccionar una ficha.
+    public void mensajePozo() {
+        JOptionPane.showMessageDialog(view, "Selecciona una ficha");
     }
-    public void abrirPantalla(){
+
+    // Hace visible la vista de la pantalla.
+    public void abrirPantalla() {
         view.setVisible(true);
     }
-    
 
+    // Navega entre formularios (cierra la vista actual y ejecuta una acción).
     private void navigateToForm(Runnable action) {
         view.dispose();
         action.run();

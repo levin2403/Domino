@@ -19,26 +19,26 @@ import javax.swing.ImageIcon;
  */
 public class FrmWelcomeModel implements ObservableMenuLogica, ObserverMenuLogica {
 
-    private ObserverMenuLogica observer;
+    private ObserverMenuLogica observer;  // Observador que recibirá las actualizaciones
+    private ObserverFrmWelcomeView observerView;  // Observador específico de la vista
 
+    // Objeto que actúa como observable para notificar actualizaciones
     ObserverMenuLogica observable = new ObserverMenuLogica() {
         @Override
         public void actualizar(Object objecto) {
+           // Actualiza la vista con la nueva información recibida
            observerView.actualizarVista(objecto);
         }
-
     };
 
-    private ObserverFrmWelcomeView observerView;
-
-    private ImageIcon createImageIcon(String path, int x, int y,
-            String extension) throws Exception {
-        URL imgURL = FrmWelcomeView.class.getResource("/icons/" + path + "."
-                + extension);
+    /**
+     * Crea un ImageIcon escalado a partir de una ruta de archivo.
+     */
+    private ImageIcon createImageIcon(String path, int x, int y, String extension) throws Exception {
+        URL imgURL = FrmWelcomeView.class.getResource("/icons/" + path + "." + extension);
         if (imgURL != null) {
             ImageIcon originalIcon = new ImageIcon(imgURL);
-            Image image = originalIcon.getImage().getScaledInstance(x, y,
-                    Image.SCALE_SMOOTH);
+            Image image = originalIcon.getImage().getScaledInstance(x, y, Image.SCALE_SMOOTH);
             return new ImageIcon(image);
         } else {
             throw new Exception("No se pudo encontrar el archivo de imagen");
@@ -52,12 +52,18 @@ public class FrmWelcomeModel implements ObservableMenuLogica, ObserverMenuLogica
     public void setObservable(ObserverMenuLogica observable) {
         this.observable = observable;
     }
-    
-    
+
+    /**
+     * Inicia la búsqueda de una partida.
+     */
     public void buscarPartida() {
         notificar(Acciones.BUSCARPARTIDA);
     }
-     public void configurar() {
+
+    /**
+     * Inicia la configuración del juego.
+     */
+    public void configurar() {
         notificar(Acciones.CONFIGURAR);
     }
 
@@ -71,6 +77,11 @@ public class FrmWelcomeModel implements ObservableMenuLogica, ObserverMenuLogica
         this.observerView = o;
     }
 
+    /**
+     * Notifica al observador con el objeto dado.
+     * 
+     * @param objecto El objeto con la actualización.
+     */
     @Override
     public void notificar(Object objecto) {
         observer.actualizar(objecto);
@@ -78,8 +89,6 @@ public class FrmWelcomeModel implements ObservableMenuLogica, ObserverMenuLogica
 
     @Override
     public void actualizar(Object objecto) {
-       
-        
+        // Método vacío, puede ser implementado si se necesita recibir actualizaciones.
     }
-
 }

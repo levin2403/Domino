@@ -36,20 +36,31 @@ import org.itson.domino.welcome.mvc.FrmWelcomeView;
  *
  * @author skevi
  */
+
 public class Mediador {
-    
+
+    // Constructor de la clase Mediador
     public Mediador() {
-        
     }
-    
-    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica){
+
+    /**
+     * Muestra la pantalla de bienvenida y registra el observador.
+     * @param observerMenuLogica El observador para la pantalla de bienvenida.
+     * @return El modelo observable de la pantalla de bienvenida.
+     */
+    public ObserverMenuLogica showFrmWelcome(ObserverMenuLogica observerMenuLogica) {
         FrmWelcomeModel model = new FrmWelcomeModel(); 
         model.registrarObservador(observerMenuLogica);
         FrmWelcomeController controller = new FrmWelcomeController(model);
         controller.mostrarPantalla();
         return model.getObservable();
     }
-    
+
+    /**
+     * Muestra la pantalla de configuración de la partida y registra el observador.
+     * @param o El observador para la configuración de la partida.
+     * @return El modelo observable de la pantalla de configuración de la partida.
+     */
     public ObserverEstablecerConfiguracion showFrmMatchSettings(ObserverEstablecerConfiguracion o) {
         FrmMatchSettingsModel model = new FrmMatchSettingsModel();
         FrmMatchSettingsView view = new FrmMatchSettingsView(model);
@@ -59,18 +70,27 @@ public class Mediador {
         controller.mostrarPantalla();
         return model.getObservable();
     }
-    
-    //Le asignas un observer a este metodo y le pides que te regrese el modelo que se creara dentro (esto para que logica le pueda asignar el observer)
+
+    /**
+     * Muestra la pantalla de configuración del jugador y registra el observador.
+     * @param observer El observador para la configuración del jugador.
+     * @return El modelo observable de la pantalla de configuración del jugador.
+     */
     public ObserverRegistrarJugador showFrmPlayerSettings(ObserverRegistrarJugador observer) {
         FrmPlayerSettingsView view = new FrmPlayerSettingsView();
         FrmPlayerSettingsModel model = new FrmPlayerSettingsModel();
-        model.registrarObservadorVista(view);//Asignas el observador vista en caso de necesitarlo
-        model.registrarObservadorLogica(observer);//le asignas el observador de logica
+        model.registrarObservadorVista(view);  // Asigna el observador de vista
+        model.registrarObservadorLogica(observer);  // Asigna el observador de lógica
         FrmPlayerSettingsController controller = new FrmPlayerSettingsController(model ,view);
         controller.mostrarPantalla();
         return model.getObservable();
     }
-    
+
+    /**
+     * Muestra la pantalla del lobby y registra el observador.
+     * @param o El observador para el lobby.
+     * @return El modelo observable del lobby.
+     */
     public ObserverLobby showFrmLobby(ObserverLobby o) {
         FrmLobbyModel model = new FrmLobbyModel(); 
         FrmLobbyView view = new FrmLobbyView(model);
@@ -80,7 +100,12 @@ public class Mediador {
         controller.mostrarPantalla();
         return model.getObservable();
     }
-    
+
+    /**
+     * Muestra la pantalla de la partida en curso y registra el observador.
+     * @param o El observador para la partida en curso.
+     * @return El modelo observable de la partida en curso.
+     */
     public ObserverRealizarJugada showFrmMatchOngoing(ObserverRealizarJugada o) {
         FrmMatchOngoingModel model = new FrmMatchOngoingModel();
         FrmMatchOngoingView view = new FrmMatchOngoingView(model);
@@ -90,7 +115,12 @@ public class Mediador {
         controller.abrirPantalla();
         return model.getObservable();
     }
-    
+
+    /**
+     * Muestra la pantalla de terminación de la partida y registra el observador.
+     * @param o El observador para la terminación de la partida.
+     * @return El modelo observable de la terminación de la partida.
+     */
     public ObserverTerminarPartida showFrmMatchEndingRequest(ObserverTerminarPartida o) {
         FrmMatchEndingRequestModel model = new FrmMatchEndingRequestModel();
         FrmMatchEndingRequestView view = new FrmMatchEndingRequestView(model);
@@ -100,5 +130,4 @@ public class Mediador {
         controller.abrirPantalla();
         return model.getObserverTerminarPartida();
     }
-    
 }
