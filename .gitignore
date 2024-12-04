@@ -13,5 +13,9 @@
 /FiltroBuscarPartida/target/
 /FiltroIniciarPartida/target/
 /FiltroMenu/target/
+<<<<<<< Updated upstream
 /FiltroRoboPozo/target/
 /FiltroRealizarJugada/target/
+=======
+/FiltroTerminarPartida/target/
+>>>>>>> Stashed changes
