@@ -7,6 +7,7 @@ import Eventos.EventoBuscarPartida;
 import Eventos.EventoEstablecerConfiguracion;
 import Eventos.EventoIniciarPartida;
 import Eventos.EventoObtenerFichaPozo;
+import Eventos.EventoPartidaTerminada;
 import Eventos.EventoRealizarJugada;
 import Eventos.EventoRegistrarJugador;
 import com.google.gson.Gson;
@@ -57,6 +58,8 @@ public class FiltroEvento<T> extends FilterDomino<T> {
                 return (T) gson.fromJson(mensaje, EventoIniciarPartida.class);
             case "eventoObtenerFichaPozo":
                 return (T) gson.fromJson(mensaje, EventoObtenerFichaPozo.class);
+            case "eventoPartidaTerminada":
+                return (T) gson.fromJson(mensaje, EventoPartidaTerminada.class);
 
             // Puedes agregar más casos si tienes más tipos de eventos
             default:

@@ -30,12 +30,6 @@ public class Conexion extends Thread {
     private BufferedWriter out;
     private BufferedReader in;
     private Map<Class<?>, ObserverSocket> observers;
-    
-      /**
-     * Constructor de la clase Conexion.
-     *
-     * @param socket El socket que conecta al cliente con el servidor.
-     */
 
     public Conexion(Socket socket) {
         this.socket = socket;
@@ -48,51 +42,36 @@ public class Conexion extends Thread {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-     /**
-     * Registra un observador para un tipo de evento específico.
-     *
-     * @param tipoEvento Clase del evento que se desea observar.
-     * @param observer Observador que escucha el evento.
-     */
-    
-        public void registrarObserver(Class<?> tipoEvento, ObserverSocket observer) {
+
+    public void registrarObserver(Class<?> tipoEvento, ObserverSocket observer) {
         observers.put(tipoEvento, observer);
     }
-    
-         /**
-     * Deserializa un mensaje en formato JSON y lo convierte en un evento específico,
-     * notificando a los observadores correspondientes si el evento es válido.
-     *
-     * @param mensaje El mensaje en formato JSON recibido.
-     * @return Devuelve null si no se puede deserializar correctamente.
-     */
+
+    // Método para notificar a todos los observadores
     private Object deserializarEvento(String mensaje) {
+        // Aquí deserializas el JSON en el tipo de evento correspondiente
+        // Esto es un ejemplo con Gson, pero depende de tu implementación
         FiltroEvento filtroJson = new FiltroEvento();
         IPipe pipe = new PipeBasico();
 
-        // Conectar el filtro al pipe y enviar el mensaje para procesarlo
+        // Conectar el filtro al pipe
         pipe.setFiltro(filtroJson);
         pipe.enviar(mensaje);
 
-        // Obtener el mensaje procesado
+        // Ejemplo de deserialización
         Object mensajeProcesado = filtroJson.getMensaje();
-
-        // Notificar observadores si el mensaje es válido
+        
+        // Si el mensaje fue procesado correctamente, notificamos a los observadores
         if (mensajeProcesado != null) {
+            // Iterar sobre los observadores y notificar
             notificarObserver(mensajeProcesado);
         }
 
-        return null;// Devuelve null si no se puede deserializar correctamente
-    
+        return null; // Devuelve null si no se puede deserializar correctamente
     }
 
-    /**
-     * Notifica al observador correspondiente del tipo de evento procesado.
-     *
-     * @param evento Evento procesado a partir del mensaje recibido.
-     */
-    private void notificarObserver(Object evento) {
+   private void notificarObserver(Object evento) {
+        // Verificar el tipo de evento y notificar al observador correspondiente
         System.out.println(evento.getClass().toString());
         ObserverSocket observador = observers.get(evento.getClass());
         if (observador != null) {
@@ -100,40 +79,30 @@ public class Conexion extends Thread {
         }
     }
 
-    /**
-     * Envía un mensaje en formato JSON al servidor.
-     *
-     * @param jsonString Cadena JSON que se desea enviar.
-     */
     public synchronized void enviarJSON(String jsonString) {
         try {
-            System.out.println("Enviando Coso");
+            System.out.println("enviando algo");
             out.write(jsonString);
             out.newLine();
-            // Escribe la cadena JSON en el BufferedWriter
+// Escribe la cadena JSON en el BufferedWriter
             out.flush();  // Envía el mensaje al servidor
         } catch (IOException e) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    /**
-     * Método run del hilo, escucha mensajes del servidor y los procesa.
-     * Si se recibe un mensaje, intenta deserializarlo y notificar a los observadores.
-     */
     @Override
     public void run() {
         String mensaje;
         try {
-            while ((mensaje = in.readLine()) != null) {
-                System.out.println("Mensaje recibido del servidor.");
-                deserializarEvento(mensaje);
+            while ((mensaje = in.readLine()) != null) {//atorado
+                
+               
+                deserializarEvento(mensaje);// Notifica solo si es un JSON válido
+               
             }
         } catch (IOException e) {
-            System.out.println("Si");
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-
 }
