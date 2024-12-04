@@ -27,7 +27,7 @@ public class FrmLobbyController {
         this.mediator = new Mediador();
         //this.musicModel = MusicModelSingleton.getInstance();
         
-        //playLobbyTheme();
+        playLobbyTheme();
         setupButtonListeners();
     }
     

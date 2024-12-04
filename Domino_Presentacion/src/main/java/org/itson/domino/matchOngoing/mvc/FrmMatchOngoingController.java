@@ -28,7 +28,7 @@ public class FrmMatchOngoingController {
         this.mediator = new Mediador();
         this.musicModel = MusicModelSingleton.getInstance();
 
-        //playMatchTheme();  // Reproducir la música de la partida (comentado temporalmente).
+        playMatchTheme();  // Reproducir la música de la partida (comentado temporalmente).
         
         setupButtonListeners(); // Configura los escuchadores de los botones.
     }
