@@ -152,9 +152,9 @@ public class Servidor {
 //    }
 //    
     public static void main(String[] args) throws IOException {
-        ServerSocket ss = new ServerSocket(1234);
+        ServerSocket ss = new ServerSocket(3012);
 
-        System.out.println("Servidor inicializado en el puerto 1234");
+        System.out.println("Servidor inicializado en el puerto" );
 
         Servidor server = new Servidor();
 

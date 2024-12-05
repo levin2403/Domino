@@ -1,6 +1,5 @@
 package Socket;
 
-import Eventos.EventoBuscarPartida;
 import Observer.ObserverSocket;
 import java.io.IOException;
 import java.net.Socket;
@@ -32,7 +31,7 @@ public class Cliente {
         if (instance == null) {
             Socket socket;
             try {
-                socket = new Socket("localhost", 1234); // Conecta al servidor en localhost y puerto 1234
+                socket = new Socket("10.202.91.83", 3012); // Conecta al servidor en localhost y puerto 1234
                 instance = new Cliente(socket); // Crea una nueva instancia de Cliente
             } catch (IOException ex) {
                 return null; // Devuelve null si ocurre un error al conectar
