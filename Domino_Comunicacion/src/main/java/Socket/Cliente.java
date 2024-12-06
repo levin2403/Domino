@@ -31,7 +31,7 @@ public class Cliente {
         if (instance == null) {
             Socket socket;
             try {
-                socket = new Socket("10.202.91.83", 3012); // Conecta al servidor en localhost y puerto 1234
+                socket = new Socket("localhost", 3000); // Conecta al servidor en localhost y puerto 1234
                 instance = new Cliente(socket); // Crea una nueva instancia de Cliente
             } catch (IOException ex) {
                 return null; // Devuelve null si ocurre un error al conectar
